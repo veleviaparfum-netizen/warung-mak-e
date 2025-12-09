@@ -15,7 +15,7 @@
 
     <style>
       /* ------------------------------------------------------------------ */
-      /* --- 2. CSS STYLES LENGKAP (VERSI FIX FINAL) --- */
+      /* --- 2. CSS STYLES LENGKAP (VERSI OPTIMASI MOBILE FINAL) --- */
       /* ------------------------------------------------------------------ */
 
       /* --- Global Styles & Layout Fix --- */
@@ -25,23 +25,17 @@
         padding: 0;
       }
 
-      html,
-      body {
-        /* Memastikan elemen root dan body menempati seluruh ruang */
-        height: 100%;
+      html, body {
+        height: 100%; 
       }
 
       body {
         font-family: "Poppins", sans-serif;
-        background-color: #f8f8f8; /* Background Putih Abu-abu Muda */
+        background-color: #f8f8f8;
         color: #333;
-
-        /* FIX: Flexbox untuk Sticky Footer */
         display: flex;
         flex-direction: column;
-
-        /* Memberi ruang di bawah untuk floating cart */
-        padding-bottom: 90px;
+        padding-bottom: 90px; 
       }
 
       a {
@@ -54,30 +48,27 @@
         max-width: 1300px;
         margin: 0 auto;
         padding: 20px 0;
-
-        /* FIX: Konten utama harus bertumbuh untuk mendorong footer ke bawah */
         flex-grow: 1;
-
         background-color: #f8f8f8;
       }
 
       /* --- Header Section --- */
       .main-header {
-        background-color: #c90000; /* Merah Menyala */
+        background-color: #c90000;
         color: white;
-        padding: 50px 20px;
+        padding: 40px 20px; /* Padding Ringkas */
         text-align: center;
       }
 
       .main-header h1 {
-        font-size: 3.5rem;
+        font-size: 2.5rem; /* Ukuran Header Ringkas */
         font-weight: 900;
         margin: 10px 0;
         letter-spacing: 1px;
       }
 
       .main-header p {
-        font-size: 1.2rem;
+        font-size: 1rem;
       }
 
       .btn-pesan-sekarang {
@@ -95,12 +86,11 @@
         background-color: #e68a00;
       }
 
-      /* FIX VISIBILITAS: Warna teks default di header menjadi putih */
       .info-buka {
         margin-top: 15px;
         font-weight: 600;
         font-size: 1.1rem;
-        color: white;
+        color: white; 
       }
 
       .location-info {
@@ -124,23 +114,155 @@
         text-align: center;
       }
 
-      .about-section h2 {
-        font-size: 2.2rem;
-        font-weight: 900;
-        color: #c90000;
-        margin-bottom: 15px;
-        border-bottom: 3px solid #ff9900;
-        display: inline-block;
-        padding-bottom: 5px;
+      /* --- Menu Grid --- */
+      .menu-grid {
+        /* Default: 350px minimum, 1 kolom di desktop */
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        display: grid;
+        gap: 30px;
+      }
+      
+      .menu-card {
+        /* Mengurangi padding di menu card agar lebih ringkas */
+        padding: 20px; 
+      }
+      
+      .menu-info h3 {
+        /* Mengurangi ukuran judul menu */
+        font-size: 1.4rem; 
+      }
+      
+      .description {
+        /* Mengurangi ukuran deskripsi */
+        font-size: 0.9rem;
       }
 
-      .about-section p {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        margin-bottom: 20px;
-        color: #555;
+      .price {
+        /* Mengurangi ukuran harga di menu */
+        font-size: 2rem; 
+      }
+      
+      .btn-tambah {
+        /* Mengurangi padding tombol tambah */
+        padding: 10px 20px; 
+        font-size: 1rem;
       }
 
+      /* ================================================= */
+      /* --- MEDIA QUERY: TAMPILAN HP (max-width: 768px) --- */
+      /* ================================================= */
+
+      @media (max-width: 768px) {
+        
+        /* 1. HEADER MERAH (TIDAK KEPOTONG) */
+        .main-header {
+            padding: 30px 15px; /* Padding lebih kecil di HP */
+        }
+        .main-header h1 {
+          font-size: 2rem; /* Diperkecil lagi agar tidak kepotong di HP */
+        }
+        .main-header p {
+          font-size: 0.9rem;
+        }
+        .btn-pesan-sekarang {
+            padding: 12px 25px;
+            font-size: 1rem;
+        }
+        .info-buka {
+            font-size: 1rem;
+        }
+
+        /* 2. MENU GRID (2 KOLOM DI HP) */
+        .menu-grid {
+          /* FIX: Mengubah ke 2 kolom (atau 1 kolom yang sangat kecil) */
+          /* Menggunakan 2 kolom di layar HP agar tidak terlalu besar */
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 15px;
+        }
+
+        .category-title {
+            font-size: 2rem;
+            margin: 40px 0 20px 0;
+        }
+        
+        /* Menu Card di Mobile */
+        .menu-card {
+            padding: 15px;
+            min-height: 180px; 
+        }
+        .menu-info h3 {
+            font-size: 1.1rem; /* Judul Menu sangat kecil */
+        }
+        .description {
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-size: 1.5rem; /* Harga kecil */
+        }
+        .btn-tambah {
+            padding: 8px 10px;
+            font-size: 0.8rem;
+        }
+        
+        /* 3. TAMPILAN CHECKOUT (FLOATING CART) */
+        .floating-cart {
+          padding: 15px 15px;
+        }
+        .cart-summary {
+          font-size: 1.1rem; /* Ringkas */
+        }
+        .cart-summary i {
+            font-size: 1.5rem;
+        }
+        .btn-checkout {
+            padding: 10px 15px;
+            font-size: 1rem;
+        }
+        
+        /* 4. FOOTER (TATA ULANG VERTICAL) */
+        .footer-info-wrapper {
+            flex-direction: column;
+            gap: 10px;
+            padding-bottom: 15px;
+        }
+        .footer-item {
+            justify-content: center; 
+            text-align: center;
+            width: 100%;
+            font-size: 0.9rem; /* Font footer kecil */
+        }
+        .info-tambahan {
+            margin-left: 0;
+            display: block; 
+            font-size: 0.8rem;
+        }
+        .instagram-row {
+            padding-top: 10px;
+            padding-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        /* MODAL KERANJANG DI HP */
+        .keranjang-modal {
+            padding: 20px;
+        }
+        .modal-header h3 {
+            font-size: 1.5rem;
+        }
+        .item-info p {
+            font-size: 1rem;
+        }
+        .btn-pesan-wa {
+            font-size: 1rem;
+            padding: 10px 20px;
+        }
+        #cart-total-modal {
+            font-size: 1.5rem;
+        }
+      } /* END MEDIA QUERY */
+
+      /* --- Sisanya (Modal dan JS tetap sama) --- */
       /* --- Search Bar & Tabs --- */
       .search-bar {
         display: flex;
@@ -190,268 +312,88 @@
         color: white;
         box-shadow: 0 4px 8px rgba(255, 153, 0, 0.4);
       }
-
-      /* --- Menu Grid --- */
-      .category-title {
-        font-size: 2.5rem;
-        font-weight: 900;
-        margin: 60px 0 30px 0;
-        color: #c90000;
-        border-bottom: 4px solid #ff9900;
-        padding-bottom: 8px;
-      }
-
-      .category-title i {
-        margin-right: 15px;
-        color: #ff9900;
-      }
-
-      .menu-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 30px;
-      }
-
-      @media (max-width: 768px) {
-        .menu-grid {
-          grid-template-columns: 1fr;
-          gap: 20px;
-        }
-        .main-header h1 {
-          font-size: 2.5rem;
-        }
-        .main-header p {
-          font-size: 1rem;
-        }
-        .tab-button {
-          min-width: unset;
-          flex-grow: 1;
-        }
-      }
-
-      .menu-card {
-        background-color: white;
-        border-radius: 18px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        transition: transform 0.2s;
-        overflow: hidden;
-        padding: 30px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        min-height: 200px;
-      }
-
-      .menu-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
-      }
-
-      .menu-info h3 {
-        font-size: 1.8rem;
-        font-weight: 800;
-        margin-bottom: 10px;
-        color: #333;
-      }
-
-      .rating {
-        font-size: 1.1rem;
-        color: #ff9900;
-        margin-bottom: 15px;
-      }
-
-      .description {
-        font-size: 1rem;
-        color: #666;
-        margin-bottom: 25px;
-      }
-
-      .price-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: auto;
-      }
-
-      .price {
-        font-size: 2.5rem;
-        font-weight: 900;
-        color: #c90000;
-      }
-
-      .btn-tambah {
-        background-color: #ff9900;
-        color: white;
-        border: none;
-        padding: 12px 25px;
-        border-radius: 10px;
-        cursor: pointer;
-        font-weight: 700;
-        font-size: 1.1rem;
-        transition: background-color 0.2s, transform 0.1s;
-      }
-      .btn-tambah:hover {
-        background-color: #e68a00;
-        transform: scale(1.05);
-      }
-
-      /* --- Floating Cart --- */
-      .floating-cart {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: #c90000;
-        color: white;
-        padding: 15px 50px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.4);
-        z-index: 1000;
-        cursor: pointer;
-      }
-
-      @media (max-width: 768px) {
-        .floating-cart {
-          padding: 18px 20px;
-        }
-        .cart-summary {
-          font-size: 1.2rem;
-        }
-        .btn-checkout {
-          padding: 10px 20px;
-          font-size: 1rem;
-        }
-      }
-
-      .cart-summary {
-        font-weight: 800;
-        font-size: 1.5rem;
-        display: flex;
-        align-items: center;
-      }
-
-      .cart-summary i {
-        margin-right: 15px;
-        font-size: 2rem;
-      }
-
-      .btn-checkout {
-        background-color: #ff9900;
-        color: white;
-        border: none;
-        padding: 15px 30px;
-        border-radius: 10px;
-        font-weight: 700;
-        cursor: pointer;
-        font-size: 1.2rem;
-        transition: background-color 0.2s;
-      }
-      .btn-checkout:disabled {
-        background-color: #aaa;
-        cursor: not-allowed;
-      }
-
-      /* --- Footer Section (Penataan Rapi Satu Baris FINAL) --- */
+      
+      /* --- Footer Section --- */
       .main-footer {
-        background-color: #444; /* Abu-abu gelap */
+        background-color: #444;
         color: white;
-        padding: 30px 0 0 0;
+        padding: 30px 0 0 0; 
         margin-top: 50px;
         text-align: center;
         box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
         width: 100%;
-        margin-bottom: 0;
+        margin-bottom: 0; 
       }
-
+      
       .footer-info-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 15px 30px;
-        padding: 0 20px 20px 20px;
-        border-bottom: 1px solid #555;
+          display: flex;
+          justify-content: center; 
+          align-items: center;
+          flex-wrap: wrap; 
+          gap: 15px 30px; 
+          padding: 0 20px 20px 20px; 
+          border-bottom: 1px solid #555; 
       }
-
-      /* Pastikan link di footer juga menggunakan styling yang sama */
+      
       .footer-info-wrapper a {
-        color: white;
+          color: white;
+          text-decoration: none;
       }
       .footer-info-wrapper a:hover {
-        color: #ff9900;
+          color: #ff9900;
       }
 
+
       .footer-item {
-        font-size: 1rem;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        text-align: left;
+          font-size: 1rem;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          text-align: left; 
       }
 
       .footer-item i {
-        margin-right: 8px;
-        font-size: 1.1rem;
-        color: #ff9900;
+          margin-right: 8px;
+          font-size: 1.1rem;
+          color: #ff9900; 
       }
-
+      
       .info-tambahan {
-        font-weight: 400;
-        color: #aaa;
-        margin-left: 10px;
+          font-weight: 400; 
+          color: #aaa;
+          margin-left: 10px; 
       }
 
       .instagram-row {
-        padding: 10px 20px 20px 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 1rem;
-        font-weight: 600;
+          padding: 10px 20px 20px 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 1rem;
+          font-weight: 600;
       }
       .instagram-row i {
-        margin-right: 8px;
-        color: #ff9900;
-        font-size: 1.1rem;
+          margin-right: 8px;
+          color: #ff9900;
+          font-size: 1.1rem;
       }
 
       .instagram-row a {
-        color: white;
+          color: white;
+          text-decoration: none;
       }
       .instagram-row a:hover {
-        color: #ff9900;
+          color: #ff9900;
       }
+
 
       .copyright {
         font-size: 0.9rem;
         color: #aaa;
-        padding: 15px 20px 25px 20px;
+        padding: 15px 20px 25px 20px; 
       }
-
-      @media (max-width: 768px) {
-        .footer-info-wrapper {
-          flex-direction: column;
-          gap: 10px;
-          padding-bottom: 15px;
-        }
-        .footer-item {
-          justify-content: center;
-          text-align: center;
-          width: 100%;
-        }
-        .info-tambahan {
-          margin-left: 0;
-          display: block;
-          font-size: 0.9rem;
-        }
-        .instagram-row {
-          padding-top: 10px;
-          padding-bottom: 15px;
-        }
-      }
-
+      
+      
       /* --- Modal Styling --- */
       .modal-overlay {
         display: none;
@@ -497,7 +439,7 @@
 
       .modal-header h3 {
         font-size: 2rem;
-        color: #2f078d;
+        color: #c90000;
       }
 
       .close-btn {
@@ -570,7 +512,7 @@
       .delete-button {
         background: none;
         border: none;
-        color: #830303;
+        color: #c90000;
         font-size: 1.3rem;
         cursor: pointer;
         margin-right: 15px;
@@ -755,20 +697,20 @@
           <span>WhatsApp: 0812-3459-4673</span>
         </a>
       </div>
-
+      
       <div class="instagram-row">
-        <i class="fab fa-instagram"></i>
-        <a href="https://instagram.com/camilanmake_sari" target="_blank">
-          <span>Instagram: @camilanmake_sari</span>
-        </a>
+          <i class="fab fa-instagram"></i>
+          <a href="https://instagram.com/camilanmake_sari" target="_blank">
+            <span>Instagram: @camilanmake_sari</span>
+          </a>
       </div>
-
+      
       <p class="copyright">
         © 2025 Jualan Cemilan Mak E. Spesialis Pedas Nonjok Jember.
       </p>
     </footer>
 
-    <div class="floating-cart" id="floating-cart" style="display: none">
+    <div class="floating-cart" id="floating-cart" style="display: none;">
       <p class="cart-summary">
         <i class="fas fa-shopping-cart"></i>
         <span id="item-count">0 Item</span> |
@@ -783,7 +725,8 @@
           <h3>Keranjang Belanja</h3>
           <button class="close-btn" id="close-modal-btn">×</button>
         </div>
-        <div id="keranjang-list"></div>
+        <div id="keranjang-list">
+          </div>
         <div class="modal-footer">
           <div class="total-info">
             <span>Total:</span>
@@ -897,7 +840,7 @@
         close: "16:00",
         days: [1, 2, 3, 4, 5, 6], // Senin (1) sampai Sabtu (6). Minggu (0) tutup.
         // WhatsApp number in international format
-        whatsapp: "6281234594673",
+        whatsapp: "6281234594673", 
       };
 
       // --- HELPER FUNCTIONS ---
@@ -919,7 +862,7 @@
         }, 3000);
       }
 
-      // Fungsi untuk menampilkan status jam buka (Sudah di-FIX visibilitas)
+      // Fungsi untuk menampilkan status jam buka 
       function updateStoreStatus() {
         const now = new Date();
         const day = now.getDay();
@@ -951,13 +894,12 @@
           statusText = `TUTUP`;
         }
 
-        // Menggunakan warna yang sangat kontras di header (putih/hijau terang)
         if (isStoreOpen) {
-          infoBukaElement.style.color = "#33cc33"; // Hijau terang saat BUKA
-          infoBukaElement.style.fontWeight = "800"; // Lebih tebal
+          infoBukaElement.style.color = '#33cc33'; // Hijau terang saat BUKA
+          infoBukaElement.style.fontWeight = '800'; // Lebih tebal
         } else {
-          infoBukaElement.style.color = "white"; // Putih terang saat TUTUP
-          infoBukaElement.style.fontWeight = "700";
+          infoBukaElement.style.color = 'white'; // Putih terang saat TUTUP
+          infoBukaElement.style.fontWeight = '700';
         }
 
         infoBukaElement.innerHTML = statusText;
@@ -1021,8 +963,8 @@
                   <h3>${item.name}</h3>
                   <div class="rating">
                     ${"★".repeat(Math.round(parseFloat(item.rating)))} (${
-              item.rating.split(" ")[1]
-            })
+                      item.rating.split(" ")[1]
+                    })
                   </div>
                   <p class="description">${item.description}</p>
                 </div>
@@ -1073,12 +1015,10 @@
         }
 
         renderMenu(filteredMenu, currentFilter);
-
+        
         // Scroll ke bagian menu setelah filter/pencarian
-        if (currentFilter !== "all" || searchQuery) {
-          document
-            .getElementById("menu-section")
-            .scrollIntoView({ behavior: "smooth" });
+        if (currentFilter !== 'all' || searchQuery) {
+            document.getElementById('menu-section').scrollIntoView({ behavior: 'smooth' });
         }
       }
 
@@ -1261,8 +1201,8 @@
       // Fungsi untuk membuka link WA
       function openWhatsappLink() {
         if (calculateCartTotals().totalItems === 0) {
-          showNotification("Keranjang masih kosong, tidak bisa checkout.");
-          return false;
+             showNotification("Keranjang masih kosong, tidak bisa checkout.");
+             return false;
         }
         const message = generateWhatsappMessage();
         const whatsappUrl = `https://wa.me/${storeInfo.whatsapp}?text=${message}`;
@@ -1305,13 +1245,11 @@
           .addEventListener("input", filterMenu);
 
         // Event Listeners for Modal & Checkout Buttons
-        document
-          .getElementById("floating-cart")
-          .addEventListener("click", () => {
-            document
-              .getElementById("keranjang-modal-overlay")
-              .classList.add("active");
-          });
+        document.getElementById("floating-cart").addEventListener("click", () => {
+          document
+            .getElementById("keranjang-modal-overlay")
+            .classList.add("active");
+        });
 
         document
           .getElementById("close-modal-btn")
@@ -1321,26 +1259,22 @@
               .classList.remove("active");
           });
 
-        document
-          .getElementById("btn-checkout")
-          .addEventListener("click", () => {
-            // Buka modal saat tombol checkout di floating cart diklik
-            document
-              .getElementById("keranjang-modal-overlay")
-              .classList.add("active");
-          });
+        document.getElementById("btn-checkout").addEventListener("click", () => {
+          // Buka modal saat tombol checkout di floating cart diklik
+          document
+            .getElementById("keranjang-modal-overlay")
+            .classList.add("active");
+        });
 
         // Tombol "PESAN SEKARANG VIA WA" di Header
         document
           .getElementById("btn-pesan-header")
           .addEventListener("click", (e) => {
-            e.preventDefault();
+            e.preventDefault(); 
             if (calculateCartTotals().totalItems > 0) {
               openWhatsappLink();
             } else {
-              showNotification(
-                "Keranjang masih kosong, silakan tambahkan menu dulu."
-              );
+              showNotification("Keranjang masih kosong, silakan tambahkan menu dulu.");
               // Jika keranjang kosong, buka modal agar user bisa melihat keranjang
               document
                 .getElementById("keranjang-modal-overlay")
