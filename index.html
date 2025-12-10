@@ -36,7 +36,8 @@
         display: flex;
         flex-direction: column;
         min-height: 100vh;
-        padding-bottom: 70px; /* Jaga agar konten tidak tertutup floating cart */
+        /* Jaga agar konten tidak tertutup floating cart (70px) */
+        padding-bottom: 70px;
       }
 
       a {
@@ -602,7 +603,8 @@
       /* --- TOAST NOTIFICATION --- */
       #notification {
         position: fixed;
-        bottom: 90px;
+        /* FIX BARU: Naikkan dari 30px ke 80px agar di desktop tidak menimpa footer */
+        bottom: 80px;
         left: 50%;
         transform: translateX(-50%);
         background-color: #25d366;
@@ -616,7 +618,7 @@
         gap: 10px;
         font-weight: 600;
         opacity: 0;
-        transition: opacity 0.5s ease, transform 0.5s ease;
+        transition: opacity 0.3s ease, transform 0.3s ease;
       }
 
       #notification.show {
@@ -690,10 +692,12 @@
           margin: 20vh auto;
         }
 
-        /* 4. Notifikasi di HP */
+        /* 4. FIX: Posisi Notifikasi di HP agar tidak menutupi Floating Cart */
         #notification {
+          /* Naikkan dari 80px ke 90px (70px tinggi cart + 20px padding) */
           bottom: 90px;
-          padding: 8px 15px;
+          padding: 8px 15px; /* Kecilkan sedikit ukurannya */
+          font-size: 0.95rem; /* Kecilkan font */
         }
 
         /* 5. About Section di Mobile */
@@ -1134,7 +1138,6 @@
       const WA_NUMBER = "6281234594673";
 
       // **GANTI INI:** Ganti link ini dengan link "Bagikan" (Share) dari Google Maps lokasi toko Anda.
-      // Saya kembalikan ke placeholder yang lebih aman
       const MAPS_URL =
         "https://www.google.com/maps/search/?api=1&query=Jualan+Cemilan+Mak+E,+Jember";
 
@@ -1144,6 +1147,9 @@
       // --- END KONFIGURASI ---
 
       let notificationTimeout;
+
+      // FIX BARU: Mengurangi durasi notifikasi menjadi 1 detik (1000 ms)
+      const NOTIFICATION_DURATION = 1000;
 
       // --- LOGIKA WAKTU BUKA/TUTUP OTOMATIS ---
       const checkOpenStatus = () => {
@@ -1171,9 +1177,19 @@
         ) {
           return { isOpen: true, statusText: `BUKA (Sampai ${CLOSE_TIME})` };
         } else {
+          // Tambahkan pengecekan jika jam sudah larut malam (misalnya, lebih dari 23:00)
+          // agar status "Buka Besok" lebih akurat
+          if (currentTimeInMinutes > closeTimeInMinutes && hour < 24) {
+            return {
+              isOpen: false,
+              statusText: `TUTUP (Buka Besok ${OPEN_TIME})`,
+            };
+          }
+
+          // Kasus lain (misalnya setelah tengah malam sebelum jam buka)
           return {
             isOpen: false,
-            statusText: `TUTUP (Buka Besok ${OPEN_TIME})`,
+            statusText: `TUTUP (Buka Hari Ini ${OPEN_TIME})`,
           };
         }
       };
@@ -1244,13 +1260,14 @@
         notification.classList.remove("hide");
         notification.classList.add("show");
 
+        // FIX BARU: Durasi notifikasi disesuaikan menjadi 1 detik (1000ms)
         notificationTimeout = setTimeout(() => {
           notification.classList.remove("show");
           notification.classList.add("hide");
           setTimeout(() => {
             notification.style.display = "none";
-          }, 300);
-        }, 3000);
+          }, 300); // 300ms untuk transisi fade-out
+        }, NOTIFICATION_DURATION);
       };
 
       // --- Cart Control Logic ---
@@ -1516,10 +1533,6 @@
         const statusText = storeStatus.statusText;
 
         // Update status text in HTML elements
-        if (infoBukaMobile)
-          infoBukaMobile.innerHTML = `<i class="${iconClass}"></i> ${statusText
-            .replace("(Buka Besok 08:00)", "")
-            .trim()}`;
         if (infoBukaDesktop)
           infoBukaDesktop.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
 
