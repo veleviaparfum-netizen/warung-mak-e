@@ -33,11 +33,13 @@
         font-size: 16px;
         background-color: #f8f8f8;
         color: #333;
+        /* FIX 1: Body harus flex column dengan min-height untuk dorong footer */
         display: flex;
         flex-direction: column;
         min-height: 100vh;
-        /* Jaga agar konten tidak tertutup floating cart (60px) */
-        padding-bottom: 60px;
+        /* **PENTING: Jaga agar konten tidak tertutup floating cart (55px) */
+        padding-bottom: 55px;
+        overflow-y: scroll;
       }
 
       a {
@@ -50,6 +52,7 @@
         max-width: 1300px;
         margin: 0 auto;
         padding: 20px 0;
+        /* FIX 2: Flex-grow agar konten utama memakan sisa ruang */
         flex-grow: 1;
         background-color: #f8f8f8;
       }
@@ -124,23 +127,23 @@
 
       /* Status Buka Mobile */
       .status-mobile {
-        margin-bottom: 15px; /* Tambah jarak ke tombol pesan */
+        margin-bottom: 15px;
         font-size: 0.9rem;
         display: flex;
-        flex-direction: column; /* Tata ke bawah di HP */
+        flex-direction: column;
         align-items: center;
         line-height: 1.6;
       }
       .info-buka-mobile {
         font-weight: 600;
-        margin: 5px 0; /* Jarak vertikal */
-        white-space: nowrap; /* Pastikan tidak pecah */
+        margin: 5px 0;
+        white-space: nowrap;
       }
       .location-info-mobile {
         color: white;
         font-weight: 500;
         text-decoration: underline;
-        white-space: nowrap; /* Pastikan tidak pecah */
+        white-space: nowrap;
       }
 
       .btn-pesan-sekarang {
@@ -169,53 +172,53 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px 20px; /* Padding vertikal dikurangi */
+        padding: 10px 15px;
         box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
         z-index: 1000;
-        height: 60px; /* Tinggi bar dikurangi */
+        height: 55px;
         cursor: pointer;
       }
       .floating-cart-info {
         display: flex;
         align-items: center;
-        font-size: 1rem; /* Font dikecilkan */
+        font-size: 1rem;
         font-weight: 600;
-        gap: 10px; /* Jarak antar Item | Total dikurangi */
+        gap: 15px;
+        margin-right: auto;
       }
 
       .floating-cart-info i {
-        margin-right: 0px; /* Dihapus margin untuk ikon keranjang */
-        font-size: 1.1rem; /* Dikecilkan */
+        margin-right: 0px;
+        font-size: 1.1rem;
       }
 
-      /* Penataan item count dan total agar lebih rapi */
       .floating-cart-info .item-info {
         display: flex;
         align-items: center;
         gap: 3px;
       }
       .floating-cart-info .separator {
-        font-size: 1.2rem; /* Dikecilkan */
+        font-size: 1.2rem;
         opacity: 0.6;
       }
 
-      /* Spesifik untuk Total Harga */
       #floating-total {
         font-size: 1.2rem;
-        font-weight: 800;
-        /* PENTING: Memastikan Rp dan angka selalu di satu baris */
+        font-weight: 900;
         white-space: nowrap;
+        margin-right: 5px;
       }
 
       .checkout-button {
         background-color: white;
         color: #25d366;
-        padding: 8px 15px; /* Padding tombol checkout dikecilkan */
-        border-radius: 5px; /* Border radius disesuaikan */
+        padding: 8px 15px;
+        border-radius: 5px;
         font-weight: 700;
         display: flex;
         align-items: center;
-        font-size: 0.9rem; /* Font tombol dikecilkan */
+        font-size: 0.9rem;
+        margin-left: 10px;
       }
 
       .checkout-button .fab {
@@ -369,7 +372,6 @@
         font-size: 1.5rem;
         font-weight: 900;
         color: #c90000;
-        /* FIX HARGA: Agar Rp dan angka selalu di satu baris */
         white-space: nowrap;
       }
       .menu-card .add-to-cart {
@@ -448,24 +450,21 @@
       }
       .item-details {
         flex-grow: 1;
-        /* Tambahkan min-width agar item name tidak terlalu terpotong */
         min-width: 150px;
       }
       .item-details .item-name {
         font-weight: 600;
         display: block;
         line-height: 1.4;
-        /* FIX: Agar nama item tidak pecah ke baris baru dan menabrak harga */
         white-space: normal;
       }
       .item-details .item-level {
         font-size: 0.85rem;
-        color: #666; /* Warna level pedas diubah sedikit agar tidak terlalu menonjol */
+        color: #666;
       }
       .item-subtotal {
         font-weight: 700;
         color: #c90000;
-        /* FIX HARGA: Pastikan harga di sini juga satu baris */
         white-space: nowrap;
         min-width: 80px;
         text-align: right;
@@ -499,7 +498,6 @@
         cursor: pointer;
         font-size: 1.1rem;
         margin-right: 5px;
-        /* FIX: Agar trash icon tidak terlalu jauh */
         flex-shrink: 0;
       }
 
@@ -567,7 +565,8 @@
         background-color: #444;
         color: #ccc;
         padding: 20px 0;
-        margin-top: 50px;
+        /* FIX 3: Dorong footer ke paling bawah */
+        margin-top: auto;
         width: 100%;
         position: relative;
         bottom: 0;
@@ -598,30 +597,25 @@
         font-size: 0.85rem;
         color: #999;
       }
-      /* FIX IKON INSTAGRAM */
       .ig-icon-real {
-        /* Pastikan background gradien terisi */
         background: linear-gradient(
           45deg,
           #f58529,
-            /* orange */ #feda77,
-            /* yellow */ #dd2a7b,
-            /* pink */ #8134af,
-            /* purple */ #515bd4     /* blue */
+            #feda77,
+            #dd2a7b,
+            #8134af,
+            #515bd4    
         );
-        /* Clipping dan Fill untuk membuat teks menggunakan gradien */
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         color: transparent;
-        /* Tambahkan font size agar ikon terlihat jelas */
         font-size: 1.1rem;
       }
 
       /* --- TOAST NOTIFICATION --- */
       #notification {
         position: fixed;
-        /* Posisi untuk desktop/umum */
         bottom: 80px;
         left: 50%;
         transform: translateX(-50%);
@@ -693,36 +687,30 @@
 
       /* Mobile Optimization (Layar Kecil: <= 768px) */
       @media (max-width: 768px) {
-        /* 1. Responsif Modal Keranjang */
         .modal-content {
           margin: 5% auto;
           max-height: 90vh;
           overflow-y: auto;
         }
 
-        /* 2. Tinggi Daftar Item Keranjang */
         #cart-items {
           max-height: 60vh;
         }
 
-        /* 3. Modal Pilih Level Pedas */
         .small-modal .modal-content {
           margin: 20vh auto;
         }
 
-        /* 4. FIX: Posisi Notifikasi di HP agar tidak menutupi Floating Cart */
         #notification {
-          bottom: 65px; /* Disesuaikan dengan tinggi Floating Cart baru (55px) */
+          bottom: 60px;
           padding: 7px 15px;
           font-size: 0.95rem;
         }
 
-        /* 5. About Section di Mobile */
         .about-section {
           padding: 30px 20px;
         }
 
-        /* 6. Horizontal Scrolling Filter Menu */
         .filter-section {
           align-items: flex-start;
         }
@@ -751,14 +739,14 @@
           white-space: nowrap;
         }
 
-        /* 7. FIX FLOATING CART MOBILE */
         .floating-cart {
-          height: 55px; /* Tinggi bar dikurangi lagi di HP */
+          height: 50px;
+          padding: 5px 10px;
         }
 
         .floating-cart-info {
-          font-size: 0.9rem; /* Font info dikecilkan di HP */
-          gap: 8px;
+          font-size: 0.85rem;
+          gap: 10px;
           align-items: center;
         }
         .floating-cart-info .item-info {
@@ -768,15 +756,17 @@
           margin: 0 5px;
         }
         .floating-cart-info #floating-total {
-          font-size: 1.1rem; /* Total harga dikecilkan di HP */
+          font-size: 1.1rem;
           font-weight: 900;
-        }
-        .checkout-button {
-          padding: 6px 12px; /* Tombol checkout dikecilkan di HP */
-          font-size: 0.85rem;
+          margin-right: 0;
         }
 
-        /* 8. FIX HEADER MOBILE (Agar Rapi) */
+        .checkout-button {
+          padding: 5px 10px;
+          font-size: 0.8rem;
+          margin-left: 10px;
+        }
+
         .status-mobile {
           flex-direction: row;
           flex-wrap: wrap;
@@ -1159,9 +1149,8 @@
       // --- KONFIGURASI PENTING (GANTI INI SESUAI DATA NYATA) ---
       const WA_NUMBER = "6281234594673";
 
-      // **GANTI INI:** Ganti link ini dengan link "Bagikan" (Share) dari Google Maps lokasi toko Anda.
-      const MAPS_URL =
-        "https://www.google.com/maps/search/?api=1&query=Jualan+Cemilan+Mak+E,+Jember";
+      // **GANTI INI:** Ganti dengan link Google Maps *lokasi toko Anda yang valid*
+      const MAPS_URL = "https://maps.app.goo.gl/ContohLokasiTokoMakE";
 
       const INSTAGRAM_URL = "https://www.instagram.com/camilanmake_sari";
       const CLOSE_TIME = "18:00";
@@ -1198,8 +1187,6 @@
         ) {
           return { isOpen: true, statusText: `BUKA (Sampai ${CLOSE_TIME})` };
         } else {
-          // Tambahkan pengecekan jika jam sudah larut malam (misalnya, lebih dari 23:00)
-          // agar status "Buka Besok" lebih akurat
           if (currentTimeInMinutes > closeTimeInMinutes && hour < 24) {
             return {
               isOpen: false,
@@ -1207,7 +1194,6 @@
             };
           }
 
-          // Kasus lain (misalnya setelah tengah malam sebelum jam buka)
           return {
             isOpen: false,
             statusText: `TUTUP (Buka Hari Ini ${OPEN_TIME})`,
@@ -1244,16 +1230,15 @@
         "instagram-link-footer"
       );
       const waLinkFooter = document.getElementById("wa-link-footer");
-      const infoBukaMobile = document.getElementById("info-buka-mobile");
       const infoBukaDesktop = document.getElementById("info-buka");
       const notification = document.getElementById("notification");
       const notificationMessage = document.getElementById(
         "notification-message"
       );
+      const infoBukaMobile = document.getElementById("info-buka-mobile");
 
       // --- Utility Functions ---
       const formatRupiah = (number) => {
-        // FIX: Pastikan simbol Rp dan angka dalam satu string yang sama
         return "Rp " + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
       };
 
@@ -1398,7 +1383,6 @@
           const listItem = document.createElement("li");
           listItem.className = "cart-item";
 
-          // FIX BARU: Menghilangkan (@Rp...) dan merapikan format harga subtotal
           listItem.innerHTML = `
                     <i class="fas fa-trash-alt trash-icon" onclick="removeCartItem('${
                       item.cartId
@@ -1461,11 +1445,9 @@
         cart.forEach((item) => {
           const itemTotal = item.price * item.quantity;
           total += itemTotal;
-          // FIX: Menghilangkan (@Rp...) dari pesan WA juga
           const levelText = item.level ? ` (${item.level})` : "";
           const priceText = ` (@${formatRupiah(item.price)})`;
 
-          // Pesan WA tetap menampilkan harga per unit agar jelas
           message += `${itemNumber}. ${item.quantity}x ${
             item.name
           }${levelText}${priceText} - ${formatRupiah(itemTotal)}\n`;
@@ -1561,35 +1543,25 @@
         const iconClass = storeStatus.isOpen ? "fas fa-clock" : "fas fa-ban";
         const statusText = storeStatus.statusText;
 
-        // Update status text in HTML elements
         if (infoBukaDesktop)
           infoBukaDesktop.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
+        if (infoBukaMobile)
+          infoBukaMobile.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
 
-        // Fix for Mobile Header Text: We use the full text only once in the mobile element
-        const statusMobileElement = document.getElementById("info-buka-mobile");
-        if (statusMobileElement) {
-          statusMobileElement.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
-        }
-
-        // 2. Set Maps Link (Using safe Google Search link)
+        // 2. Set Links
         mapsLinks.forEach((link) => {
           link.href = MAPS_URL;
         });
 
-        // 3. Set Instagram Link
         if (instagramLinkFooter) {
           instagramLinkFooter.href = INSTAGRAM_URL;
         }
 
-        // 4. Set WA Link Footer
         if (waLinkFooter) {
           waLinkFooter.href = `https://wa.me/${WA_NUMBER}?text=Halo%20Cemilan%20Mak%20E..`;
         }
 
-        // 5. Render Menu Awal
-        renderMenu();
-
-        // 6. Setup Event Listeners
+        // 3. Setup Event Listeners
 
         // Filter Buttons
         filterButtons.forEach((button) => {
@@ -1641,12 +1613,15 @@
           }
         });
 
-        // 7. Initial Cart Update
+        // 4. Initial Cart Update
         updateCartDisplay();
       };
 
       // Jalankan fungsi inisialisasi saat dokumen siap
       initialize();
+
+      // FIX MENU HILANG: Panggil render menu setelah semua inisialisasi selesai
+      renderMenu();
     </script>
   </body>
 </html>
