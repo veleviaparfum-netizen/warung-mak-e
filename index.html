@@ -130,20 +130,27 @@
         margin-bottom: 15px;
         font-size: 0.9rem;
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        line-height: 1.6;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px 10px;
+        line-height: 1.2;
       }
       .info-buka-mobile {
         font-weight: 600;
-        margin: 5px 0;
+        margin: 0;
         white-space: nowrap;
+        padding-right: 10px;
+        border-right: 1px solid rgba(255, 255, 255, 0.5);
       }
       .location-info-mobile {
         color: white;
         font-weight: 500;
         text-decoration: underline;
         white-space: nowrap;
+        margin: 0;
+        border: none;
+        padding: 0;
       }
 
       .btn-pesan-sekarang {
@@ -229,13 +236,15 @@
         display: none !important;
       }
 
-      /* --- ABOUT SECTION & FILTER --- */
+      /* --- ABOUT SECTION & FILTER (Perbaikan Gaya Bingkai) --- */
       .about-section {
         background-color: #ffffff;
-        padding: 40px;
+        padding: 30px; /* Sedikit dikecilkan */
         border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        border: 2px solid #f0f0f0;
+        /* GAYA BINGKAI BARU: Lebih lembut dan ada garis tipis */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05),
+          0 0 0 1px rgba(0, 0, 0, 0.05);
+        border: none;
         text-align: center;
         margin-bottom: 30px;
         font-size: 1rem;
@@ -244,21 +253,17 @@
         margin-right: auto;
       }
       .about-section h2 {
-        font-size: 1.6rem;
+        font-size: 1.8rem; /* Lebih besar */
         margin-bottom: 15px;
-        color: #c90000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-      }
-      .about-section h2 i {
-        color: #ff9900;
+        color: #c90000; /* Warna merah brand */
+        font-weight: 900;
+        /* Hapus properti flex/ikon */
       }
       .about-section p {
         line-height: 1.6;
         margin-bottom: 10px;
         color: #555;
+        padding: 0 10px; /* Tambahkan padding agar teks tidak terlalu lebar */
       }
 
       .filter-section {
@@ -321,9 +326,31 @@
         font-weight: 800;
         font-size: 1.7rem;
         margin: 40px 0 20px 0;
-        border-bottom: 3px solid #ff9900;
+        /* HAPUS border-bottom PERMANEN */
         padding-bottom: 5px;
         display: inline-block;
+        opacity: 1;
+        transition: border-bottom 0.5s ease-out, opacity 0.5s;
+      }
+
+      /* CSS KHUSUS GARIS SEMENTARA (Baru: Garis muncul 1.5 detik) */
+      .menu-category-title.highlight-active {
+        border-bottom: 3px solid #ff9900;
+        padding-bottom: 5px;
+        opacity: 1;
+      }
+      /* CSS Untuk Semua Menu agar tidak ada garis sama sekali */
+      .menu-category-title[data-category-name="Semua"] {
+        border-bottom: none !important;
+        padding-bottom: 0 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        opacity: 0; /* Hilangkan jika tidak ada border */
+        height: 0; /* Hindari menambah ruang */
+      }
+      /* Penyesuaian margin agar category title rapi */
+      #menu-list > h2:first-child {
+        margin-top: 0;
       }
 
       .menu-grid {
@@ -442,12 +469,12 @@
       }
       .cart-item {
         display: flex;
-        flex-wrap: nowrap; /* Diperlukan agar elemen tidak turun baris di desktop */
+        flex-wrap: nowrap;
         justify-content: space-between;
         align-items: center;
         padding: 10px 0;
         border-bottom: 1px dashed #eee;
-        gap: 5px; /* Mengurangi gap */
+        gap: 5px;
       }
 
       /* REVISI UKURAN ITEM DI KERANJANG (Desktop & Default) */
@@ -462,47 +489,47 @@
         white-space: normal;
       }
       .item-details .item-level {
-        font-size: 0.8rem; /* Mengecilkan font level pedas */
+        font-size: 0.8rem;
         color: #666;
       }
       .item-subtotal {
         font-weight: 700;
         color: #c90000;
         white-space: nowrap;
-        min-width: 70px; /* Mengecilkan min-width */
+        min-width: 70px;
         text-align: right;
-        font-size: 0.95rem; /* Mengecilkan font harga */
+        font-size: 0.95rem;
       }
 
       /* Kontrol Kuantitas Keranjang */
       .item-controls {
         display: flex;
         align-items: center;
-        gap: 3px; /* Mengurangi gap antar tombol */
-        min-width: 80px; /* Mengecilkan min-width */
+        gap: 3px;
+        min-width: 80px;
         justify-content: flex-end;
       }
       .item-controls button {
         background-color: #ff9900;
         color: white;
         border: none;
-        width: 20px; /* Mengecilkan tombol */
-        height: 20px; /* Mengecilkan tombol */
+        width: 20px;
+        height: 20px;
         border-radius: 5px;
         cursor: pointer;
         font-weight: 700;
-        font-size: 0.8rem; /* Mengecilkan font tombol */
+        font-size: 0.8rem;
       }
       .item-controls .quantity {
         font-weight: 600;
-        min-width: 15px; /* Mengecilkan min-width */
+        min-width: 15px;
         text-align: center;
         font-size: 0.9rem;
       }
       .trash-icon {
         color: #c90000;
         cursor: pointer;
-        font-size: 1rem; /* Mengecilkan ikon trash */
+        font-size: 1rem;
         margin-right: 5px;
         flex-shrink: 0;
       }
@@ -623,15 +650,14 @@
         color: transparent;
         font-size: 1.1rem;
         /* Tambahan: Pastikan ikon tidak terpengaruh oleh warna abu-abu default footer */
-        -webkit-text-fill-color: unset; /* Hapus setting sebelumnya untuk kasus umum */
-        color: transparent; /* Pastikan text color transparan agar gradient terlihat */
+        -webkit-text-fill-color: unset;
+        color: transparent;
       }
 
       /* FIX: Tambahkan ukuran ikon Instagram di footer */
       .footer-row .fa-instagram.ig-icon-real {
-        font-size: 1.1rem; /* Ukuran default untuk footer */
-        color: white; /* Fallback */
-        /* Pastikan gradien bekerja dengan baik di background gelap */
+        font-size: 1.1rem;
+        color: white;
         -webkit-text-fill-color: transparent;
       }
 
@@ -683,7 +709,7 @@
           flex-direction: column;
           align-items: flex-end;
           justify-content: center;
-          gap: 5px; /* Tambahkan gap antara elemen di header-right */
+          gap: 5px;
         }
         .status-mobile {
           display: none;
@@ -701,10 +727,10 @@
           font-size: 1rem;
           text-decoration: underline;
           margin-bottom: 0px;
-          display: flex; /* Jadikan flex untuk mengatur ikon */
+          display: flex;
           align-items: center;
           gap: 5px;
-          text-decoration: none; /* Hilangkan underline */
+          text-decoration: none;
         }
         /* Override underline di Link Maps */
         #maps-link-desktop {
@@ -714,8 +740,6 @@
         .btn-pesan-sekarang {
           display: none;
         }
-
-        /* Hapus styling untuk ikon Instagram di header karena elemennya dihapus */
       }
 
       /* Mobile Optimization (Layar Kecil: <= 768px) */
@@ -725,11 +749,11 @@
           margin: 5% auto;
           max-height: 90vh;
           overflow-y: auto;
-          width: 90%; /* Memastikan modal tidak melebihi 90% lebar layar */
+          width: 90%;
         }
 
         .modal-header h3 {
-          font-size: 1.3rem; /* Sedikit dikecilkan */
+          font-size: 1.3rem;
         }
 
         #cart-items {
@@ -825,22 +849,22 @@
 
         /* PENYESUAIAN CART ITEM KHUSUS UNTUK HP */
         .cart-item {
-          gap: 8px; /* Sedikit lebih besar dari desktop */
-          align-items: flex-start; /* Agar nama item tidak bergeser */
+          gap: 8px;
+          align-items: flex-start;
         }
 
         .item-details {
           min-width: unset;
-          flex-basis: 35%; /* Beri ruang yang cukup untuk nama produk */
+          flex-basis: 35%;
           flex-grow: 1;
         }
 
         .item-controls {
-          min-width: 70px; /* Diperkecil lagi untuk HP */
+          min-width: 70px;
         }
 
         .item-subtotal {
-          min-width: 65px; /* Diperkecil lagi untuk HP */
+          min-width: 65px;
         }
         /* END PENYESUAIAN CART ITEM KHUSUS UNTUK HP */
       }
@@ -895,10 +919,7 @@
 
     <main class="container">
       <section class="about-section">
-        <h2>
-          <i class="fa-solid fa-star"></i> Tentang Jualan Cemilan Mak E
-          <i class="fa-solid fa-star"></i>
-        </h2>
+        <h2>Tentang Jualan Cemilan Mak E</h2>
         <p>
           Kami adalah <strong>Spesialis Cemilan Pedas Nonjok</strong> dan
           <strong>Nasi Cili Kekinian Jember</strong>. Jualan Cemilan Mak E
@@ -1205,21 +1226,18 @@
       let tempProduct = null;
       let tempSpiceLevel = null;
 
-      // --- KONFIGURASI PENTING (SUDAH DIUPDATE) ---
+      // --- KONFIGURASI PENTING ---
       const WA_NUMBER = "6281234594673";
-
-      // **UPDATE:** Menggunakan link Google Maps yang valid dari TOKO CAMILAN MAK'E
       const MAPS_URL =
         "https://maps.google.com/?cid=17076080884572858947&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ";
-
       const INSTAGRAM_URL = "https://www.instagram.com/camilanmake_sari";
-      const CLOSE_TIME = "19:00"; // Update Jam Tutup: 19:00 WIB
+      const CLOSE_TIME = "19:00"; // Jam Tutup: 19:00 WIB
       const OPEN_TIME = "08:00";
+      const NOTIFICATION_DURATION = 1000; // Notifikasi toast 1 detik
+      const HIGHLIGHT_DURATION = 1500; // Garis judul muncul 1.5 detik
       // --- END KONFIGURASI ---
 
       let notificationTimeout;
-
-      const NOTIFICATION_DURATION = 1000;
 
       // --- LOGIKA WAKTU BUKA/TUTUP OTOMATIS ---
       const checkOpenStatus = () => {
@@ -1248,14 +1266,12 @@
           return { isOpen: true, statusText: `BUKA (Sampai ${CLOSE_TIME})` };
         } else {
           if (currentTimeInMinutes >= closeTimeInMinutes) {
-            // Cek jika sudah lewat waktu tutup, tapi belum tengah malam
             return {
               isOpen: false,
               statusText: `TUTUP (Buka Besok ${OPEN_TIME})`,
             };
           }
 
-          // Jika waktu di antara tengah malam sampai waktu buka
           return {
             isOpen: false,
             statusText: `TUTUP (Buka Hari Ini ${OPEN_TIME})`,
@@ -1291,7 +1307,6 @@
       const instagramLinkFooter = document.getElementById(
         "instagram-link-footer"
       );
-      // const instagramLinkDesktop = document.getElementById("instagram-link-desktop"); // Dihapus dari DOM
       const waLinkFooter = document.getElementById("wa-link-footer");
       const infoBukaDesktop = document.getElementById("info-buka");
       const notification = document.getElementById("notification");
@@ -1330,14 +1345,39 @@
         notification.classList.remove("hide");
         notification.classList.add("show");
 
-        // Durasi notifikasi 1 detik (1000ms)
         notificationTimeout = setTimeout(() => {
           notification.classList.remove("show");
           notification.classList.add("hide");
           setTimeout(() => {
             notification.style.display = "none";
-          }, 300); // 300ms untuk transisi fade-out
+          }, 300);
         }, NOTIFICATION_DURATION);
+      };
+
+      // Fungsi Baru: Garis Judul Muncul Sementara
+      let highlightTimeout;
+      const highlightCategoryTitle = (category) => {
+        clearTimeout(highlightTimeout);
+
+        // Hapus highlight dari semua judul
+        document.querySelectorAll(".menu-category-title").forEach((title) => {
+          title.classList.remove("highlight-active");
+        });
+
+        // Cari judul kategori yang sesuai
+        const activeTitle = document.querySelector(
+          `.menu-category-title[data-category-name="${category}"]`
+        );
+
+        if (activeTitle && category !== "Semua") {
+          // Tambahkan highlight
+          activeTitle.classList.add("highlight-active");
+
+          // Atur timer untuk menghapus highlight setelah 1.5 detik
+          highlightTimeout = setTimeout(() => {
+            activeTitle.classList.remove("highlight-active");
+          }, HIGHLIGHT_DURATION);
+        }
       };
 
       // --- Cart Control Logic ---
@@ -1560,8 +1600,15 @@
         for (const category in groupedMenu) {
           const categoryTitle = document.createElement("h2");
           categoryTitle.className = "menu-category-title";
+          // Tambahkan data-attribute agar bisa dicari oleh JS
+          categoryTitle.setAttribute("data-category-name", category);
           categoryTitle.textContent = category;
           menuList.appendChild(categoryTitle);
+
+          // Jika kategori aktif dan bukan 'Semua', tambahkan class highlight
+          if (category === filterCategory && category !== "Semua") {
+            categoryTitle.classList.add("highlight-active");
+          }
 
           const grid = document.createElement("div");
           grid.className = "menu-grid";
@@ -1597,6 +1644,15 @@
           });
           menuList.appendChild(grid);
         }
+
+        // Hapus semua highlight yang mungkin tertinggal dari render sebelumnya (jika bukan karena filter button click)
+        setTimeout(() => {
+          document.querySelectorAll(".menu-category-title").forEach((title) => {
+            if (title.getAttribute("data-category-name") !== filterCategory) {
+              title.classList.remove("highlight-active");
+            }
+          });
+        }, 100);
       };
 
       // --- Initialization ---
@@ -1619,7 +1675,6 @@
         if (instagramLinkFooter) {
           instagramLinkFooter.href = INSTAGRAM_URL;
         }
-        // Ikon Instagram Desktop Dihapus, jadi tidak perlu inisialisasi link desktop.
 
         if (waLinkFooter) {
           waLinkFooter.href = `https://wa.me/${WA_NUMBER}?text=Halo%20Cemilan%20Mak%20E..`;
@@ -1634,7 +1689,12 @@
             button.classList.add("active");
             const category = button.getAttribute("data-category");
             const searchTerm = searchInput.value;
+
+            // Render menu
             renderMenu(category, searchTerm);
+
+            // Panggil fungsi highlight
+            highlightCategoryTitle(category);
           });
         });
 
@@ -1644,6 +1704,11 @@
             .querySelector(".filter-btn.active")
             .getAttribute("data-category");
           const searchTerm = searchInput.value;
+
+          // Saat mencari, tidak perlu ada highlight
+          document.querySelectorAll(".menu-category-title").forEach((title) => {
+            title.classList.remove("highlight-active");
+          });
           renderMenu(activeCategory, searchTerm);
         });
 
@@ -1677,15 +1742,13 @@
           }
         });
 
-        // 4. Initial Cart Update
+        // 4. Initial Cart Update & Menu Render
         updateCartDisplay();
+        renderMenu();
       };
 
       // Jalankan fungsi inisialisasi saat dokumen siap
       initialize();
-
-      // FIX MENU HILANG: Panggil render menu setelah semua inisialisasi selesai
-      renderMenu();
     </script>
   </body>
 </html>
