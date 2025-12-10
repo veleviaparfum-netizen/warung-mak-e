@@ -16,11 +16,6 @@
     />
 
     <style>
-      /* ------------------------------------------------------------------ */
-      /* --- 2. CSS STYLES LENGKAP (VERSI FINAL V8.8 - FIX ALL) --- */
-      /* ------------------------------------------------------------------ */
-
-      /* --- Global Styles & Layout Fix --- */
       * {
         box-sizing: border-box;
         margin: 0;
@@ -29,16 +24,19 @@
 
       html,
       body {
-        min-height: 100vh;
+        /* Hapus min-height dari html, fokus di body */
+        height: 100%;
       }
 
       body {
         font-family: "Poppins", sans-serif;
-        background-color: #f8f8f8;
+        font-size: 16px;
+        background-color: #f8f8f8; /* Warna background utama */
         color: #333;
         display: flex;
-        flex-direction: column;
-        padding-bottom: 90px; /* Padding bawah untuk floating cart HP */
+        flex-direction: column; /* Kunci Flexbox untuk Full Height */
+        min-height: 100vh; /* Kunci agar body setinggi viewport */
+        padding-bottom: 70px; /* Jaga agar konten tidak tertutup floating cart */
       }
 
       a {
@@ -51,7 +49,7 @@
         max-width: 1300px;
         margin: 0 auto;
         padding: 20px 0;
-        flex-grow: 1;
+        flex-grow: 1; /* **KUNCI:** Membuat container mengambil sisa ruang vertikal */
         background-color: #f8f8f8;
       }
 
@@ -65,6 +63,7 @@
         min-height: 180px;
         display: flex;
         align-items: center;
+        flex-shrink: 0; /* Pastikan header tidak menyusut */
       }
 
       .main-header::after {
@@ -128,7 +127,6 @@
         font-size: 0.9rem;
       }
       .info-buka-mobile {
-        color: #ff9900;
         font-weight: 600;
         margin-right: 15px;
       }
@@ -157,42 +155,13 @@
         display: none;
       }
 
-      /* --- NOTIFICATION (TOAST) --- */
-      #notification {
-        position: fixed;
-        bottom: 90px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #25d366;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 8px;
-        z-index: 1005;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s, visibility 0.3s;
-        font-weight: 600;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        max-width: 90%;
-        text-align: center;
-        font-size: 0.95rem;
-      }
-
-      #notification.show {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      /* --- Floating Cart (Mobile Only) --- */
+      /* --- Floating Cart Bar --- */
       .floating-cart {
         position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
-        background-color: #c90000;
+        background-color: #25d366;
         color: white;
         display: flex;
         justify-content: space-between;
@@ -206,7 +175,7 @@
       .floating-cart-info {
         display: flex;
         align-items: center;
-        font-size: 1rem;
+        font-size: 1.1rem;
         font-weight: 600;
       }
       .floating-cart-info i {
@@ -218,15 +187,22 @@
         font-weight: 900;
       }
       .checkout-button {
-        background-color: #ff9900;
-        color: white;
+        background-color: white;
+        color: #25d366;
         padding: 8px 15px;
         border-radius: 6px;
         font-weight: 700;
         transition: background-color 0.2s;
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+      }
+      .checkout-button i {
+        margin-left: 5px;
+        font-size: 1.1rem;
       }
       .checkout-button:hover {
-        background-color: #e68a00;
+        background-color: #f0f0f0;
       }
       .cart-hidden {
         display: none !important;
@@ -234,108 +210,84 @@
 
       /* --- About Section --- */
       .about-section {
-        background-color: white;
+        background-color: #fffafa;
         padding: 30px;
         border-radius: 15px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        border: 3px solid #c90000;
         text-align: center;
         margin-bottom: 30px;
+        font-size: 1rem;
       }
       .about-section h2 {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: #333;
+        font-size: 1.6rem;
         margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .about-section h2 i {
-        color: #ff9900;
-        margin: 0 10px;
-        font-size: 1.8rem;
+        color: #c90000;
       }
       .about-section p {
-        font-size: 0.95rem;
         line-height: 1.6;
-        color: #666;
-        margin-bottom: 15px;
-      }
-      .about-section strong {
-        color: #c90000;
-        font-weight: 700;
+        margin-bottom: 10px;
       }
 
-      /* --- Filter & Search Section --- */
-      .search-container {
-        margin-bottom: 20px;
-        text-align: center;
-      }
-      .search-input {
-        width: 100%;
-        padding: 12px 15px;
-        border: 1px solid #ddd;
-        border-radius: 25px;
-        font-size: 1rem;
-        outline: none;
-        transition: border-color 0.3s;
-        padding-left: 40px;
-      }
-      .search-input:focus {
-        border-color: #c90000;
+      .filter-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
       }
       .search-wrapper {
-        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
         max-width: 600px;
-        margin: 0 auto 20px;
+        padding: 10px;
+        margin-bottom: 15px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
       .search-wrapper i {
-        position: absolute;
-        left: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #999;
+        color: #c90000;
+        margin-right: 10px;
+        font-size: 1.2rem;
       }
-
+      .search-input {
+        border: none;
+        outline: none;
+        flex-grow: 1;
+        font-family: "Poppins", sans-serif;
+        font-size: 1.1rem;
+      }
       .filter-buttons {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
         justify-content: center;
-        margin-bottom: 30px;
       }
       .filter-btn {
-        background-color: #ddd;
-        color: #555;
-        padding: 10px 15px;
+        background-color: #f0f0f0;
         border: none;
+        padding: 10px 18px;
         border-radius: 20px;
-        font-size: 0.9rem;
         cursor: pointer;
-        transition: background-color 0.2s, color 0.2s;
         font-weight: 600;
+        transition: all 0.2s;
+        font-size: 1rem;
       }
       .filter-btn.active {
         background-color: #ff9900;
         color: white;
-      }
-      .filter-btn:hover:not(.active) {
-        background-color: #ccc;
+        box-shadow: 0 2px 5px rgba(255, 153, 0, 0.5);
       }
 
-      /* --- Menu Section --- */
       .menu-category-title {
-        font-size: 1.6rem;
-        font-weight: 800;
         color: #c90000;
-        margin: 30px 0 20px;
+        font-weight: 800;
+        font-size: 1.7rem;
+        margin: 40px 0 20px 0;
         border-bottom: 3px solid #ff9900;
         padding-bottom: 5px;
-        display: block; /* Ganti dari inline-block ke block agar span 100% di mobile */
-      }
-      .menu-category-title i {
-        margin-right: 10px;
-        color: #c90000;
+        display: inline-block;
       }
 
       .menu-grid {
@@ -343,65 +295,64 @@
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 20px;
       }
-
       .menu-card {
         background-color: white;
         padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         transition: transform 0.2s;
-        position: relative;
+        border-top: 5px solid #c90000;
       }
       .menu-card:hover {
-        transform: translateY(-3px);
+        transform: translateY(-5px);
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
       }
       .menu-card h3 {
-        font-size: 1.15rem;
+        font-size: 1.2rem;
         font-weight: 800;
+        color: #333;
         margin-bottom: 5px;
       }
-      .menu-card .rating {
-        color: #ffc107;
-        font-size: 0.9rem;
-        margin-bottom: 10px;
-      }
       .menu-card .description {
-        font-size: 0.9rem;
+        font-size: 1rem;
         color: #666;
         margin-bottom: 15px;
-        min-height: 40px;
+        line-height: 1.4;
+      }
+      .menu-card .rating i {
+        color: gold;
+        font-size: 1rem;
       }
       .menu-card .price-section {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-top: 10px;
       }
       .menu-card .price {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         font-weight: 900;
         color: #c90000;
       }
       .menu-card .add-to-cart {
         background-color: #ff9900;
         color: white;
-        padding: 8px 15px;
         border: none;
-        border-radius: 6px;
+        padding: 10px 18px;
+        border-radius: 5px;
         font-weight: 700;
         cursor: pointer;
         transition: background-color 0.2s;
-        display: flex;
-        align-items: center;
+        font-size: 1rem;
       }
       .menu-card .add-to-cart:hover {
         background-color: #e68a00;
       }
-      .menu-card .add-to-cart i {
-        margin-right: 5px;
-      }
 
-      /* --- Modal Styles (Keranjang & Pedas) --- */
+      /* --- Modal Styles (Keranjang) --- */
       .modal {
         display: none;
         position: fixed;
@@ -438,6 +389,7 @@
       .modal-header h3 {
         color: #c90000;
         font-weight: 800;
+        font-size: 1.5rem;
       }
       .close-button {
         color: #aaa;
@@ -456,7 +408,7 @@
         list-style: none;
         padding: 0;
         margin: 0 0 20px 0;
-        max-height: 300px;
+        max-height: 350px;
         overflow-y: auto;
       }
       .cart-item {
@@ -465,67 +417,99 @@
         align-items: center;
         padding: 10px 0;
         border-bottom: 1px dashed #eee;
+        gap: 10px;
       }
+
+      .trash-icon {
+        color: #ff6347;
+        cursor: pointer;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+
       .item-details {
         display: flex;
         align-items: flex-start;
         line-height: 1.2;
         flex-direction: column;
         flex-grow: 1;
+        margin-right: 10px;
       }
       .item-details .item-name {
-        font-weight: 600;
-        font-size: 1rem;
+        font-weight: 700;
+        font-size: 1.05rem;
         margin-bottom: 3px;
       }
       .item-details .item-level {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         color: #c90000;
         font-style: italic;
       }
-      .item-details .item-price {
-        font-size: 0.95rem;
-        color: #666;
-        margin-top: 3px;
-      }
-      .item-controls-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-      }
+
       .item-controls {
         display: flex;
         align-items: center;
-        gap: 5px;
+        flex-shrink: 0;
       }
       .item-controls button {
-        background-color: #eee;
+        background: none;
         border: none;
-        width: 25px;
-        height: 25px;
-        border-radius: 4px;
         cursor: pointer;
-        font-weight: 700;
-        transition: background-color 0.2s;
-        padding: 0;
+        padding: 5px;
+        font-size: 1.4rem;
+        color: #c90000;
+        transition: color 0.2s;
+        line-height: 1;
       }
-      .item-controls .minus-btn {
+      .item-controls button:hover {
+        color: #ff9900;
+      }
+      .item-controls .quantity {
+        font-weight: 700;
+        font-size: 1.1rem;
+        padding: 0 8px;
+        color: #333;
+      }
+
+      .item-controls-wrapper {
+        display: contents;
+      }
+
+      .item-quantity-display {
+        display: none !important;
+      }
+
+      /* Level Pedas Modal Fix */
+      #spice-level-options {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 15px;
+      }
+      .level-pedas-btn {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        background-color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 1rem;
+      }
+      .level-pedas-btn:hover {
+        background-color: #f9f9f9;
+      }
+      .level-pedas-btn.selected {
         background-color: #c90000;
         color: white;
+        border-color: #ff9900;
+        box-shadow: 0 4px 8px rgba(201, 0, 0, 0.4);
       }
-      .item-controls .plus-btn {
-        background-color: #ff9900;
-        color: white;
-      }
-      .item-controls span {
-        font-weight: 600;
-        width: 20px;
+      .level-pedas-container h4 {
         text-align: center;
-      }
-      .item-controls-wrapper .trash-icon {
-        color: #c90000;
-        cursor: pointer;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        color: #666;
       }
 
       .cart-summary {
@@ -537,11 +521,11 @@
         align-items: center;
       }
       .cart-summary .total-text {
-        font-weight: 600;
-        font-size: 1.1rem;
+        font-weight: 700;
+        font-size: 1.2rem;
       }
       .cart-summary .total-price {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         font-weight: 900;
         color: #c90000;
       }
@@ -551,10 +535,10 @@
         width: 100%;
         background-color: #25d366;
         color: white;
-        padding: 12px;
+        padding: 15px;
         border: none;
         border-radius: 8px;
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         font-weight: 700;
         margin-top: 15px;
         cursor: pointer;
@@ -564,185 +548,138 @@
       .checkout-wa-btn i {
         margin-right: 8px;
       }
-      .checkout-wa-btn:hover {
+      .checkout-wa-btn:hover:not(:disabled) {
         background-color: #1eac5b;
       }
-
-      /* Modal Level Pedas (Small Modal) */
-      .level-pedas-container {
-        margin-top: 10px;
-      }
-      .level-pedas-container h4 {
-        font-size: 1rem;
-        margin-bottom: 10px;
-        font-weight: 700;
-      }
-      .level-pedas-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-      }
-      .level-pedas-btn {
-        background-color: #eee;
-        color: #555;
-        padding: 8px 5px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        font-size: 0.8rem;
-        cursor: pointer;
-        font-weight: 600;
-        transition: background-color 0.2s, border-color 0.2s;
-        text-align: center;
-      }
-      .level-pedas-btn:hover:not(.selected) {
-        background-color: #ccc;
-      }
-      .level-pedas-btn.selected {
-        background-color: #ff9900;
-        color: white;
-        border-color: #e68a00;
-      }
-      .confirm-pedas-btn {
-        background-color: #c90000;
-        margin-top: 15px;
-      }
-      .confirm-pedas-btn:hover {
-        background-color: #a30000;
+      .checkout-wa-btn:disabled {
+        background-color: #888;
+        cursor: not-allowed;
       }
 
-      /* --- Footer --- */
+      /* --- Footer (FINAL FIX: Tetap di Bawah dan Tutup Sisa Layar) --- */
       footer {
         background-color: #444;
         color: #ccc;
         padding: 20px 0;
-        margin-top: auto;
+        margin-top: 50px;
         width: 100%;
         position: relative;
         bottom: 0;
         z-index: 10;
+        flex-shrink: 0; /* Penting untuk Flexbox */
       }
       .footer-info {
         max-width: 1300px;
         width: 90%;
         margin: 0 auto;
-        padding-bottom: 15px;
-        border-bottom: 1px solid #555;
-        text-align: center;
       }
       .footer-row {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px 30px;
+        gap: 15px 30px;
+        font-size: 1rem;
         margin-bottom: 10px;
-        font-size: 0.9rem;
       }
+      .footer-row span,
       .footer-row a {
-        transition: color 0.2s;
+        display: flex;
+        align-items: center;
       }
-      .footer-row a:hover {
-        color: white;
-      }
-
       .footer-row i {
+        margin-right: 8px;
         color: #ff9900;
-        margin-right: 5px;
       }
       .footer-instagram {
-        text-align: center;
-        font-size: 0.9rem;
-        margin-top: 10px;
-      }
-      .footer-instagram a {
-        color: white;
-        font-weight: 600;
-        text-decoration: underline;
+        font-size: 1rem;
+        margin-top: 5px;
       }
       .footer-instagram i {
-        color: #d62976;
-        margin-right: 5px;
+        color: #ff9900;
+        margin-right: 8px;
+      }
+      .footer-instagram a {
+        font-weight: 600;
+        color: white;
+        text-decoration: underline;
       }
       .copyright {
         text-align: center;
-        font-size: 0.75rem;
-        color: #888;
+        margin-top: 15px;
         padding-top: 10px;
+        border-top: 1px solid #555;
+        font-size: 0.85rem;
+        color: #999;
+      }
+
+      /* --- Notifikasi (Toast Notification) --- */
+      #notification {
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        background-color: #25d366;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        z-index: 2000;
+        display: none;
+        align-items: center;
+        font-weight: 600;
+        opacity: 0;
+        transition: opacity 0.3s, transform 0.3s;
+      }
+
+      #notification.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      #notification.hide {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      #notification i {
+        margin-right: 10px;
+        font-size: 1.2rem;
       }
 
       /* MEDIA QUERY: TAMPILAN DESKTOP */
       @media (min-width: 769px) {
-        body {
-          padding-bottom: 0;
-        }
-
-        .floating-cart,
-        .status-mobile {
-          display: none !important;
-        }
-
         .header-grid {
-          grid-template-columns: 3fr 1fr;
+          grid-template-columns: 1fr 1fr;
           text-align: left;
-          padding: 20px 0;
-          gap: 20px;
+          padding: 30px 0;
         }
-
-        .header-left .tagline {
-          font-size: 1rem;
+        .header-left {
+          text-align: left;
         }
-
-        .header-left h1 {
-          font-size: 2.2rem;
-        }
-
-        #btn-pesan-header {
-          display: none;
-        }
-
         .header-right {
           display: flex;
-          padding: 10px 0 10px 10px;
-          border-left: 1px solid rgba(255, 255, 255, 0.3);
           flex-direction: column;
           align-items: flex-end;
-          justify-content: center;
-          margin-left: 10px;
-          gap: 8px;
           text-align: right;
+          justify-content: center;
+        }
+        .status-mobile {
+          display: none;
+        }
+        .header-left h1 {
+          font-size: 2.8rem;
         }
         .info-buka {
-          color: #33cc33 !important;
-          font-weight: 800;
-          align-self: flex-end;
-          font-size: 0.9rem;
+          font-weight: 700;
+          font-size: 1.2rem;
+          margin-bottom: 5px;
+          display: block;
         }
         .location-info {
-          align-self: flex-end;
-          text-align: right;
+          font-size: 1rem;
           text-decoration: underline;
-          font-size: 0.85rem;
+          margin-bottom: 10px;
+          display: block;
         }
-
-        #btn-pesan-header-right {
-          padding: 6px 12px;
-          font-size: 0.85rem;
-          align-self: flex-end;
-        }
-
-        .modal-content {
-          margin: 8% auto;
-        }
-
-        #notification {
-          bottom: 20px;
-          max-width: 400px;
-        }
-
-        .filter-buttons {
-          justify-content: flex-start;
-          max-width: 1300px;
-          width: 90%;
-          margin: 0 auto 30px;
+        .btn-pesan-sekarang {
+          display: none;
         }
       }
     </style>
@@ -782,15 +719,12 @@
           <span id="info-buka" class="info-buka"
             ><i class="fas fa-clock"></i> BUKA (Sampai 18:00)</span
           >
-          <a id="maps-link-desktop" class="location-info" target="_blank"
-            ><i class="fas fa-map-marker-alt"></i> Lihat Lokasi Toko</a
-          >
           <a
-            href="#"
-            id="btn-pesan-header-right"
-            class="checkout-button"
-            onclick="openCartModal(event)"
-            >ORDER CEPAT</a
+            id="maps-link-desktop"
+            class="location-info"
+            target="_blank"
+            href="https://maps.app.goo.gl/ContohMapsLinkAnda"
+            ><i class="fas fa-map-marker-alt"></i> Lihat Lokasi Toko</a
           >
         </div>
       </div>
@@ -803,16 +737,16 @@
           <i class="fa-solid fa-fire"></i>
         </h2>
         <p>
-          Kami adalah <strong>**Spesialis Cemilan Pedas Nonjok**</strong> dan
-          <strong>**Nasi Cili Kekinian Jember**</strong>. Jualan Cemilan Mak E
+          Kami adalah <strong>Spesialis Cemilan Pedas Nonjok</strong> dan
+          <strong>Nasi Cili Kekinian Jember</strong>. Jualan Cemilan Mak E
           adalah destinasi utama Anda untuk mencari cemilan dan makanan instan
           dengan sensasi pedas yang 'nonjok' di Jember. Kami adalah pusat
           cemilan kekinian dan makanan instan super pedas. Dibuat dengan bumbu
           dan racikan cabai khusus, dijamin bikin ketagihan!
         </p>
         <p>
-          **Kami berkomitmen menyajikan hidangan pedas lezat dengan harga
-          terjangkau.**
+          Kami berkomitmen menyajikan hidangan pedas lezat dengan harga
+          terjangkau.
         </p>
       </section>
 
@@ -857,7 +791,11 @@
             Tutup</span
           >
 
-          <a id="maps-link-footer" target="_blank">
+          <a
+            id="maps-link-footer"
+            target="_blank"
+            href="https://maps.app.goo.gl/ContohMapsLinkAnda"
+          >
             <span
               ><i class="fas fa-map-marker-alt"></i> Jl. Tidar Gg. Delta,
               Jember</span
@@ -905,6 +843,7 @@
           id="checkout-wa-btn"
           class="checkout-wa-btn"
           onclick="checkout()"
+          disabled
         >
           <i class="fab fa-whatsapp"></i> Pesan Sekarang
         </button>
@@ -939,6 +878,7 @@
           <button
             id="confirm-pedas-btn"
             class="checkout-wa-btn confirm-pedas-btn"
+            disabled
           >
             Konfirmasi
           </button>
@@ -946,17 +886,15 @@
       </div>
     </div>
 
-    <div
-      id="floatingCart"
-      class="floating-cart cart-hidden"
-      onclick="openCartModal()"
-    >
+    <div id="floatingCart" class="floating-cart cart-hidden">
       <div class="floating-cart-info">
         <i class="fas fa-shopping-cart"></i>
         <span id="floating-item-count">0 Item</span> |
         <span id="floating-total">Rp 0</span>
       </div>
-      <div class="checkout-button">Checkout</div>
+      <div class="checkout-button" onclick="openCartModal()">
+        Checkout <i class="fab fa-whatsapp"></i>
+      </div>
     </div>
 
     <div id="notification">
@@ -965,10 +903,6 @@
     </div>
 
     <script>
-      /* ------------------------------------------------------------------ */
-      /* --- 3. JAVASCRIPT LENGKAP (VERSI FINAL V9.0 - FIX Cart & Logic) --- */
-      /* ------------------------------------------------------------------ */
-
       const menuData = [
         // Nasi Pedas Instan
         {
@@ -1087,15 +1021,37 @@
       let tempSpiceLevel = null;
 
       const WA_NUMBER = "6281234594673";
-      const WA_DEFAULT_TEXT = "Halo Cemilan Mak E, saya mau pesan..";
+      const MAPS_URL = "https://maps.app.goo.gl/ContohMapsLinkAnda";
+      const CLOSE_TIME = "18:00";
+      let notificationTimeout;
 
-      // V8.8 FIX: Menggunakan URL dan koordinat yang benar
-      const MAPS_URL = "https://maps.app.goo.gl/ContohLokasiLink"; // Ganti dengan link Google Maps yang sebenarnya
-      const MAPS_LINK = MAPS_URL;
+      // --- START: LOGIKA WAKTU BUKA/TUTUP OTOMATIS ---
+      const checkOpenStatus = () => {
+        const today = new Date();
+        const day = today.getDay(); // 0=Minggu, 1=Senin, ..., 6=Sabtu
+        const hour = today.getHours();
+        const minute = today.getMinutes();
+        const currentTimeInMinutes = hour * 60 + minute;
 
-      const IG_LINK = "https://instagram.com/cemilanmake_sari";
-      const IS_OPEN = true; // Status Buka/Tutup
-      const CLOSE_TIME = "18:00"; // Jam Tutup
+        const openTimeInMinutes = 8 * 60; // 08:00
+        const closeTimeInMinutes = 18 * 60; // 18:00
+
+        if (day === 0)
+          return { isOpen: false, statusText: "TUTUP (Buka Senin 08:00)" };
+
+        if (
+          currentTimeInMinutes >= openTimeInMinutes &&
+          currentTimeInMinutes <= closeTimeInMinutes
+        ) {
+          return { isOpen: true, statusText: `BUKA (Sampai ${CLOSE_TIME})` };
+        } else {
+          return { isOpen: false, statusText: "TUTUP (Buka Besok 08:00)" };
+        }
+      };
+
+      const storeStatus = checkOpenStatus();
+      const IS_OPEN = storeStatus.isOpen;
+      // --- END: LOGIKA WAKTU BUKA/TUTUP OTOMATIS ---
 
       // --- DOM Elements ---
       const menuList = document.getElementById("menu-list");
@@ -1114,16 +1070,16 @@
         "pedas-modal-product-name"
       );
       const confirmPedasBtn = document.getElementById("confirm-pedas-btn");
-      const notification = document.getElementById("notification");
-      const notificationMessage = document.getElementById(
-        "notification-message"
-      );
       const checkoutWaBtn = document.getElementById("checkout-wa-btn");
       const mapsLinks = document.querySelectorAll(
         "#maps-link-mobile, #maps-link-desktop, #maps-link-footer"
       );
       const infoBukaMobile = document.getElementById("info-buka-mobile");
       const infoBukaDesktop = document.getElementById("info-buka");
+      const notification = document.getElementById("notification");
+      const notificationMessage = document.getElementById(
+        "notification-message"
+      );
 
       // --- Utility Functions ---
       const formatRupiah = (number) => {
@@ -1139,71 +1095,44 @@
         if (rating % 1 !== 0) {
           stars += '<i class="fas fa-star-half-alt"></i>';
         }
-        const totalStars = Math.ceil(rating);
-        for (let i = 0; i < 5 - totalStars; i++) {
+        const emptyStars = 5 - Math.ceil(rating);
+        for (let i = 0; i < emptyStars; i++) {
           stars += '<i class="far fa-star"></i>';
         }
         return stars;
       };
 
-      const showNotification = (message, isSuccess = true) => {
+      // Notifikasi (Toast Notification)
+      const showNotification = (message) => {
+        clearTimeout(notificationTimeout);
         notificationMessage.textContent = message;
-        notification.className = "show";
-        notification.style.backgroundColor = isSuccess ? "#25d366" : "#c90000";
 
-        if (window.innerWidth > 768) {
-          notification.style.bottom = "20px";
-        } else {
-          notification.style.bottom = "90px";
-        }
+        notification.style.display = "flex";
+        notification.classList.remove("hide");
+        notification.classList.add("show");
 
-        setTimeout(() => {
+        notificationTimeout = setTimeout(() => {
           notification.classList.remove("show");
+          notification.classList.add("hide");
+          setTimeout(() => {
+            notification.style.display = "none";
+          }, 300);
         }, 3000);
       };
 
-      // --- Maps & Opening Status Fix ---
-      const updateHeaderInfo = () => {
-        // Update Maps Links
-        mapsLinks.forEach((a) => {
-          a.href = MAPS_LINK;
-        });
-
-        // Update Opening Status
-        const statusText = IS_OPEN
-          ? `BUKA (Sampai ${CLOSE_TIME})`
-          : "TUTUP (Buka Besok)";
-
-        if (infoBukaMobile) {
-          infoBukaMobile.innerHTML = `<i class="fas fa-clock"></i> ${statusText}`;
-          infoBukaMobile.style.color = IS_OPEN ? "#ff9900" : "#ff4d4d";
-        }
-
-        if (infoBukaDesktop) {
-          infoBukaDesktop.innerHTML = `<i class="fas fa-clock"></i> ${statusText}`;
-          infoBukaDesktop.style.color = IS_OPEN ? "#33cc33" : "#ff4d4d";
-        }
-      };
-
-      // --- Modal Functions ---
-      const openCartModal = (event) => {
-        if (event) event.preventDefault();
-        updateCartModal();
-        cartModal.style.display = "block";
-      };
-
-      const closeCartModal = () => {
-        cartModal.style.display = "none";
-      };
+      // --- Cart Control Logic ---
 
       const openSpiceModal = (product) => {
         tempProduct = product;
-        tempSpiceLevel = null; // Reset level sementara
+        tempSpiceLevel = null;
         pedasModalProductName.textContent = `Untuk ${product.name}`;
 
-        document
-          .querySelectorAll("#spice-level-options .level-pedas-btn")
+        spiceLevelOptions
+          .querySelectorAll(".level-pedas-btn")
           .forEach((btn) => btn.classList.remove("selected"));
+
+        confirmPedasBtn.disabled = true;
+        confirmPedasBtn.textContent = "Pilih Level Pedas Dulu";
 
         spiceLevelModal.style.display = "block";
       };
@@ -1214,331 +1143,321 @@
         tempSpiceLevel = null;
       };
 
-      // Menutup modal saat klik di luar area modal
-      window.onclick = (event) => {
-        if (event.target == cartModal) {
-          closeCartModal();
-        }
-        if (event.target == spiceLevelModal) {
-          closeSpiceModal();
-        }
-      };
+      window.handleAddToCart = (productId) => {
+        const product = menuData.find((item) => item.id === productId);
 
-      // --- Cart Logic (Keranjang Belanja FIX) ---
-
-      const generateCartId = (product, level) => {
-        return `${product.id}-${level || "no-level"}`;
-      };
-
-      const getCartItemIndex = (cartId) => {
-        return cart.findIndex((item) => item.cartId === cartId);
-      };
-
-      const addToCart = (product, level = null) => {
-        const cartId = generateCartId(product, level);
-        const existingIndex = getCartItemIndex(cartId);
-
-        if (existingIndex > -1) {
-          cart[existingIndex].quantity += 1;
-        } else {
-          cart.push({
-            cartId: cartId,
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            level: level,
-            quantity: 1,
-          });
-        }
-        updateCartDisplay();
-        showNotification(
-          `${product.name} ${level || ""} ditambahkan ke keranjang!`
-        );
-        closeSpiceModal(); // Tutup modal level pedas setelah berhasil ditambahkan
-      };
-
-      const handleAddToCartClick = (productId) => {
-        const product = menuData.find((p) => p.id === productId);
         if (!product) return;
 
         if (product.hasSpiceLevel) {
           openSpiceModal(product);
         } else {
-          addToCart(product);
+          addToCart(product, null);
         }
       };
 
-      const updateQuantity = (cartId, delta) => {
-        const index = getCartItemIndex(cartId);
-        if (index > -1) {
-          cart[index].quantity += delta;
-          if (cart[index].quantity <= 0) {
-            cart.splice(index, 1); // Hapus jika kuantitas <= 0
+      const addToCart = (product, level) => {
+        let cartId = product.id.toString();
+        let itemName = product.name;
+
+        if (level) {
+          cartId = `${product.id}-${level}`;
+        }
+
+        const existingItemIndex = cart.findIndex(
+          (item) => item.cartId === cartId
+        );
+
+        if (existingItemIndex > -1) {
+          cart[existingItemIndex].quantity += 1;
+        } else {
+          cart.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            quantity: 1,
+            level: level,
+            cartId: cartId,
+          });
+        }
+
+        updateCartDisplay();
+        showNotification(
+          `${itemName}${level ? ` (${level})` : ""} ditambahkan ke keranjang!`
+        );
+
+        closeSpiceModal();
+      };
+
+      window.updateCartItemQuantity = (cartId, delta) => {
+        const itemIndex = cart.findIndex((item) => item.cartId === cartId);
+        if (itemIndex > -1) {
+          cart[itemIndex].quantity += delta;
+          if (cart[itemIndex].quantity <= 0) {
+            cart.splice(itemIndex, 1);
+            showNotification(
+              `${cart[itemIndex]?.name || "Item"} dihapus dari keranjang.`
+            );
           }
           updateCartDisplay();
         }
       };
 
-      const removeItem = (cartId) => {
-        const index = getCartItemIndex(cartId);
-        if (index > -1) {
-          const removedItem = cart[index];
-          cart.splice(index, 1);
+      window.removeCartItem = (cartId) => {
+        const itemIndex = cart.findIndex((item) => item.cartId === cartId);
+        if (itemIndex > -1) {
+          const removedItemName = cart[itemIndex].name;
+          cart.splice(itemIndex, 1);
           updateCartDisplay();
-          showNotification(
-            `${removedItem.name} ${
-              removedItem.level || ""
-            } dihapus dari keranjang.`,
-            false
-          );
+          showNotification(`${removedItemName} dihapus dari keranjang.`);
         }
       };
 
       const updateCartDisplay = () => {
+        cartItemsList.innerHTML = "";
         let total = 0;
         let totalItems = 0;
-        cartItemsList.innerHTML = ""; // Kosongkan daftar item
 
         if (cart.length === 0) {
           cartEmptyMessage.style.display = "block";
-          checkoutWaBtn.disabled = true;
-          checkoutWaBtn.style.backgroundColor = "#aaa";
           floatingCart.classList.add("cart-hidden");
+          checkoutWaBtn.disabled = true;
         } else {
           cartEmptyMessage.style.display = "none";
-          checkoutWaBtn.disabled = false;
-          checkoutWaBtn.style.backgroundColor = "#25d366";
           floatingCart.classList.remove("cart-hidden");
-
-          cart.forEach((item) => {
-            const itemTotal = item.price * item.quantity;
-            total += itemTotal;
-            totalItems += item.quantity;
-
-            const listItem = document.createElement("li");
-            listItem.className = "cart-item";
-            listItem.innerHTML = `
-                <div class="item-details">
-                    <span class="item-name">${item.name}</span>
-                    ${
-                      item.level
-                        ? `<span class="item-level">Level Pedas: ${item.level}</span>`
-                        : ""
-                    }
-                    <span class="item-price">${formatRupiah(item.price)} x ${
-              item.quantity
-            }</span>
-                </div>
-                <div class="item-controls-wrapper">
-                    <div class="item-controls">
-                        <button class="minus-btn" onclick="updateQuantity('${
-                          item.cartId
-                        }', -1)">-</button>
-                        <span>${item.quantity}</span>
-                        <button class="plus-btn" onclick="updateQuantity('${
-                          item.cartId
-                        }', 1)">+</button>
-                    </div>
-                    <i class="fas fa-trash-alt trash-icon" onclick="removeItem('${
-                      item.cartId
-                    }')"></i>
-                </div>
-            `;
-            cartItemsList.appendChild(listItem);
-          });
+          checkoutWaBtn.disabled = false;
         }
 
-        cartTotalSpan.textContent = formatRupiah(total);
-        floatingItemCount.textContent = `${totalItems} Item`;
-        floatingTotal.textContent = formatRupiah(total);
+        cart.forEach((item) => {
+          const itemTotal = item.price * item.quantity;
+          total += itemTotal;
+          totalItems += item.quantity;
 
-        // Simpan cart ke Local Storage (Opsional, untuk persistent cart)
-        localStorage.setItem("cemilanMakECart", JSON.stringify(cart));
-      };
-
-      const updateCartModal = () => {
-        updateCartDisplay(); // Panggil ini untuk me-render ulang modal saat dibuka
-      };
-
-      // --- Checkout Logic (WhatsApp) ---
-      const checkout = () => {
-        if (cart.length === 0) {
-          showNotification(
-            "Keranjang Anda masih kosong. Isi dulu, Bro!",
-            false
-          );
-          return;
-        }
-
-        let message = "Halo Cemilan Mak E, saya mau pesan menu berikut:\n\n";
-        let totalBelanja = 0;
-
-        cart.forEach((item, index) => {
-          const subtotal = item.price * item.quantity;
-          totalBelanja += subtotal;
-
-          message += `${index + 1}. ${item.name}`;
-          if (item.level) {
-            message += ` (${item.level})`;
-          }
-          message += `\n   Qty: ${item.quantity} x ${formatRupiah(
+          const listItem = document.createElement("li");
+          listItem.className = "cart-item";
+          listItem.innerHTML = `
+            <i class="fas fa-trash trash-icon" onclick="removeCartItem('${
+              item.cartId
+            }')"></i>
+            <div class="item-details">
+              <span class="item-name">${item.name} (@${formatRupiah(
             item.price
-          )} = ${formatRupiah(subtotal)}\n`;
+          )})</span>
+              ${
+                item.level
+                  ? `<span class="item-level">${item.level}</span>`
+                  : ""
+              }
+            </div>
+            <div class="item-controls">
+              <button onclick="updateCartItemQuantity('${
+                item.cartId
+              }', -1)">-</button>
+              <span class="quantity">${item.quantity}</span>
+              <button onclick="updateCartItemQuantity('${
+                item.cartId
+              }', 1)">+</button>
+            </div>
+            <span class="item-subtotal">${formatRupiah(itemTotal)}</span>
+          `;
+          cartItemsList.appendChild(listItem);
         });
 
-        message += `\n========================\n`;
-        message += `*TOTAL BELANJA: ${formatRupiah(totalBelanja)}*\n`;
-        message += `========================\n\n`;
-        message += "Mohon diproses ya, Mak E. Terima kasih!";
+        cartTotalSpan.textContent = formatRupiah(total);
+        floatingTotal.textContent = formatRupiah(total);
+        floatingItemCount.textContent = `${totalItems} Item`;
+      };
+
+      window.openCartModal = (event) => {
+        if (event) event.preventDefault();
+        updateCartDisplay();
+        cartModal.style.display = "block";
+      };
+
+      window.closeCartModal = () => {
+        cartModal.style.display = "none";
+      };
+
+      window.closeSpiceModal = () => {
+        spiceLevelModal.style.display = "none";
+        tempProduct = null;
+        tempSpiceLevel = null;
+      };
+
+      // --- Checkout Logic (WhatsApp Link Generation) ---
+      window.checkout = () => {
+        let message = `*Orderan Cemilan Mak E (Pedas Nonjok)*\n\n`;
+        let total = 0;
+        let itemNumber = 1;
+
+        cart.forEach((item) => {
+          const itemTotal = item.price * item.quantity;
+          total += itemTotal;
+          const levelText = item.level ? ` (${item.level})` : "";
+
+          message += `${itemNumber}. ${item.quantity}x ${
+            item.name
+          }${levelText} - ${formatRupiah(itemTotal)}\n`;
+          itemNumber++;
+        });
+
+        message += `\n*TOTAL PESANAN: ${formatRupiah(total)}*`;
+
+        if (!IS_OPEN) {
+          message += `\n\n⚠️ *Peringatan:* Toko saat ini TUTUP. Pesanan akan diproses saat toko BUKA kembali pada pukul 08:00 WIB.`;
+        } else {
+          message += `\n\nMohon siapkan alamat lengkap (Jl/Gang/RT/RW) dan metode pembayaran yang diinginkan (COD/Transfer). Terima kasih!`;
+        }
 
         const encodedMessage = encodeURIComponent(message);
         const waLink = `https://wa.me/${WA_NUMBER}?text=${encodedMessage}`;
 
+        // Buka WhatsApp
         window.open(waLink, "_blank");
-        closeCartModal();
-        cart = []; // Kosongkan keranjang setelah checkout
-        updateCartDisplay();
+
+        // Kosongkan Keranjang setelah Checkout (Opsional, tergantung kebijakan toko)
+        // cart = [];
+        // updateCartDisplay();
+        // closeCartModal();
       };
 
-      // --- Rendering Menu ---
+      // --- Menu Rendering & Filtering ---
       const renderMenu = (filterCategory = "Semua", searchTerm = "") => {
-        let html = "";
-        let filteredData = menuData;
-
-        // 1. Filter Kategori
-        if (filterCategory !== "Semua") {
-          filteredData = filteredData.filter(
-            (item) => item.category === filterCategory
-          );
-        }
-
-        // 2. Filter Search
-        if (searchTerm.trim() !== "") {
-          const lowerCaseSearch = searchTerm.toLowerCase();
-          filteredData = filteredData.filter(
-            (item) =>
-              item.name.toLowerCase().includes(lowerCaseSearch) ||
-              item.description.toLowerCase().includes(lowerCaseSearch)
-          );
-        }
-
-        const categories = [
-          ...new Set(filteredData.map((item) => item.category)),
-        ];
-
-        categories.forEach((category) => {
-          const categoryItems = filteredData.filter(
-            (item) => item.category === category
-          );
-
-          if (categoryItems.length > 0) {
-            let icon = "";
-            if (category === "Nasi Pedas Instan")
-              icon = "fa-solid fa-bowl-rice";
-            else if (category === "Cemilan Kering Pedas")
-              icon = "fa-solid fa-cookie";
-            else if (category === "Seblak Instan Kering")
-              icon = "fa-solid fa-pot-food";
-            else if (category === "Cemilan Manis & Lainnya")
-              icon = "fa-solid fa-cake-slice";
-
-            html += `<h2 class="menu-category-title"><i class="${icon}"></i> ${category}</h2>`;
-            html += `<div class="menu-grid">`;
-
-            categoryItems.forEach((item) => {
-              html += `
-                <div class="menu-card" data-id="${item.id}" data-category="${
-                item.category
-              }">
-                  <h3>${item.name} ${
-                item.hasSpiceLevel
-                  ? '<span style="color: #c90000; font-size: 0.9rem;">(Level Pedas)</span>'
-                  : ""
-              }</h3>
-                  <div class="rating">
-                    ${getRatingStars(item.rating)} (${item.reviews} Review)
-                  </div>
-                  <p class="description">${item.description}</p>
-                  <div class="price-section">
-                    <span class="price">${formatRupiah(item.price)}</span>
-                    <button class="add-to-cart" onclick="handleAddToCartClick(${
-                      item.id
-                    })">
-                      <i class="fas fa-plus"></i> Tambah
-                    </button>
-                  </div>
-                </div>
-              `;
-            });
-
-            html += `</div>`;
-          }
+        menuList.innerHTML = "";
+        const filteredMenu = menuData.filter((item) => {
+          const matchesCategory =
+            filterCategory === "Semua" || item.category === filterCategory;
+          const matchesSearch = item.name
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase());
+          return matchesCategory && matchesSearch;
         });
 
-        if (filteredData.length === 0) {
-          html = `<p style="text-align: center; margin-top: 50px; font-size: 1.1rem; color: #999;">Tidak ditemukan menu untuk kriteria tersebut.</p>`;
-        }
-
-        menuList.innerHTML = html;
-      };
-
-      // --- Event Listeners ---
-      filterButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          filterButtons.forEach((btn) => btn.classList.remove("active"));
-          button.classList.add("active");
-          const category = button.getAttribute("data-category");
-          renderMenu(category, searchInput.value);
-        });
-      });
-
-      searchInput.addEventListener("keyup", () => {
-        const activeCategory = document
-          .querySelector(".filter-btn.active")
-          .getAttribute("data-category");
-        renderMenu(activeCategory, searchInput.value);
-      });
-
-      // Handle pemilihan level pedas di modal
-      spiceLevelOptions.addEventListener("click", (event) => {
-        if (event.target.classList.contains("level-pedas-btn")) {
-          document
-            .querySelectorAll("#spice-level-options .level-pedas-btn")
-            .forEach((btn) => btn.classList.remove("selected"));
-          event.target.classList.add("selected");
-          tempSpiceLevel = event.target.getAttribute("data-level");
-        }
-      });
-
-      // Handle konfirmasi level pedas
-      confirmPedasBtn.addEventListener("click", () => {
-        if (tempProduct && tempSpiceLevel) {
-          addToCart(tempProduct, tempSpiceLevel);
-        } else {
-          showNotification("Mohon pilih level pedas terlebih dahulu!", false);
-        }
-      });
-
-      // Load cart dari Local Storage saat inisialisasi
-      const loadCart = () => {
-        const storedCart = localStorage.getItem("cemilanMakECart");
-        if (storedCart) {
-          try {
-            cart = JSON.parse(storedCart);
-            updateCartDisplay();
-          } catch (e) {
-            console.error("Error parsing cart from storage:", e);
-            cart = [];
+        const groupedMenu = filteredMenu.reduce((acc, item) => {
+          if (!acc[item.category]) {
+            acc[item.category] = [];
           }
+          acc[item.category].push(item);
+          return acc;
+        }, {});
+
+        if (filteredMenu.length === 0) {
+          menuList.innerHTML = `<p style="text-align: center; margin-top: 50px; font-style: italic; color: #888;">Maaf, tidak ada menu yang ditemukan untuk kategori/pencarian ini.</p>`;
+          return;
+        }
+
+        for (const category in groupedMenu) {
+          const categoryTitle = document.createElement("h2");
+          categoryTitle.className = "menu-category-title";
+          categoryTitle.textContent = category;
+          menuList.appendChild(categoryTitle);
+
+          const grid = document.createElement("div");
+          grid.className = "menu-grid";
+
+          groupedMenu[category].forEach((item) => {
+            const card = document.createElement("div");
+            card.className = "menu-card";
+            card.innerHTML = `
+                    <div>
+                        <h3>${item.name}</h3>
+                        <p class="description">${item.description}</p>
+                        <div class="rating">
+                            ${getRatingStars(item.rating)} (${
+              item.reviews
+            } ulasan)
+                        </div>
+                    </div>
+                    <div class="price-section">
+                        <span class="price">${formatRupiah(item.price)}</span>
+                        <button class="add-to-cart" data-id="${
+                          item.id
+                        }" onclick="handleAddToCart(${item.id})">
+                            ${item.hasSpiceLevel ? "Pilih Level" : "Tambah"}
+                        </button>
+                    </div>
+                `;
+            grid.appendChild(card);
+          });
+          menuList.appendChild(grid);
         }
       };
 
       // --- Initialization ---
-      document.addEventListener("DOMContentLoaded", () => {
-        updateHeaderInfo();
-        loadCart(); // Load keranjang yang tersimpan
-        renderMenu("Semua", "");
-      });
+
+      const initialize = () => {
+        // 1. Set Status Toko
+        const iconClass = storeStatus.isOpen ? "fas fa-clock" : "fas fa-ban";
+        const statusText = storeStatus.statusText;
+
+        infoBukaMobile.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
+        infoBukaDesktop.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
+
+        // 2. Set Maps Link
+        mapsLinks.forEach((link) => {
+          link.href = MAPS_URL;
+        });
+
+        // 3. Render Menu Awal
+        renderMenu();
+
+        // 4. Setup Event Listeners
+
+        // Filter Buttons
+        filterButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            filterButtons.forEach((btn) => btn.classList.remove("active"));
+            button.classList.add("active");
+            const category = button.getAttribute("data-category");
+            const searchTerm = searchInput.value;
+            renderMenu(category, searchTerm);
+          });
+        });
+
+        // Search Input
+        searchInput.addEventListener("input", () => {
+          const activeCategory = document
+            .querySelector(".filter-btn.active")
+            .getAttribute("data-category");
+          const searchTerm = searchInput.value;
+          renderMenu(activeCategory, searchTerm);
+        });
+
+        // Spice Level Modal Logic
+        spiceLevelOptions.addEventListener("click", (e) => {
+          const btn = e.target.closest(".level-pedas-btn");
+          if (btn) {
+            spiceLevelOptions
+              .querySelectorAll(".level-pedas-btn")
+              .forEach((b) => b.classList.remove("selected"));
+            btn.classList.add("selected");
+            tempSpiceLevel = btn.getAttribute("data-level");
+            confirmPedasBtn.disabled = false;
+            confirmPedasBtn.textContent = `Pilih ${tempSpiceLevel}`;
+          }
+        });
+
+        confirmPedasBtn.addEventListener("click", () => {
+          if (tempProduct && tempSpiceLevel) {
+            addToCart(tempProduct, tempSpiceLevel);
+          }
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener("click", (event) => {
+          if (event.target == cartModal) {
+            closeCartModal();
+          }
+          if (event.target == spiceLevelModal) {
+            closeSpiceModal();
+          }
+        });
+
+        // 5. Initial Cart Update
+        updateCartDisplay();
+      };
+
+      // Jalankan fungsi inisialisasi saat dokumen siap
+      initialize();
     </script>
   </body>
 </html>
