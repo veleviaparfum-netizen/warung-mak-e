@@ -442,61 +442,67 @@
       }
       .cart-item {
         display: flex;
+        flex-wrap: nowrap; /* Diperlukan agar elemen tidak turun baris di desktop */
         justify-content: space-between;
         align-items: center;
         padding: 10px 0;
         border-bottom: 1px dashed #eee;
-        gap: 10px;
+        gap: 5px; /* Mengurangi gap */
       }
+
+      /* REVISI UKURAN ITEM DI KERANJANG (Desktop & Default) */
       .item-details {
         flex-grow: 1;
-        min-width: 150px;
+        min-width: 120px;
+        line-height: 1.2;
       }
       .item-details .item-name {
         font-weight: 600;
         display: block;
-        line-height: 1.4;
         white-space: normal;
       }
       .item-details .item-level {
-        font-size: 0.85rem;
+        font-size: 0.8rem; /* Mengecilkan font level pedas */
         color: #666;
       }
       .item-subtotal {
         font-weight: 700;
         color: #c90000;
         white-space: nowrap;
-        min-width: 80px;
+        min-width: 70px; /* Mengecilkan min-width */
         text-align: right;
+        font-size: 0.95rem; /* Mengecilkan font harga */
       }
 
       /* Kontrol Kuantitas Keranjang */
       .item-controls {
         display: flex;
         align-items: center;
-        gap: 5px;
-        min-width: 100px;
+        gap: 3px; /* Mengurangi gap antar tombol */
+        min-width: 80px; /* Mengecilkan min-width */
         justify-content: flex-end;
       }
       .item-controls button {
         background-color: #ff9900;
         color: white;
         border: none;
-        width: 25px;
-        height: 25px;
+        width: 20px; /* Mengecilkan tombol */
+        height: 20px; /* Mengecilkan tombol */
         border-radius: 5px;
         cursor: pointer;
         font-weight: 700;
+        font-size: 0.8rem; /* Mengecilkan font tombol */
       }
       .item-controls .quantity {
         font-weight: 600;
-        min-width: 20px;
+        min-width: 15px; /* Mengecilkan min-width */
         text-align: center;
+        font-size: 0.9rem;
       }
       .trash-icon {
         color: #c90000;
         cursor: pointer;
-        font-size: 1.1rem;
+        font-size: 1rem; /* Mengecilkan ikon trash */
         margin-right: 5px;
         flex-shrink: 0;
       }
@@ -578,12 +584,14 @@
         width: 90%;
         margin: 0 auto;
       }
+      /* REVISI: Mengubah tampilan footer-row agar item sosmed terlihat rapi */
       .footer-row {
         display: flex;
         flex-wrap: wrap;
         gap: 15px 30px;
         font-size: 1rem;
         margin-bottom: 10px;
+        align-items: center; /* Memastikan semua sejajar di tengah */
       }
       .footer-row i {
         margin-right: 8px;
@@ -597,20 +605,34 @@
         font-size: 0.85rem;
         color: #999;
       }
+
+      /* CSS KHUSUS IKON INSTAGRAM RAINBOW/GRADIENT */
       .ig-icon-real {
-        background: linear-gradient(
-          45deg,
-          #f58529,
-            #feda77,
-            #dd2a7b,
-            #8134af,
-            #515bd4    
+        /* Warna Gradien Instagram */
+        background: radial-gradient(
+          circle at 30% 107%,
+          #fdf497 0%,
+          #fdf497 5%,
+          #fd5949 45%,
+          #d6249f 60%,
+          #285aeb 90%
         );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         color: transparent;
         font-size: 1.1rem;
+        /* Tambahan: Pastikan ikon tidak terpengaruh oleh warna abu-abu default footer */
+        -webkit-text-fill-color: unset; /* Hapus setting sebelumnya untuk kasus umum */
+        color: transparent; /* Pastikan text color transparan agar gradient terlihat */
+      }
+
+      /* FIX: Tambahkan ukuran ikon Instagram di footer */
+      .footer-row .fa-instagram.ig-icon-real {
+        font-size: 1.1rem; /* Ukuran default untuk footer */
+        color: white; /* Fallback */
+        /* Pastikan gradien bekerja dengan baik di background gelap */
+        -webkit-text-fill-color: transparent;
       }
 
       /* --- TOAST NOTIFICATION --- */
@@ -661,6 +683,7 @@
           flex-direction: column;
           align-items: flex-end;
           justify-content: center;
+          gap: 5px; /* Tambahkan gap antara elemen di header-right */
         }
         .status-mobile {
           display: none;
@@ -677,20 +700,36 @@
         .location-info {
           font-size: 1rem;
           text-decoration: underline;
-          margin-bottom: 10px;
-          display: block;
+          margin-bottom: 0px;
+          display: flex; /* Jadikan flex untuk mengatur ikon */
+          align-items: center;
+          gap: 5px;
+          text-decoration: none; /* Hilangkan underline */
         }
+        /* Override underline di Link Maps */
+        #maps-link-desktop {
+          text-decoration: underline !important;
+        }
+
         .btn-pesan-sekarang {
           display: none;
         }
+
+        /* Hapus styling untuk ikon Instagram di header karena elemennya dihapus */
       }
 
       /* Mobile Optimization (Layar Kecil: <= 768px) */
       @media (max-width: 768px) {
+        /* REVISI MODAL AGAR TIDAK TERLALU LEBAR DI HP */
         .modal-content {
           margin: 5% auto;
           max-height: 90vh;
           overflow-y: auto;
+          width: 90%; /* Memastikan modal tidak melebihi 90% lebar layar */
+        }
+
+        .modal-header h3 {
+          font-size: 1.3rem; /* Sedikit dikecilkan */
         }
 
         #cart-items {
@@ -783,6 +822,27 @@
         .location-info-mobile {
           margin: 0;
         }
+
+        /* PENYESUAIAN CART ITEM KHUSUS UNTUK HP */
+        .cart-item {
+          gap: 8px; /* Sedikit lebih besar dari desktop */
+          align-items: flex-start; /* Agar nama item tidak bergeser */
+        }
+
+        .item-details {
+          min-width: unset;
+          flex-basis: 35%; /* Beri ruang yang cukup untuk nama produk */
+          flex-grow: 1;
+        }
+
+        .item-controls {
+          min-width: 70px; /* Diperkecil lagi untuk HP */
+        }
+
+        .item-subtotal {
+          min-width: 65px; /* Diperkecil lagi untuk HP */
+        }
+        /* END PENYESUAIAN CART ITEM KHUSUS UNTUK HP */
       }
     </style>
   </head>
@@ -890,7 +950,7 @@
         <div class="footer-row">
           <span style="color: rgb(250, 250, 244)">
             <i class="fas fa-clock" style="color: rgb(250, 193, 5)"></i>
-            Senin - Sabtu (08.00 - 18.00) | Minggu Tutup
+            Senin - Sabtu (08.00 - 19.00) | Minggu Tutup
           </span>
 
           <a
@@ -924,17 +984,16 @@
             WhatsApp: 0812-3459-4673
           </a>
 
-          <div class="footer-instagram">
-            <a
-              href="#"
-              id="instagram-link-footer"
-              target="_blank"
-              style="color: white; display: flex; align-items: center; gap: 6px"
-            >
-              <i class="fab fa-instagram ig-icon-real"></i>
-              Instagram: @camilanmake_sari
-            </a>
-          </div>
+          <a
+            href="#"
+            id="instagram-link-footer"
+            target="_blank"
+            style="color: white; display: flex; align-items: center; gap: 6px"
+            title="Instagram: @camilanmake_sari"
+          >
+            <i class="fab fa-instagram ig-icon-real"></i>
+            @camilanmake_sari
+          </a>
         </div>
         <div class="copyright">
           © 2025 Jualan Cemilan Mak E. Spesialis Pedas Nonjok Jember.
@@ -1146,14 +1205,15 @@
       let tempProduct = null;
       let tempSpiceLevel = null;
 
-      // --- KONFIGURASI PENTING (GANTI INI SESUAI DATA NYATA) ---
+      // --- KONFIGURASI PENTING (SUDAH DIUPDATE) ---
       const WA_NUMBER = "6281234594673";
 
-      // **GANTI INI:** Ganti dengan link Google Maps *lokasi toko Anda yang valid*
-      const MAPS_URL = "https://maps.app.goo.gl/ContohLokasiTokoMakE";
+      // **UPDATE:** Menggunakan link Google Maps yang valid dari TOKO CAMILAN MAK'E
+      const MAPS_URL =
+        "https://maps.google.com/?cid=17076080884572858947&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ";
 
       const INSTAGRAM_URL = "https://www.instagram.com/camilanmake_sari";
-      const CLOSE_TIME = "18:00";
+      const CLOSE_TIME = "19:00"; // Update Jam Tutup: 19:00 WIB
       const OPEN_TIME = "08:00";
       // --- END KONFIGURASI ---
 
@@ -1183,17 +1243,19 @@
 
         if (
           currentTimeInMinutes >= openTimeInMinutes &&
-          currentTimeInMinutes <= closeTimeInMinutes
+          currentTimeInMinutes < closeTimeInMinutes
         ) {
           return { isOpen: true, statusText: `BUKA (Sampai ${CLOSE_TIME})` };
         } else {
-          if (currentTimeInMinutes > closeTimeInMinutes && hour < 24) {
+          if (currentTimeInMinutes >= closeTimeInMinutes) {
+            // Cek jika sudah lewat waktu tutup, tapi belum tengah malam
             return {
               isOpen: false,
               statusText: `TUTUP (Buka Besok ${OPEN_TIME})`,
             };
           }
 
+          // Jika waktu di antara tengah malam sampai waktu buka
           return {
             isOpen: false,
             statusText: `TUTUP (Buka Hari Ini ${OPEN_TIME})`,
@@ -1229,6 +1291,7 @@
       const instagramLinkFooter = document.getElementById(
         "instagram-link-footer"
       );
+      // const instagramLinkDesktop = document.getElementById("instagram-link-desktop"); // Dihapus dari DOM
       const waLinkFooter = document.getElementById("wa-link-footer");
       const infoBukaDesktop = document.getElementById("info-buka");
       const notification = document.getElementById("notification");
@@ -1556,6 +1619,7 @@
         if (instagramLinkFooter) {
           instagramLinkFooter.href = INSTAGRAM_URL;
         }
+        // Ikon Instagram Desktop Dihapus, jadi tidak perlu inisialisasi link desktop.
 
         if (waLinkFooter) {
           waLinkFooter.href = `https://wa.me/${WA_NUMBER}?text=Halo%20Cemilan%20Mak%20E..`;
