@@ -36,8 +36,8 @@
         display: flex;
         flex-direction: column;
         min-height: 100vh;
-        /* Jaga agar konten tidak tertutup floating cart (70px) */
-        padding-bottom: 70px;
+        /* Jaga agar konten tidak tertutup floating cart (60px) */
+        padding-bottom: 60px;
       }
 
       a {
@@ -169,45 +169,53 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 15px 20px;
+        padding: 10px 20px; /* Padding vertikal dikurangi */
         box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
         z-index: 1000;
-        height: 70px;
+        height: 60px; /* Tinggi bar dikurangi */
         cursor: pointer;
       }
       .floating-cart-info {
         display: flex;
         align-items: center;
-        font-size: 1.1rem;
+        font-size: 1rem; /* Font dikecilkan */
         font-weight: 600;
-        gap: 15px; /* Jarak antar Item | Total */
+        gap: 10px; /* Jarak antar Item | Total dikurangi */
       }
 
       .floating-cart-info i {
-        margin-right: 5px;
-        font-size: 1.2rem;
+        margin-right: 0px; /* Dihapus margin untuk ikon keranjang */
+        font-size: 1.1rem; /* Dikecilkan */
       }
 
       /* Penataan item count dan total agar lebih rapi */
       .floating-cart-info .item-info {
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 3px;
       }
       .floating-cart-info .separator {
-        font-size: 1.5rem;
+        font-size: 1.2rem; /* Dikecilkan */
         opacity: 0.6;
+      }
+
+      /* Spesifik untuk Total Harga */
+      #floating-total {
+        font-size: 1.2rem;
+        font-weight: 800;
+        /* PENTING: Memastikan Rp dan angka selalu di satu baris */
+        white-space: nowrap;
       }
 
       .checkout-button {
         background-color: white;
         color: #25d366;
-        padding: 10px 18px;
-        border-radius: 6px;
+        padding: 8px 15px; /* Padding tombol checkout dikecilkan */
+        border-radius: 5px; /* Border radius disesuaikan */
         font-weight: 700;
         display: flex;
         align-items: center;
-        font-size: 1rem;
+        font-size: 0.9rem; /* Font tombol dikecilkan */
       }
 
       .checkout-button .fab {
@@ -361,6 +369,8 @@
         font-size: 1.5rem;
         font-weight: 900;
         color: #c90000;
+        /* FIX HARGA: Agar Rp dan angka selalu di satu baris */
+        white-space: nowrap;
       }
       .menu-card .add-to-cart {
         background-color: #ff9900;
@@ -438,20 +448,26 @@
       }
       .item-details {
         flex-grow: 1;
+        /* Tambahkan min-width agar item name tidak terlalu terpotong */
+        min-width: 150px;
       }
       .item-details .item-name {
         font-weight: 600;
         display: block;
         line-height: 1.4;
+        /* FIX: Agar nama item tidak pecah ke baris baru dan menabrak harga */
+        white-space: normal;
       }
       .item-details .item-level {
         font-size: 0.85rem;
-        color: #c90000;
+        color: #666; /* Warna level pedas diubah sedikit agar tidak terlalu menonjol */
       }
       .item-subtotal {
         font-weight: 700;
         color: #c90000;
-        min-width: 70px;
+        /* FIX HARGA: Pastikan harga di sini juga satu baris */
+        white-space: nowrap;
+        min-width: 80px;
         text-align: right;
       }
 
@@ -483,6 +499,8 @@
         cursor: pointer;
         font-size: 1.1rem;
         margin-right: 5px;
+        /* FIX: Agar trash icon tidak terlalu jauh */
+        flex-shrink: 0;
       }
 
       .cart-summary {
@@ -603,7 +621,7 @@
       /* --- TOAST NOTIFICATION --- */
       #notification {
         position: fixed;
-        /* FIX BARU: Naikkan dari 30px ke 80px agar di desktop tidak menimpa footer */
+        /* Posisi untuk desktop/umum */
         bottom: 80px;
         left: 50%;
         transform: translateX(-50%);
@@ -694,10 +712,9 @@
 
         /* 4. FIX: Posisi Notifikasi di HP agar tidak menutupi Floating Cart */
         #notification {
-          /* Naikkan dari 80px ke 90px (70px tinggi cart + 20px padding) */
-          bottom: 90px;
-          padding: 8px 15px; /* Kecilkan sedikit ukurannya */
-          font-size: 0.95rem; /* Kecilkan font */
+          bottom: 65px; /* Disesuaikan dengan tinggi Floating Cart baru (55px) */
+          padding: 7px 15px;
+          font-size: 0.95rem;
         }
 
         /* 5. About Section di Mobile */
@@ -735,29 +752,34 @@
         }
 
         /* 7. FIX FLOATING CART MOBILE */
+        .floating-cart {
+          height: 55px; /* Tinggi bar dikurangi lagi di HP */
+        }
+
         .floating-cart-info {
-          gap: 10px; /* Jarak total antar elemen */
-          /* Memastikan total item dan harga rata tengah */
+          font-size: 0.9rem; /* Font info dikecilkan di HP */
+          gap: 8px;
           align-items: center;
         }
         .floating-cart-info .item-info {
-          /* Container untuk item count */
           min-width: 70px;
         }
         .floating-cart-info .separator {
           margin: 0 5px;
         }
         .floating-cart-info #floating-total {
-          /* Biar harga sedikit menonjol */
-          font-size: 1.2rem;
-          font-weight: 800;
+          font-size: 1.1rem; /* Total harga dikecilkan di HP */
+          font-weight: 900;
+        }
+        .checkout-button {
+          padding: 6px 12px; /* Tombol checkout dikecilkan di HP */
+          font-size: 0.85rem;
         }
 
         /* 8. FIX HEADER MOBILE (Agar Rapi) */
         .status-mobile {
-          /* Ubah dari column menjadi baris dengan pemisah */
           flex-direction: row;
-          flex-wrap: wrap; /* Biar aman kalau terlalu panjang */
+          flex-wrap: wrap;
           justify-content: center;
           gap: 5px 10px;
           margin-bottom: 15px;
@@ -1148,7 +1170,6 @@
 
       let notificationTimeout;
 
-      // FIX BARU: Mengurangi durasi notifikasi menjadi 1 detik (1000 ms)
       const NOTIFICATION_DURATION = 1000;
 
       // --- LOGIKA WAKTU BUKA/TUTUP OTOMATIS ---
@@ -1232,6 +1253,7 @@
 
       // --- Utility Functions ---
       const formatRupiah = (number) => {
+        // FIX: Pastikan simbol Rp dan angka dalam satu string yang sama
         return "Rp " + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
       };
 
@@ -1260,7 +1282,7 @@
         notification.classList.remove("hide");
         notification.classList.add("show");
 
-        // FIX BARU: Durasi notifikasi disesuaikan menjadi 1 detik (1000ms)
+        // Durasi notifikasi 1 detik (1000ms)
         notificationTimeout = setTimeout(() => {
           notification.classList.remove("show");
           notification.classList.add("hide");
@@ -1375,18 +1397,22 @@
 
           const listItem = document.createElement("li");
           listItem.className = "cart-item";
+
+          // FIX BARU: Menghilangkan (@Rp...) dan merapikan format harga subtotal
           listItem.innerHTML = `
                     <i class="fas fa-trash-alt trash-icon" onclick="removeCartItem('${
                       item.cartId
                     }')"></i>
                     <div class="item-details">
-                        <span class="item-name">${item.name} (@${formatRupiah(
-            item.price
-          )})</span>
+                        <span class="item-name">${item.name}</span>
                         ${
                           item.level
-                            ? `<span class="item-level">${item.level}</span>`
-                            : ""
+                            ? `<span class="item-level">${
+                                item.level
+                              } (${formatRupiah(item.price)}/pc)</span>`
+                            : `<span class="item-level">(${formatRupiah(
+                                item.price
+                              )}/pc)</span>`
                         }
                     </div>
                     <div class="item-controls">
@@ -1435,11 +1461,14 @@
         cart.forEach((item) => {
           const itemTotal = item.price * item.quantity;
           total += itemTotal;
+          // FIX: Menghilangkan (@Rp...) dari pesan WA juga
           const levelText = item.level ? ` (${item.level})` : "";
+          const priceText = ` (@${formatRupiah(item.price)})`;
 
+          // Pesan WA tetap menampilkan harga per unit agar jelas
           message += `${itemNumber}. ${item.quantity}x ${
             item.name
-          }${levelText} - ${formatRupiah(itemTotal)}\n`;
+          }${levelText}${priceText} - ${formatRupiah(itemTotal)}\n`;
           itemNumber++;
         });
 
