@@ -1,1754 +1,1728 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jualan Cemilan Mak E - Spesialis Pedas Nonjok</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
     />
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
 
     <style>
-      /* --- GLOBAL RESET & FONT --- */
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+        /* --- GLOBAL RESET & FONT --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-      html,
-      body {
-        height: 100%;
-      }
+        html,
+        body {
+            height: 100%;
+        }
 
-      body {
-        font-family: "Poppins", sans-serif;
-        font-size: 16px;
-        background-color: #f8f8f8;
-        color: #333;
-        /* FIX 1: Body harus flex column dengan min-height untuk dorong footer */
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        /* **PENTING: Jaga agar konten tidak tertutup floating cart (55px) */
-        padding-bottom: 55px;
-        overflow-y: scroll;
-      }
+        body {
+            font-family: "Poppins", sans-serif;
+            font-size: 16px;
+            background-color: #f8f8f8;
+            color: #333;
+            /* Body harus flex column dengan min-height untuk dorong footer */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            /* PENTING: Jaga agar konten tidak tertutup floating cart (55px) */
+            padding-bottom: 55px; 
+            overflow-y: scroll; 
+        }
 
-      a {
-        text-decoration: none;
-        color: inherit;
-      }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-      .container {
-        width: 90%;
-        max-width: 1300px;
-        margin: 0 auto;
-        padding: 20px 0;
-        /* FIX 2: Flex-grow agar konten utama memakan sisa ruang */
-        flex-grow: 1;
-        background-color: #f8f8f8;
-      }
+        .container {
+            width: 90%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px 0;
+            /* Flex-grow agar konten utama memakan sisa ruang */
+            flex-grow: 1; 
+            background-color: #f8f8f8;
+        }
 
-      /* --- HEADER SECTION --- */
-      .main-header {
-        background-color: #c50202;
-        color: white;
-        padding: 0 20px;
-        position: relative;
-        overflow: hidden;
-        min-height: 180px;
-        display: flex;
-        align-items: center;
-        flex-shrink: 0;
-      }
+        /* --- HEADER SECTION --- */
+        .main-header {
+            background-color: #c50202;
+            color: white;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
 
-      .main-header::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(
-            circle,
-            rgba(255, 255, 255, 0.05) 1px,
-            transparent 1px
-          )
-          no-repeat;
-        background-size: 100px 100px;
-        opacity: 0.1;
-        z-index: 1;
-      }
+        .main-header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                circle,
+                rgba(255, 255, 255, 0.05) 1px,
+                transparent 1px
+            )
+            no-repeat;
+            background-size: 100px 100px;
+            opacity: 0.1;
+            z-index: 1;
+        }
 
-      .header-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 15px;
-        max-width: 1300px;
-        width: 100%;
-        margin: 0 auto;
-        position: relative;
-        z-index: 2;
-        align-items: center;
-        padding: 20px 0;
-        text-align: center;
-      }
-
-      .header-left {
-        text-align: center;
-      }
-
-      .header-left .tagline {
-        font-size: 0.9rem;
-        font-weight: 800;
-        letter-spacing: 1px;
-      }
-
-      .header-left h1 {
-        font-size: 1.8rem;
-        font-weight: 900;
-        margin: 0;
-        line-height: 1.2;
-      }
-      .header-left .sub-tagline {
-        font-size: 0.8rem;
-        font-weight: 500;
-        margin-bottom: 10px;
-        line-height: 1.4;
-      }
-
-      /* Status Buka Mobile */
-      .status-mobile {
-        margin-bottom: 15px;
-        font-size: 0.9rem;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 5px 10px;
-        line-height: 1.2;
-      }
-      .info-buka-mobile {
-        font-weight: 600;
-        margin: 0;
-        white-space: nowrap;
-        padding-right: 10px;
-        border-right: 1px solid rgba(255, 255, 255, 0.5);
-      }
-      .location-info-mobile {
-        color: white;
-        font-weight: 500;
-        text-decoration: underline;
-        white-space: nowrap;
-        margin: 0;
-        border: none;
-        padding: 0;
-      }
-
-      .btn-pesan-sekarang {
-        display: inline-block;
-        background-color: #ff9900;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 8px;
-        margin-top: 5px;
-        font-weight: 700;
-        font-size: 1rem;
-        transition: background-color 0.2s;
-      }
-      .header-right {
-        display: none;
-      }
-
-      /* --- FLOATING CART BAR --- */
-      .floating-cart {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: #25d366;
-        color: white;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 15px;
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
-        height: 55px;
-        cursor: pointer;
-      }
-      .floating-cart-info {
-        display: flex;
-        align-items: center;
-        font-size: 1rem;
-        font-weight: 600;
-        gap: 15px;
-        margin-right: auto;
-      }
-
-      .floating-cart-info i {
-        margin-right: 0px;
-        font-size: 1.1rem;
-      }
-
-      .floating-cart-info .item-info {
-        display: flex;
-        align-items: center;
-        gap: 3px;
-      }
-      .floating-cart-info .separator {
-        font-size: 1.2rem;
-        opacity: 0.6;
-      }
-
-      #floating-total {
-        font-size: 1.2rem;
-        font-weight: 900;
-        white-space: nowrap;
-        margin-right: 5px;
-      }
-
-      .checkout-button {
-        background-color: white;
-        color: #25d366;
-        padding: 8px 15px;
-        border-radius: 5px;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        font-size: 0.9rem;
-        margin-left: 10px;
-      }
-
-      .checkout-button .fab {
-        margin-left: 8px;
-      }
-
-      .cart-hidden {
-        display: none !important;
-      }
-
-      /* --- ABOUT SECTION & FILTER (Perbaikan Gaya Bingkai) --- */
-      .about-section {
-        background-color: #ffffff;
-        padding: 30px; /* Sedikit dikecilkan */
-        border-radius: 12px;
-        /* GAYA BINGKAI BARU: Lebih lembut dan ada garis tipis */
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05),
-          0 0 0 1px rgba(0, 0, 0, 0.05);
-        border: none;
-        text-align: center;
-        margin-bottom: 30px;
-        font-size: 1rem;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .about-section h2 {
-        font-size: 1.8rem; /* Lebih besar */
-        margin-bottom: 15px;
-        color: #c90000; /* Warna merah brand */
-        font-weight: 900;
-        /* Hapus properti flex/ikon */
-      }
-      .about-section p {
-        line-height: 1.6;
-        margin-bottom: 10px;
-        color: #555;
-        padding: 0 10px; /* Tambahkan padding agar teks tidak terlalu lebar */
-      }
-
-      .filter-section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 30px;
-      }
-      .search-wrapper {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        max-width: 600px;
-        padding: 10px 15px;
-        margin-bottom: 15px;
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        border: 1px solid #ddd;
-      }
-      .search-wrapper i {
-        color: #c90000;
-        margin-right: 10px;
-      }
-      .search-input {
-        border: none;
-        flex-grow: 1;
-        font-size: 1rem;
-        padding: 5px 0;
-        outline: none;
-      }
-
-      .filter-buttons {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        justify-content: center;
-        padding: 0;
-        width: 100%;
-      }
-      .filter-btn {
-        background-color: #f0f0f0;
-        border: none;
-        padding: 10px 18px;
-        border-radius: 20px;
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 1rem;
-        transition: background-color 0.2s, color 0.2s;
-      }
-      .filter-btn.active {
-        background-color: #ff9900;
-        color: white;
-        box-shadow: 0 3px 8px rgba(255, 153, 0, 0.4);
-      }
-
-      /* --- MENU LIST --- */
-      .menu-category-title {
-        color: #c90000;
-        font-weight: 800;
-        font-size: 1.7rem;
-        margin: 40px 0 20px 0;
-        /* HAPUS border-bottom PERMANEN */
-        padding-bottom: 5px;
-        display: inline-block;
-        opacity: 1;
-        transition: border-bottom 0.5s ease-out, opacity 0.5s;
-      }
-
-      /* CSS KHUSUS GARIS SEMENTARA (Baru: Garis muncul 1.5 detik) */
-      .menu-category-title.highlight-active {
-        border-bottom: 3px solid #ff9900;
-        padding-bottom: 5px;
-        opacity: 1;
-      }
-      /* CSS Untuk Semua Menu agar tidak ada garis sama sekali */
-      .menu-category-title[data-category-name="Semua"] {
-        border-bottom: none !important;
-        padding-bottom: 0 !important;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-        opacity: 0; /* Hilangkan jika tidak ada border */
-        height: 0; /* Hindari menambah ruang */
-      }
-      /* Penyesuaian margin agar category title rapi */
-      #menu-list > h2:first-child {
-        margin-top: 0;
-      }
-
-      .menu-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
-      }
-      .menu-card {
-        background-color: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        border-top: 5px solid #c90000;
-      }
-      .menu-card h3 {
-        font-size: 1.2rem;
-        font-weight: 800;
-        color: #333;
-        margin-bottom: 5px;
-      }
-      .menu-card .description {
-        font-size: 1rem;
-        color: #666;
-        margin-bottom: 15px;
-      }
-      .menu-card .rating {
-        color: #ff9900;
-        font-size: 0.9rem;
-        margin-bottom: 10px;
-      }
-      .menu-card .rating .fa-star,
-      .menu-card .rating .fa-star-half-alt {
-        margin-right: 2px;
-      }
-
-      .menu-card .price-section {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 10px;
-      }
-      .menu-card .price {
-        font-size: 1.5rem;
-        font-weight: 900;
-        color: #c90000;
-        white-space: nowrap;
-      }
-      .menu-card .add-to-cart {
-        background-color: #ff9900;
-        color: white;
-        border: none;
-        padding: 10px 18px;
-        border-radius: 5px;
-        font-weight: 700;
-        cursor: pointer;
-        font-size: 1rem;
-        transition: background-color 0.2s;
-      }
-      .menu-card .add-to-cart:hover {
-        background-color: #e68a00;
-      }
-
-      /* --- MODAL (KERANJANG & LEVEL PEDAS) --- */
-      .modal {
-        display: none;
-        position: fixed;
-        z-index: 5000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.5);
-      }
-
-      .modal-content {
-        background-color: #fefefe;
-        margin: 10% auto;
-        padding: 20px;
-        border-radius: 15px;
-        max-width: 450px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      }
-
-      .small-modal .modal-content {
-        max-width: 350px;
-      }
-
-      .modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-      }
-      .modal-header h3 {
-        color: #c90000;
-        font-weight: 800;
-        font-size: 1.5rem;
-      }
-      .close-button {
-        color: #aaa;
-        font-size: 28px;
-        font-weight: bold;
-        cursor: pointer;
-      }
-
-      #cart-items {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 20px 0;
-        max-height: 350px;
-        overflow-y: auto;
-      }
-      .cart-item {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 0;
-        border-bottom: 1px dashed #eee;
-        gap: 5px;
-      }
-
-      /* REVISI UKURAN ITEM DI KERANJANG (Desktop & Default) */
-      .item-details {
-        flex-grow: 1;
-        min-width: 120px;
-        line-height: 1.2;
-      }
-      .item-details .item-name {
-        font-weight: 600;
-        display: block;
-        white-space: normal;
-      }
-      .item-details .item-level {
-        font-size: 0.8rem;
-        color: #666;
-      }
-      .item-subtotal {
-        font-weight: 700;
-        color: #c90000;
-        white-space: nowrap;
-        min-width: 70px;
-        text-align: right;
-        font-size: 0.95rem;
-      }
-
-      /* Kontrol Kuantitas Keranjang */
-      .item-controls {
-        display: flex;
-        align-items: center;
-        gap: 3px;
-        min-width: 80px;
-        justify-content: flex-end;
-      }
-      .item-controls button {
-        background-color: #ff9900;
-        color: white;
-        border: none;
-        width: 20px;
-        height: 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: 700;
-        font-size: 0.8rem;
-      }
-      .item-controls .quantity {
-        font-weight: 600;
-        min-width: 15px;
-        text-align: center;
-        font-size: 0.9rem;
-      }
-      .trash-icon {
-        color: #c90000;
-        cursor: pointer;
-        font-size: 1rem;
-        margin-right: 5px;
-        flex-shrink: 0;
-      }
-
-      .cart-summary {
-        display: flex;
-        justify-content: space-between;
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin-top: 15px;
-        padding-top: 10px;
-        border-top: 1px solid #eee;
-      }
-
-      .checkout-wa-btn {
-        width: 100%;
-        padding: 12px;
-        background-color: #25d366;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-size: 1.1rem;
-        font-weight: 700;
-        margin-top: 20px;
-        cursor: pointer;
-      }
-      .checkout-wa-btn:disabled {
-        background-color: #ccc;
-        cursor: not-allowed;
-      }
-
-      /* Level Pedas Modal */
-      .level-pedas-container {
-        text-align: center;
-      }
-      #pedas-modal-product-name {
-        color: #666;
-        margin-bottom: 15px;
-        font-size: 1rem;
-      }
-      .level-pedas-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-      .level-pedas-btn {
-        padding: 10px;
-        border: 2px solid #ddd;
-        background-color: #fff;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: 600;
-      }
-      .level-pedas-btn.selected {
-        background-color: #c90000;
-        color: white;
-        border-color: #ff9900;
-        box-shadow: 0 4px 8px rgba(201, 0, 0, 0.4);
-      }
-      .confirm-pedas-btn {
-        margin-top: 25px;
-      }
-
-      /* --- FOOTER --- */
-      footer {
-        background-color: #444;
-        color: #ccc;
-        padding: 20px 0;
-        /* FIX 3: Dorong footer ke paling bawah */
-        margin-top: auto;
-        width: 100%;
-        position: relative;
-        bottom: 0;
-        z-index: 10;
-        flex-shrink: 0;
-      }
-      .footer-info {
-        max-width: 1300px;
-        width: 90%;
-        margin: 0 auto;
-      }
-      /* REVISI: Mengubah tampilan footer-row agar item sosmed terlihat rapi */
-      .footer-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px 30px;
-        font-size: 1rem;
-        margin-bottom: 10px;
-        align-items: center; /* Memastikan semua sejajar di tengah */
-      }
-      .footer-row i {
-        margin-right: 8px;
-        color: #ff9900;
-      }
-      .copyright {
-        text-align: center;
-        margin-top: 15px;
-        padding-top: 10px;
-        border-top: 1px solid #555;
-        font-size: 0.85rem;
-        color: #999;
-      }
-
-      /* CSS KHUSUS IKON INSTAGRAM RAINBOW/GRADIENT */
-      .ig-icon-real {
-        /* Warna Gradien Instagram */
-        background: radial-gradient(
-          circle at 30% 107%,
-          #fdf497 0%,
-          #fdf497 5%,
-          #fd5949 45%,
-          #d6249f 60%,
-          #285aeb 90%
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        color: transparent;
-        font-size: 1.1rem;
-        /* Tambahan: Pastikan ikon tidak terpengaruh oleh warna abu-abu default footer */
-        -webkit-text-fill-color: unset;
-        color: transparent;
-      }
-
-      /* FIX: Tambahkan ukuran ikon Instagram di footer */
-      .footer-row .fa-instagram.ig-icon-real {
-        font-size: 1.1rem;
-        color: white;
-        -webkit-text-fill-color: transparent;
-      }
-
-      /* --- TOAST NOTIFICATION --- */
-      #notification {
-        position: fixed;
-        bottom: 80px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #25d366;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        z-index: 5000;
-        display: none;
-        align-items: center;
-        gap: 10px;
-        font-weight: 600;
-        opacity: 0;
-        transition: opacity 0.3s ease, transform 0.3s ease;
-      }
-
-      #notification.show {
-        display: flex;
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-        pointer-events: auto;
-      }
-      #notification.hide {
-        opacity: 0;
-        transform: translateX(-50%) translateY(20px);
-      }
-
-      /* --- MEDIA QUERIES --- */
-
-      /* Desktop */
-      @media (min-width: 769px) {
         .header-grid {
-          grid-template-columns: 1fr 1fr;
-          text-align: left;
-          padding: 30px 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            align-items: center;
+            padding: 20px 0;
+            text-align: center;
         }
+
         .header-left {
-          text-align: left;
+            text-align: center;
         }
-        .header-right {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-end;
-          justify-content: center;
-          gap: 5px;
+
+        .header-left .tagline {
+            font-size: 0.9rem;
+            font-weight: 800;
+            letter-spacing: 1px;
         }
-        .status-mobile {
-          display: none;
-        }
+
         .header-left h1 {
-          font-size: 2.8rem;
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin: 0;
+            line-height: 1.2;
         }
-        .info-buka {
-          font-weight: 700;
-          font-size: 1.2rem;
-          margin-bottom: 5px;
-          display: block;
+        .header-left .sub-tagline {
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            line-height: 1.4;
         }
-        .location-info {
-          font-size: 1rem;
-          text-decoration: underline;
-          margin-bottom: 0px;
-          display: flex;
-          align-items: center;
-          gap: 5px;
-          text-decoration: none;
+
+        /* Status Buka Mobile */
+        .status-mobile {
+            margin-bottom: 15px; 
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: row; 
+            flex-wrap: wrap; 
+            justify-content: center;
+            gap: 5px 10px;
+            line-height: 1.2;
         }
-        /* Override underline di Link Maps */
-        #maps-link-desktop {
-          text-decoration: underline !important;
+        .info-buka-mobile {
+            font-weight: 600;
+            margin: 0; 
+            white-space: nowrap; 
+            padding-right: 10px;
+            border-right: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .location-info-mobile {
+            color: white;
+            font-weight: 500;
+            text-decoration: underline;
+            white-space: nowrap; 
+            margin: 0;
+            border: none;
+            padding: 0;
         }
 
         .btn-pesan-sekarang {
-          display: none;
+            display: inline-block;
+            background-color: #ff9900;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-top: 5px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: background-color 0.2s;
         }
-      }
-
-      /* Mobile Optimization (Layar Kecil: <= 768px) */
-      @media (max-width: 768px) {
-        /* REVISI MODAL AGAR TIDAK TERLALU LEBAR DI HP */
-        .modal-content {
-          margin: 5% auto;
-          max-height: 90vh;
-          overflow-y: auto;
-          width: 90%;
-        }
-
-        .modal-header h3 {
-          font-size: 1.3rem;
+        .header-right {
+            display: none;
         }
 
-        #cart-items {
-          max-height: 60vh;
+        /* --- FLOATING CART BAR --- */
+        .floating-cart {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #25d366;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px; 
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            height: 55px; 
+            cursor: pointer;
+        }
+        .floating-cart-info {
+            display: flex;
+            align-items: center;
+            font-size: 1rem; 
+            font-weight: 600;
+            gap: 15px; 
+            margin-right: auto; 
         }
 
-        .small-modal .modal-content {
-          margin: 20vh auto;
+        .floating-cart-info i {
+            margin-right: 0px; 
+            font-size: 1.1rem; 
         }
 
-        #notification {
-          bottom: 60px;
-          padding: 7px 15px;
-          font-size: 0.95rem;
+        .floating-cart-info .item-info {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        .floating-cart-info .separator {
+            font-size: 1.2rem; 
+            opacity: 0.6;
         }
 
+        #floating-total {
+            font-size: 1.2rem; 
+            font-weight: 900;
+            white-space: nowrap; 
+            margin-right: 5px; 
+        }
+
+
+        .checkout-button {
+            background-color: white;
+            color: #25d366;
+            padding: 8px 15px; 
+            border-radius: 5px; 
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem; 
+            margin-left: 10px; 
+        }
+
+        .checkout-button .fab {
+            margin-left: 8px;
+        }
+
+        .cart-hidden {
+            display: none !important;
+        }
+
+        /* --- ABOUT SECTION & FILTER (Perbaikan Gaya Bingkai) --- */
         .about-section {
-          padding: 30px 20px;
+            background-color: #ffffff; 
+            padding: 30px; /* Sedikit dikecilkan */
+            border-radius: 12px; 
+            /* GAYA BINGKAI BARU: Lebih lembut dan ada garis tipis */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05); 
+            border: none; 
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1rem;
+            max-width: 800px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .about-section h2 {
+            font-size: 1.8rem; /* Lebih besar */
+            margin-bottom: 15px;
+            color: #c90000; /* Warna merah brand */
+            font-weight: 900;
+            /* Hapus properti flex/ikon */
+        }
+        .about-section p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #555;
+            padding: 0 10px; /* Tambahkan padding agar teks tidak terlalu lebar */
         }
 
         .filter-section {
-          align-items: flex-start;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .search-wrapper {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+        }
+        .search-wrapper i {
+            color: #c90000;
+            margin-right: 10px;
+        }
+        .search-input {
+            border: none;
+            flex-grow: 1;
+            font-size: 1rem;
+            padding: 5px 0;
+            outline: none;
         }
 
         .filter-buttons {
-          display: flex;
-          flex-wrap: nowrap;
-          overflow-x: auto;
-          -webkit-overflow-scrolling: touch;
-          gap: 10px;
-          justify-content: flex-start;
-          padding-bottom: 5px;
-          width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            padding: 0;
+            width: 100%;
         }
-
-        .filter-buttons::-webkit-scrollbar {
-          height: 5px;
-        }
-        .filter-buttons::-webkit-scrollbar-thumb {
-          background: #ff9900;
-          border-radius: 5px;
-        }
-
         .filter-btn {
-          flex-shrink: 0;
-          white-space: nowrap;
+            background-color: #f0f0f0;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .filter-btn.active {
+            background-color: #ff9900;
+            color: white;
+            box-shadow: 0 3px 8px rgba(255, 153, 0, 0.4);
         }
 
-        .floating-cart {
-          height: 50px;
-          padding: 5px 10px;
+        /* --- MENU LIST --- */
+        .menu-category-title {
+            color: #c90000;
+            font-weight: 800;
+            font-size: 1.7rem;
+            margin: 40px 0 20px 0;
+            padding-bottom: 5px;
+            display: inline-block;
+            opacity: 1;
+            transition: border-bottom 0.5s ease-out, opacity 0.5s;
         }
 
-        .floating-cart-info {
-          font-size: 0.85rem;
-          gap: 10px;
-          align-items: center;
+        /* CSS KHUSUS GARIS SEMENTARA (Baru: Garis muncul 1.5 detik) */
+        .menu-category-title.highlight-active {
+            border-bottom: 3px solid #ff9900;
+            padding-bottom: 5px;
+            opacity: 1;
         }
-        .floating-cart-info .item-info {
-          min-width: 70px;
+        /* CSS Untuk Semua Menu agar tidak ada garis sama sekali */
+        .menu-category-title[data-category-name="Semua"] {
+            border-bottom: none !important;
+            padding-bottom: 0 !important;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            opacity: 0; /* Hilangkan jika tidak ada border */
+            height: 0; /* Hindari menambah ruang */
         }
-        .floating-cart-info .separator {
-          margin: 0 5px;
-        }
-        .floating-cart-info #floating-total {
-          font-size: 1.1rem;
-          font-weight: 900;
-          margin-right: 0;
-        }
-
-        .checkout-button {
-          padding: 5px 10px;
-          font-size: 0.8rem;
-          margin-left: 10px;
+        /* Penyesuaian margin agar category title rapi */
+        #menu-list > h2:first-child {
+            margin-top: 0;
         }
 
-        .status-mobile {
-          flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 5px 10px;
-          margin-bottom: 15px;
-          line-height: 1.2;
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
-        .info-buka-mobile {
-          margin: 0;
-          padding-right: 10px;
-          border-right: 1px solid rgba(255, 255, 255, 0.5);
+        .menu-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-top: 5px solid #c90000;
         }
-        .location-info-mobile {
-          margin: 0;
+        .menu-card h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .menu-card .description {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .menu-card .rating {
+            color: #ff9900;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        .menu-card .rating .fa-star,
+        .menu-card .rating .fa-star-half-alt {
+            margin-right: 2px;
         }
 
-        /* PENYESUAIAN CART ITEM KHUSUS UNTUK HP */
+        .menu-card .price-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .menu-card .price {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #c90000;
+            white-space: nowrap; 
+        }
+        .menu-card .add-to-cart {
+            background-color: #ff9900;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.2s;
+        }
+        .menu-card .add-to-cart:hover {
+            background-color: #e68a00;
+        }
+
+        /* --- MODAL (KERANJANG & LEVEL PEDAS) --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 5000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 450px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .small-modal .modal-content {
+            max-width: 350px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .modal-header h3 {
+            color: #c90000;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+        .close-button {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #cart-items {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            max-height: 350px;
+            overflow-y: auto;
+        }
         .cart-item {
-          gap: 8px;
-          align-items: flex-start;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            gap: 5px; 
         }
-
+        
+        /* REVISI UKURAN ITEM DI KERANJANG (Desktop & Default) */
         .item-details {
-          min-width: unset;
-          flex-basis: 35%;
-          flex-grow: 1;
+            flex-grow: 1;
+            min-width: 120px; 
+            line-height: 1.2;
         }
-
-        .item-controls {
-          min-width: 70px;
+        .item-details .item-name {
+            font-weight: 600;
+            display: block;
+            white-space: normal; 
         }
-
+        .item-details .item-level {
+            font-size: 0.8rem; 
+            color: #666; 
+        }
         .item-subtotal {
-          min-width: 65px;
+            font-weight: 700;
+            color: #c90000;
+            white-space: nowrap; 
+            min-width: 70px; 
+            text-align: right;
+            font-size: 0.95rem; 
         }
-        /* END PENYESUAIAN CART ITEM KHUSUS UNTUK HP */
-      }
+
+        /* Kontrol Kuantitas Keranjang */
+        .item-controls {
+            display: flex;
+            align-items: center;
+            gap: 3px; 
+            min-width: 80px; 
+            justify-content: flex-end;
+        }
+        .item-controls button {
+            background-color: #ff9900;
+            color: white;
+            border: none;
+            width: 20px; 
+            height: 20px; 
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.8rem; 
+        }
+        .item-controls .quantity {
+            font-weight: 600;
+            min-width: 15px; 
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .trash-icon {
+            color: #c90000;
+            cursor: pointer;
+            font-size: 1rem; 
+            margin-right: 5px;
+            flex-shrink: 0; 
+        }
+
+        .cart-summary {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        .checkout-wa-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #25d366;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .checkout-wa-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Level Pedas Modal */
+        .level-pedas-container {
+            text-align: center;
+        }
+        #pedas-modal-product-name {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        .level-pedas-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        .level-pedas-btn {
+            padding: 10px;
+            border: 2px solid #ddd;
+            background-color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .level-pedas-btn.selected {
+            background-color: #c90000;
+            color: white;
+            border-color: #ff9900;
+            box-shadow: 0 4px 8px rgba(201, 0, 0, 0.4);
+        }
+        .confirm-pedas-btn {
+            margin-top: 25px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #444;
+            color: #ccc;
+            padding: 20px 0;
+            /* Dorong footer ke paling bawah */
+            margin-top: auto; 
+            width: 100%;
+            position: relative;
+            bottom: 0;
+            z-index: 10;
+            flex-shrink: 0;
+        }
+        .footer-info {
+            max-width: 1300px;
+            width: 90%;
+            margin: 0 auto;
+        }
+        /* REVISI: Mengubah tampilan footer-row agar item sosmed terlihat rapi */
+        .footer-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px 30px;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            align-items: center; /* Memastikan semua sejajar di tengah */
+        }
+        .footer-row i {
+            margin-right: 8px;
+            color: #ff9900;
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #555;
+            font-size: 0.85rem;
+            color: #999;
+        }
+        
+        /* CSS KHUSUS IKON INSTAGRAM RAINBOW/GRADIENT */
+        .ig-icon-real {
+            /* Warna Gradien Instagram */
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent; 
+            font-size: 1.1rem; 
+            /* Tambahan: Pastikan ikon tidak terpengaruh oleh warna abu-abu default footer */
+            -webkit-text-fill-color: unset; 
+            color: transparent; 
+        }
+        
+        /* FIX: Tambahkan ukuran ikon Instagram di footer */
+        .footer-row .fa-instagram.ig-icon-real {
+             font-size: 1.1rem; 
+             color: white; 
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        /* --- TOAST NOTIFICATION --- */
+        #notification {
+            position: fixed;
+            bottom: 80px; 
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #25d366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 5000;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        #notification.show {
+            display: flex;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+
+        }
+        #notification.hide {
+            opacity: 0;
+            transform: translateX(-50%) translateY(20px);
+        }
+
+        /* --- MEDIA QUERIES --- */
+
+        /* Desktop */
+        @media (min-width: 769px) {
+            .header-grid {
+                grid-template-columns: 1fr 1fr;
+                text-align: left;
+                padding: 30px 0;
+            }
+            .header-left {
+                text-align: left;
+            }
+            .header-right {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                justify-content: center;
+                gap: 5px; 
+            }
+            .status-mobile {
+                display: none;
+            }
+            .header-left h1 {
+                font-size: 2.8rem;
+            }
+            .info-buka {
+                font-weight: 700;
+                font-size: 1.2rem;
+                margin-bottom: 5px;
+                display: block;
+            }
+            .location-info {
+                font-size: 1rem;
+                text-decoration: underline;
+                margin-bottom: 0px; 
+                display: flex; 
+                align-items: center;
+                gap: 5px;
+                text-decoration: none; 
+            }
+            /* Override underline di Link Maps */
+            #maps-link-desktop {
+                text-decoration: underline !important;
+            }
+            
+            .btn-pesan-sekarang {
+                display: none;
+            }
+        }
+
+        /* Mobile Optimization (Layar Kecil: <= 768px) */
+        @media (max-width: 768px) {
+            /* REVISI MODAL AGAR TIDAK TERLALU LEBAR DI HP */
+            .modal-content {
+                margin: 5% auto;
+                max-height: 90vh;
+                overflow-y: auto;
+                width: 90%; 
+            }
+            
+            .modal-header h3 {
+                font-size: 1.3rem; 
+            }
+
+            #cart-items {
+                max-height: 60vh;
+            }
+
+            .small-modal .modal-content {
+                margin: 20vh auto;
+            }
+
+            #notification {
+                bottom: 60px; 
+                padding: 7px 15px; 
+                font-size: 0.95rem; 
+            }
+
+            .about-section {
+                padding: 30px 20px;
+            }
+
+            .filter-section {
+                align-items: flex-start;
+            }
+
+            .filter-buttons {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                gap: 10px;
+                justify-content: flex-start;
+                padding-bottom: 5px;
+                width: 100%;
+            }
+
+            .filter-buttons::-webkit-scrollbar {
+                height: 5px;
+            }
+            .filter-buttons::-webkit-scrollbar-thumb {
+                background: #ff9900;
+                border-radius: 5px;
+            }
+
+            .filter-btn {
+                flex-shrink: 0;
+                white-space: nowrap;
+            }
+
+            .floating-cart {
+                height: 50px; 
+                padding: 5px 10px; 
+            }
+
+            .floating-cart-info {
+                font-size: 0.85rem; 
+                gap: 10px; 
+                align-items: center; 
+            }
+            .floating-cart-info .item-info {
+                min-width: 70px; 
+            }
+            .floating-cart-info .separator {
+                margin: 0 5px;
+            }
+            .floating-cart-info #floating-total {
+                font-size: 1.1rem; 
+                font-weight: 900;
+                margin-right: 0; 
+            }
+            
+            .checkout-button {
+                padding: 5px 10px; 
+                font-size: 0.8rem;
+                margin-left: 10px; 
+            }
+
+            .status-mobile {
+                flex-direction: row; 
+                flex-wrap: wrap; 
+                justify-content: center;
+                gap: 5px 10px;
+                margin-bottom: 15px;
+                line-height: 1.2;
+            }
+            .info-buka-mobile {
+                margin: 0;
+                padding-right: 10px;
+                border-right: 1px solid rgba(255, 255, 255, 0.5);
+            }
+            .location-info-mobile {
+                margin: 0;
+            }
+            
+            /* PENYESUAIAN CART ITEM KHUSUS UNTUK HP */
+            .cart-item {
+                gap: 8px; 
+                align-items: flex-start; 
+            }
+            
+            .item-details {
+                min-width: unset; 
+                flex-basis: 35%; 
+                flex-grow: 1;
+            }
+            
+            .item-controls {
+                min-width: 70px; 
+            }
+            
+            .item-subtotal {
+                min-width: 65px; 
+            }
+            /* END PENYESUAIAN CART ITEM KHUSUS UNTUK HP */
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <header class="main-header">
-      <div class="header-grid">
-        <div class="header-left">
-          <div class="tagline">MAKS E'S SNACK</div>
-          <h1>JUALEAN CEMILAN MAK E</h1>
-          <div class="sub-tagline">
-            SPESIALIS PEDAS NONJOK | Nasi Cili & Cemilan Kekinian Jember
-          </div>
+        <div class="header-grid">
+            <div class="header-left">
+                <div class="tagline">MAKS E'S SNACK</div>
+                <h1>JUALEAN CEMILAN MAK E</h1>
+                <div class="sub-tagline">
+                    SPESIALIS PEDAS NONJOK | Nasi Cili & Cemilan Kekinian Jember
+                </div>
 
-          <div class="status-mobile">
-            <span id="info-buka-mobile" class="info-buka-mobile"
-              ><i class="fas fa-clock"></i> TUTUP (Buka Besok 08:00)</span
-            >
-            <a
-              id="maps-link-mobile"
-              class="location-info-mobile"
-              target="_blank"
-              href="#"
-              ><i class="fas fa-map-marker-alt"></i> Lihat Lokasi Toko</a
-            >
-          </div>
-          <a
-            href="#"
-            id="btn-pesan-header"
-            class="btn-pesan-sekarang"
-            onclick="openCartModal(event)"
-            >LIHAT KERANJANG & PESAN</a
-          >
-        </div>
+                <div class="status-mobile">
+                    <span id="info-buka-mobile" class="info-buka-mobile"
+                        ><i class="fas fa-clock"></i> TUTUP (Buka Besok 08:00)</span
+                    >
+                    <a
+                        id="maps-link-mobile"
+                        class="location-info-mobile"
+                        target="_blank"
+                        href="#"
+                        ><i class="fas fa-map-marker-alt"></i> Lihat Lokasi Toko</a
+                    >
+                </div>
+                <a
+                    href="#"
+                    id="btn-pesan-header"
+                    class="btn-pesan-sekarang"
+                    onclick="openCartModal(event)"
+                    >LIHAT KERANJANG & PESAN</a
+                >
+            </div>
 
-        <div class="header-right">
-          <span id="info-buka" class="info-buka"
-            ><i class="fas fa-clock"></i> TUTUP (Buka Besok 08:00)</span
-          >
-          <a
-            id="maps-link-desktop"
-            class="location-info-mobile location-info"
-            href="#"
-            target="_blank"
-          >
-            <i class="fas fa-map-marker-alt"></i> Lihat Lokasi Toko
-          </a>
+            <div class="header-right">
+                <span id="info-buka" class="info-buka"
+                    ><i class="fas fa-clock"></i> TUTUP (Buka Besok 08:00)</span
+                >
+                <a
+                    id="maps-link-desktop"
+                    class="location-info-mobile location-info"
+                    href="#"
+                    target="_blank"
+                >
+                    <i class="fas fa-map-marker-alt"></i> Lihat Lokasi Toko
+                </a>
+            </div>
         </div>
-      </div>
     </header>
 
     <main class="container">
-      <section class="about-section">
-        <h2>Tentang Jualan Cemilan Mak E</h2>
-        <p>
-          Kami adalah <strong>Spesialis Cemilan Pedas Nonjok</strong> dan
-          <strong>Nasi Cili Kekinian Jember</strong>. Jualan Cemilan Mak E
-          adalah destinasi utama Anda untuk mencari cemilan dan makanan instan
-          dengan sensasi pedas yang 'nonjok' di Jember. Dibuat dengan bumbu dan
-          racikan cabai khusus, dijamin bikin ketagihan!
-        </p>
-        <p>
-          Kami berkomitmen menyajikan hidangan pedas lezat dengan harga
-          terjangkau.
-        </p>
-      </section>
+        <section class="about-section">
+            <h2>
+                Tentang Jualan Cemilan Mak E
+            </h2>
+            <p>
+                Kami adalah <strong>Spesialis Cemilan Pedas Nonjok</strong> dan
+                <strong>Nasi Cili Kekinian Jember</strong>. Jualan Cemilan Mak E
+                adalah destinasi utama Anda untuk mencari cemilan dan makanan instan
+                dengan sensasi pedas yang 'nonjok' di Jember. Dibuat dengan bumbu dan
+                racikan cabai khusus, dijamin bikin ketagihan!
+            </p>
+            <p>
+                Kami berkomitmen menyajikan hidangan pedas lezat dengan harga
+                terjangkau.
+            </p>
+        </section>
 
-      <section class="filter-section">
-        <div class="search-wrapper">
-          <i class="fas fa-search" style="color: #464d46"></i>
-          <input
-            type="text"
-            id="search-input"
-            class="search-input"
-            placeholder="Cari menu, misal: Usus Cikruh..."
-          />
-        </div>
+        <section class="filter-section">
+            <div class="search-wrapper">
+                <i class="fas fa-search" style="color: #464d46;"></i>
+                <input
+                    type="text"
+                    id="search-input"
+                    class="search-input"
+                    placeholder="Cari menu, misal: Usus Cikruh..."
+                />
+            </div>
 
-        <div class="filter-buttons">
-          <button class="filter-btn active" data-category="Semua">
-            Semua Menu
-          </button>
-          <button class="filter-btn" data-category="Nasi Pedas Instan">
-            Nasi Pedas Instan
-          </button>
-          <button class="filter-btn" data-category="Cemilan Kering Pedas">
-            Cemilan Kering Pedas
-          </button>
-          <button class="filter-btn" data-category="Seblak Instan Kering">
-            Seblak Instan Kering
-          </button>
-          <button class="filter-btn" data-category="Cemilan Manis & Lainnya">
-            Cemilan Manis & Lainnya
-          </button>
-        </div>
-      </section>
 
-      <section id="menu-list"></section>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="Semua">
+                    Semua Menu
+                </button>
+                <button class="filter-btn" data-category="Nasi Pedas Instan">
+                    Nasi Pedas Instan
+                </button>
+                <button class="filter-btn" data-category="Cemilan Kering Pedas">
+                    Cemilan Kering Pedas
+                </button>
+                <button class="filter-btn" data-category="Seblak Instan Kering">
+                    Seblak Instan Kering
+                </button>
+                <button class="filter-btn" data-category="Cemilan Manis & Lainnya">
+                    Cemilan Manis & Lainnya
+                </button>
+            </div>
+        </section>
+
+        <section id="menu-list"></section>
     </main>
 
     <footer>
-      <div class="footer-info">
-        <div class="footer-row">
-          <span style="color: rgb(250, 250, 244)">
-            <i class="fas fa-clock" style="color: rgb(250, 193, 5)"></i>
-            Senin - Sabtu (08.00 - 19.00) | Minggu Tutup
-          </span>
+        <div class="footer-info">
+            <div class="footer-row">
+                <span style="color: rgb(250, 250, 244)">
+                    <i class="fas fa-clock" style="color: rgb(250, 193, 5)"></i>
+                    Senin - Sabtu (08.00 - 19.00) | Minggu Tutup
+                </span>
 
-          <a
-            id="maps-link-footer"
-            href="#"
-            target="_blank"
-            style="display: flex; align-items: center; gap: 6px; color: white"
-          >
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/2991/2991231.png"
-              alt="Google Maps"
-              style="width: 18px"
-            />
-            Google Maps
-          </a>
+                <a
+                    id="maps-link-footer"
+                    href="#"
+                    target="_blank"
+                    style="display: flex; align-items: center; gap: 6px; color: white"
+                >
+                    <img
+                        src="https://cdn-icons-png.flaticon.com/512/2991/2991231.png"
+                        alt="Google Maps"
+                        style="width: 18px;"
+                    />
+                    Google Maps
+                </a>
 
-          <a
-            href="#"
-            id="wa-link-footer"
-            target="_blank"
-            style="
-              color: rgb(242, 248, 242);
-              text-decoration: none;
-              font-size: 1rem;
-              display: flex;
-              align-items: center;
-              gap: 6px;
-            "
-          >
-            <i class="fab fa-whatsapp" style="color: rgb(5, 235, 63)"></i>
-            WhatsApp: 0812-3459-4673
-          </a>
+                <a
+                    href="#"
+                    id="wa-link-footer"
+                    target="_blank"
+                    style="
+                        color: rgb(242, 248, 242);
+                        text-decoration: none;
+                        font-size: 1rem;
+                        display: flex;
+                        align-items: center;
+                        gap: 6px;
+                    "
+                >
+                    <i
+                        class="fab fa-whatsapp"
+                        style="color: rgb(5, 235, 63);"
+                    ></i>
+                    WhatsApp: 0812-3459-4673
+                </a>
 
-          <a
-            href="#"
-            id="instagram-link-footer"
-            target="_blank"
-            style="color: white; display: flex; align-items: center; gap: 6px"
-            title="Instagram: @camilanmake_sari"
-          >
-            <i class="fab fa-instagram ig-icon-real"></i>
-            @camilanmake_sari
-          </a>
+                <a
+                    href="#"
+                    id="instagram-link-footer"
+                    target="_blank"
+                    style="color: white; display: flex; align-items: center; gap: 6px;"
+                    title="Instagram: @camilanmake_sari"
+                >
+                    <i class="fab fa-instagram ig-icon-real"></i>
+                    @camilanmake_sari
+                </a>
+                
+            </div>
+            <div class="copyright">
+                © 2025 Jualan Cemilan Mak E. Spesialis Pedas Nonjok Jember.
+            </div>
         </div>
-        <div class="copyright">
-          © 2025 Jualan Cemilan Mak E. Spesialis Pedas Nonjok Jember.
-        </div>
-      </div>
     </footer>
 
     <div id="cartModal" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3>Keranjang Belanja</h3>
-          <span class="close-button" onclick="closeCartModal()">×</span>
-        </div>
-        <ul id="cart-items"></ul>
-        <p id="cart-empty-message" style="text-align: center; color: #999">
-          Keranjang Anda masih kosong.
-        </p>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Keranjang Belanja</h3>
+                <span class="close-button" onclick="closeCartModal()">×</span>
+            </div>
+            <ul id="cart-items"></ul>
+            <p id="cart-empty-message" style="text-align: center; color: #999">
+                Keranjang Anda masih kosong.
+            </p>
 
-        <div class="cart-summary">
-          <span class="total-text">Total:</span>
-          <span id="cart-total" class="total-price">Rp 0</span>
-        </div>
+            <div class="cart-summary">
+                <span class="total-text">Total:</span>
+                <span id="cart-total" class="total-price">Rp 0</span>
+            </div>
 
-        <button
-          id="checkout-wa-btn"
-          class="checkout-wa-btn"
-          onclick="checkout()"
-          disabled
-        >
-          <i class="fab fa-whatsapp"></i> Pesan Sekarang
-        </button>
-      </div>
+            <button
+                id="checkout-wa-btn"
+                class="checkout-wa-btn"
+                onclick="checkout()"
+                disabled
+            >
+                <i class="fab fa-whatsapp"></i> Pesan Sekarang
+            </button>
+        </div>
     </div>
 
     <div id="spiceLevelModal" class="modal small-modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3>Pilih Level Pedas</h3>
-          <span class="close-button" onclick="closeSpiceModal()">×</span>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Pilih Level Pedas</h3>
+                <span class="close-button" onclick="closeSpiceModal()">×</span>
+            </div>
+            <div class="level-pedas-container">
+                <h4 id="pedas-modal-product-name">Untuk [Nama Produk]</h4>
+                <div class="level-pedas-grid" id="spice-level-options">
+                    <button class="level-pedas-btn" data-level="Level 1 (Biasa)">
+                        Level 1 (Biasa)
+                    </button>
+                    <button class="level-pedas-btn" data-level="Level 2 (Sedang)">
+                        Level 2 (Sedang)
+                    </button>
+                    <button class="level-pedas-btn" data-level="Level 3 (NONJOK)">
+                        Level 3 (NONJOK)
+                    </button>
+                    <button class="level-pedas-btn" data-level="Level 4 (Ekstra Pedas)">
+                        Level 4 (Ekstra Pedas)
+                    </button>
+                    <button class="level-pedas-btn" data-level="Level 5 (GILA!)">
+                        Level 5 (GILA!)
+                    </button>
+                </div>
+                <button
+                    id="confirm-pedas-btn"
+                    class="checkout-wa-btn confirm-pedas-btn"
+                    disabled
+                >
+                    Konfirmasi
+                </button>
+            </div>
         </div>
-        <div class="level-pedas-container">
-          <h4 id="pedas-modal-product-name">Untuk [Nama Produk]</h4>
-          <div class="level-pedas-grid" id="spice-level-options">
-            <button class="level-pedas-btn" data-level="Level 1 (Biasa)">
-              Level 1 (Biasa)
-            </button>
-            <button class="level-pedas-btn" data-level="Level 2 (Sedang)">
-              Level 2 (Sedang)
-            </button>
-            <button class="level-pedas-btn" data-level="Level 3 (NONJOK)">
-              Level 3 (NONJOK)
-            </button>
-            <button class="level-pedas-btn" data-level="Level 4 (Ekstra Pedas)">
-              Level 4 (Ekstra Pedas)
-            </button>
-            <button class="level-pedas-btn" data-level="Level 5 (GILA!)">
-              Level 5 (GILA!)
-            </button>
-          </div>
-          <button
-            id="confirm-pedas-btn"
-            class="checkout-wa-btn confirm-pedas-btn"
-            disabled
-          >
-            Konfirmasi
-          </button>
-        </div>
-      </div>
     </div>
 
     <div
-      id="floatingCart"
-      class="floating-cart cart-hidden"
-      onclick="openCartModal()"
+        id="floatingCart"
+        class="floating-cart cart-hidden"
+        onclick="openCartModal()"
     >
-      <div class="floating-cart-info">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="item-info">
-          <span id="floating-item-count">0 Item</span>
-        </span>
-        <span class="separator">|</span>
-        <span id="floating-total">Rp 0</span>
-      </div>
-      <div class="checkout-button">
-        Checkout <i class="fab fa-whatsapp"></i>
-      </div>
+        <div class="floating-cart-info">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="item-info">
+                <span id="floating-item-count">0 Item</span>
+            </span>
+            <span class="separator">|</span>
+            <span id="floating-total">Rp 0</span>
+        </div>
+        <div class="checkout-button">
+            Checkout <i class="fab fa-whatsapp"></i>
+        </div>
     </div>
 
     <div id="notification">
-      <i class="fas fa-check-circle"></i>
-      <span id="notification-message"></span>
+        <i class="fas fa-check-circle"></i>
+        <span id="notification-message"></span>
     </div>
 
     <script>
-      const menuData = [
-        // Nasi Pedas Instan
-        {
-          id: 1,
-          name: "Nasi Ayam Cili Super Hot",
-          price: 15000,
-          category: "Nasi Pedas Instan",
-          description:
-            "Nasi putih + ayam goreng dengan sambal cili super pedas.",
-          rating: 5,
-          reviews: 60,
-          hasSpiceLevel: false,
-        },
-        {
-          id: 2,
-          name: "Nasi Usus Cili Super Hot",
-          price: 13000,
-          category: "Nasi Pedas Instan",
-          description: "Nasi putih + usus pedas, bumbu cabe rawit nonjok!",
-          rating: 4.8,
-          reviews: 48,
-          hasSpiceLevel: false,
-        },
-        {
-          id: 3,
-          name: "Nasi Cili Polos",
-          price: 8000,
-          category: "Nasi Pedas Instan",
-          description: "Nasi putih hangat dengan ekstra sambal cili Mak E.",
-          rating: 4.5,
-          reviews: 35,
-          hasSpiceLevel: false,
-        },
+        const menuData = [
+            // Nasi Pedas Instan
+            {
+                id: 1,
+                name: "Nasi Ayam Cili Super Hot",
+                price: 15000,
+                category: "Nasi Pedas Instan",
+                description:
+                    "Nasi putih + ayam goreng dengan sambal cili super pedas.",
+                rating: 5,
+                reviews: 60,
+                hasSpiceLevel: false,
+            },
+            {
+                id: 2,
+                name: "Nasi Usus Cili Super Hot",
+                price: 13000,
+                category: "Nasi Pedas Instan",
+                description: "Nasi putih + usus pedas, bumbu cabe rawit nonjok!",
+                rating: 4.8,
+                reviews: 48,
+                hasSpiceLevel: false,
+            },
+            {
+                id: 3,
+                name: "Nasi Cili Polos",
+                price: 8000,
+                category: "Nasi Pedas Instan",
+                description: "Nasi putih hangat dengan ekstra sambal cili Mak E.",
+                rating: 4.5,
+                reviews: 35,
+                hasSpiceLevel: false,
+            },
 
-        // Cemilan Kering Pedas
-        {
-          id: 4,
-          name: "Usus Cikruh",
-          price: 7000,
-          category: "Cemilan Kering Pedas",
-          description:
-            "Usus kering renyah bumbu cikruh (pedas gurih), kemasan besar.",
-          rating: 4.7,
-          reviews: 53,
-          hasSpiceLevel: true,
-        },
-        {
-          id: 5,
-          name: "Keripik Kaca Pedas",
-          price: 5000,
-          category: "Cemilan Kering Pedas",
-          description: "Keripik kaca pedas gurih, renyah dan tipis.",
-          rating: 4.5,
-          reviews: 47,
-          hasSpiceLevel: true,
-        },
-        {
-          id: 6,
-          name: "Makaroni Spiral",
-          price: 4000,
-          category: "Cemilan Kering Pedas",
-          description: "Makaroni spiral kering dengan bumbu pedas ekstra.",
-          rating: 4,
-          reviews: 32,
-          hasSpiceLevel: true,
-        },
-        {
-          id: 7,
-          name: "Basreng Premium",
-          price: 7000,
-          category: "Cemilan Kering Pedas",
-          description: "Basreng kering premium pedas.",
-          rating: 5,
-          reviews: 6,
-          hasSpiceLevel: true,
-        },
+            // Cemilan Kering Pedas
+            {
+                id: 4,
+                name: "Usus Cikruh",
+                price: 7000,
+                category: "Cemilan Kering Pedas",
+                description:
+                    "Usus kering renyah bumbu cikruh (pedas gurih), kemasan besar.",
+                rating: 4.7,
+                reviews: 53,
+                hasSpiceLevel: true,
+            },
+            {
+                id: 5,
+                name: "Keripik Kaca Pedas",
+                price: 5000,
+                category: "Cemilan Kering Pedas",
+                description: "Keripik kaca pedas gurih, renyah dan tipis.",
+                rating: 4.5,
+                reviews: 47,
+                hasSpiceLevel: true,
+            },
+            {
+                id: 6,
+                name: "Makaroni Spiral",
+                price: 4000,
+                category: "Cemilan Kering Pedas",
+                description: "Makaroni spiral kering dengan bumbu pedas ekstra.",
+                rating: 4,
+                reviews: 32,
+                hasSpiceLevel: true,
+            },
+            {
+                id: 7,
+                name: "Basreng Premium",
+                price: 7000,
+                category: "Cemilan Kering Pedas",
+                description: "Basreng kering premium pedas.",
+                rating: 5,
+                reviews: 6,
+                hasSpiceLevel: true,
+            },
 
-        // Seblak Instan Kering
-        {
-          id: 8,
-          name: "Seblak Ceker (Kering)",
-          price: 6000,
-          category: "Seblak Instan Kering",
-          description: "Seblak kering instan siap seduh dengan topping ceker.",
-          rating: 4.6,
-          reviews: 41,
-          hasSpiceLevel: false,
-        },
+            // Seblak Instan Kering
+            {
+                id: 8,
+                name: "Seblak Ceker (Kering)",
+                price: 6000,
+                category: "Seblak Instan Kering",
+                description: "Seblak kering instan siap seduh dengan topping ceker.",
+                rating: 4.6,
+                reviews: 41,
+                hasSpiceLevel: false,
+            },
 
-        // Cemilan Manis & Lainnya
-        {
-          id: 9,
-          name: "Sus Isi Coklat",
-          price: 6000,
-          category: "Cemilan Manis & Lainnya",
-          description: "Kue sus mini dengan isian coklat lumer manis.",
-          rating: 4.8,
-          reviews: 41,
-          hasSpiceLevel: false,
-        },
-        {
-          id: 10,
-          name: "Cilok Aci",
-          price: 5000,
-          category: "Cemilan Manis & Lainnya",
-          description: "Cilok aci kenyal gurih.",
-          rating: 4,
-          reviews: 4,
-          hasSpiceLevel: false,
-        },
-      ];
+            // Cemilan Manis & Lainnya
+            {
+                id: 9,
+                name: "Sus Isi Coklat",
+                price: 6000,
+                category: "Cemilan Manis & Lainnya",
+                description: "Kue sus mini dengan isian coklat lumer manis.",
+                rating: 4.8,
+                reviews: 41,
+                hasSpiceLevel: false,
+            },
+            {
+                id: 10,
+                name: "Cilok Aci",
+                price: 5000,
+                category: "Cemilan Manis & Lainnya",
+                description: "Cilok aci kenyal gurih.",
+                rating: 4,
+                reviews: 4,
+                hasSpiceLevel: false,
+            },
+        ];
 
-      // Cart Item Structure: { id, name, price, quantity, level, cartId (id-level) }
-      let cart = [];
-      let tempProduct = null;
-      let tempSpiceLevel = null;
+        // Cart Item Structure: { id, name, price, quantity, level, cartId (id-level) }
+        let cart = [];
+        let tempProduct = null;
+        let tempSpiceLevel = null;
 
-      // --- KONFIGURASI PENTING ---
-      const WA_NUMBER = "6281234594673";
-      const MAPS_URL =
-        "https://maps.google.com/?cid=17076080884572858947&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ";
-      const INSTAGRAM_URL = "https://www.instagram.com/camilanmake_sari";
-      const CLOSE_TIME = "19:00"; // Jam Tutup: 19:00 WIB
-      const OPEN_TIME = "08:00";
-      const NOTIFICATION_DURATION = 1000; // Notifikasi toast 1 detik
-      const HIGHLIGHT_DURATION = 1500; // Garis judul muncul 1.5 detik
-      // --- END KONFIGURASI ---
+        // --- KONFIGURASI PENTING ---
+        const WA_NUMBER = "6281234594673"; 
+        const MAPS_URL = "https://maps.google.com/?cid=17076080884572858947&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ"; 
+        const INSTAGRAM_URL = "https://www.instagram.com/camilanmake_sari"; 
+        const CLOSE_TIME = "19:00"; // Jam Tutup: 19:00 WIB
+        const OPEN_TIME = "08:00";
+        const NOTIFICATION_DURATION = 1000; // Notifikasi toast 1 detik
+        const HIGHLIGHT_DURATION = 1500; // Garis judul muncul 1.5 detik
+        // --- END KONFIGURASI ---
 
-      let notificationTimeout;
+        let notificationTimeout;
+        
+        // --- LOGIKA WAKTU BUKA/TUTUP OTOMATIS ---
+        const checkOpenStatus = () => {
+            const today = new Date();
+            const day = today.getDay(); // 0=Minggu, 1=Senin, ..., 6=Sabtu
+            const hour = today.getHours();
+            const minute = today.getMinutes();
+            const currentTimeInMinutes = hour * 60 + minute;
 
-      // --- LOGIKA WAKTU BUKA/TUTUP OTOMATIS ---
-      const checkOpenStatus = () => {
-        const today = new Date();
-        const day = today.getDay(); // 0=Minggu, 1=Senin, ..., 6=Sabtu
-        const hour = today.getHours();
-        const minute = today.getMinutes();
-        const currentTimeInMinutes = hour * 60 + minute;
+            const openTimeHour = parseInt(OPEN_TIME.split(':')[0]);
+            const closeTimeHour = parseInt(CLOSE_TIME.split(':')[0]);
+            
+            const openTimeInMinutes = openTimeHour * 60; 
+            const closeTimeInMinutes = closeTimeHour * 60; 
 
-        const openTimeHour = parseInt(OPEN_TIME.split(":")[0]);
-        const closeTimeHour = parseInt(CLOSE_TIME.split(":")[0]);
+            if (day === 0)
+                return { isOpen: false, statusText: `TUTUP (Buka Senin ${OPEN_TIME})` };
 
-        const openTimeInMinutes = openTimeHour * 60;
-        const closeTimeInMinutes = closeTimeHour * 60;
+            if (
+                currentTimeInMinutes >= openTimeInMinutes &&
+                currentTimeInMinutes < closeTimeInMinutes
+            ) {
+                return { isOpen: true, statusText: `BUKA (Sampai ${CLOSE_TIME})` };
+            } else {
+                if (currentTimeInMinutes >= closeTimeInMinutes) {
+                    return { isOpen: false, statusText: `TUTUP (Buka Besok ${OPEN_TIME})` };
+                }
+                
+                return { isOpen: false, statusText: `TUTUP (Buka Hari Ini ${OPEN_TIME})` }; 
+            }
+        };
 
-        if (day === 0)
-          return {
-            isOpen: false,
-            statusText: `TUTUP (Buka Senin ${OPEN_TIME})`,
-          };
+        const storeStatus = checkOpenStatus();
+        const IS_OPEN = storeStatus.isOpen;
+        // --- END: LOGIKA WAKTU BUKA/TUTUP OTOMATIS ---
 
-        if (
-          currentTimeInMinutes >= openTimeInMinutes &&
-          currentTimeInMinutes < closeTimeInMinutes
-        ) {
-          return { isOpen: true, statusText: `BUKA (Sampai ${CLOSE_TIME})` };
-        } else {
-          if (currentTimeInMinutes >= closeTimeInMinutes) {
-            return {
-              isOpen: false,
-              statusText: `TUTUP (Buka Besok ${OPEN_TIME})`,
-            };
-          }
-
-          return {
-            isOpen: false,
-            statusText: `TUTUP (Buka Hari Ini ${OPEN_TIME})`,
-          };
-        }
-      };
-
-      const storeStatus = checkOpenStatus();
-      const IS_OPEN = storeStatus.isOpen;
-      // --- END: LOGIKA WAKTU BUKA/TUTUP OTOMATIS ---
-
-      // --- DOM Elements ---
-      const menuList = document.getElementById("menu-list");
-      const cartModal = document.getElementById("cartModal");
-      const spiceLevelModal = document.getElementById("spiceLevelModal");
-      const cartItemsList = document.getElementById("cart-items");
-      const cartTotalSpan = document.getElementById("cart-total");
-      const floatingCart = document.getElementById("floatingCart");
-      const floatingItemCount = document.getElementById("floating-item-count");
-      const floatingTotal = document.getElementById("floating-total");
-      const cartEmptyMessage = document.getElementById("cart-empty-message");
-      const filterButtons = document.querySelectorAll(".filter-btn");
-      const searchInput = document.getElementById("search-input");
-      const spiceLevelOptions = document.getElementById("spice-level-options");
-      const pedasModalProductName = document.getElementById(
-        "pedas-modal-product-name"
-      );
-      const confirmPedasBtn = document.getElementById("confirm-pedas-btn");
-      const checkoutWaBtn = document.getElementById("checkout-wa-btn");
-      const mapsLinks = document.querySelectorAll(
-        "#maps-link-mobile, #maps-link-desktop, #maps-link-footer"
-      );
-      const instagramLinkFooter = document.getElementById(
-        "instagram-link-footer"
-      );
-      const waLinkFooter = document.getElementById("wa-link-footer");
-      const infoBukaDesktop = document.getElementById("info-buka");
-      const notification = document.getElementById("notification");
-      const notificationMessage = document.getElementById(
-        "notification-message"
-      );
-      const infoBukaMobile = document.getElementById("info-buka-mobile");
-
-      // --- Utility Functions ---
-      const formatRupiah = (number) => {
-        return "Rp " + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-      };
-
-      const getRatingStars = (rating) => {
-        const fullStars = Math.floor(rating);
-        let stars = "";
-        for (let i = 0; i < fullStars; i++) {
-          stars += '<i class="fas fa-star"></i>';
-        }
-        if (rating % 1 !== 0) {
-          stars += '<i class="fas fa-star-half-alt"></i>';
-        }
-        const emptyStars = 5 - Math.ceil(rating);
-        for (let i = 0; i < emptyStars; i++) {
-          stars += '<i class="far fa-star"></i>';
-        }
-        return stars;
-      };
-
-      // Notifikasi (Toast Notification)
-      const showNotification = (message) => {
-        clearTimeout(notificationTimeout);
-        notificationMessage.textContent = message;
-
-        notification.style.display = "flex";
-        notification.classList.remove("hide");
-        notification.classList.add("show");
-
-        notificationTimeout = setTimeout(() => {
-          notification.classList.remove("show");
-          notification.classList.add("hide");
-          setTimeout(() => {
-            notification.style.display = "none";
-          }, 300);
-        }, NOTIFICATION_DURATION);
-      };
-
-      // Fungsi Baru: Garis Judul Muncul Sementara
-      let highlightTimeout;
-      const highlightCategoryTitle = (category) => {
-        clearTimeout(highlightTimeout);
-
-        // Hapus highlight dari semua judul
-        document.querySelectorAll(".menu-category-title").forEach((title) => {
-          title.classList.remove("highlight-active");
-        });
-
-        // Cari judul kategori yang sesuai
-        const activeTitle = document.querySelector(
-          `.menu-category-title[data-category-name="${category}"]`
+        // --- DOM Elements ---
+        const menuList = document.getElementById("menu-list");
+        const cartModal = document.getElementById("cartModal");
+        const spiceLevelModal = document.getElementById("spiceLevelModal");
+        const cartItemsList = document.getElementById("cart-items");
+        const cartTotalSpan = document.getElementById("cart-total");
+        const floatingCart = document.getElementById("floatingCart");
+        const floatingItemCount = document.getElementById("floating-item-count");
+        const floatingTotal = document.getElementById("floating-total");
+        const cartEmptyMessage = document.getElementById("cart-empty-message");
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const searchInput = document.getElementById("search-input");
+        const spiceLevelOptions = document.getElementById("spice-level-options");
+        const pedasModalProductName = document.getElementById(
+            "pedas-modal-product-name"
         );
-
-        if (activeTitle && category !== "Semua") {
-          // Tambahkan highlight
-          activeTitle.classList.add("highlight-active");
-
-          // Atur timer untuk menghapus highlight setelah 1.5 detik
-          highlightTimeout = setTimeout(() => {
-            activeTitle.classList.remove("highlight-active");
-          }, HIGHLIGHT_DURATION);
-        }
-      };
-
-      // --- Cart Control Logic ---
-
-      const openSpiceModal = (product) => {
-        tempProduct = product;
-        tempSpiceLevel = null;
-        pedasModalProductName.textContent = `Untuk ${product.name}`;
-
-        spiceLevelOptions
-          .querySelectorAll(".level-pedas-btn")
-          .forEach((btn) => btn.classList.remove("selected"));
-
-        confirmPedasBtn.disabled = true;
-        confirmPedasBtn.textContent = "Pilih Level Pedas Dulu";
-
-        spiceLevelModal.style.display = "block";
-      };
-
-      window.handleAddToCart = (productId) => {
-        const product = menuData.find((item) => item.id === productId);
-
-        if (!product) return;
-
-        if (product.hasSpiceLevel) {
-          openSpiceModal(product);
-        } else {
-          addToCart(product, null);
-        }
-      };
-
-      const addToCart = (product, level) => {
-        let cartId = product.id.toString();
-        let itemName = product.name;
-
-        if (level) {
-          cartId = `${product.id}-${level}`;
-          itemName = `${product.name} (${level})`;
-        }
-
-        const existingItemIndex = cart.findIndex(
-          (item) => item.cartId === cartId
+        const confirmPedasBtn = document.getElementById("confirm-pedas-btn");
+        const checkoutWaBtn = document.getElementById("checkout-wa-btn");
+        const mapsLinks = document.querySelectorAll(
+            "#maps-link-mobile, #maps-link-desktop, #maps-link-footer"
         );
+        const instagramLinkFooter = document.getElementById(
+            "instagram-link-footer"
+        );
+        const waLinkFooter = document.getElementById("wa-link-footer");
+        const infoBukaDesktop = document.getElementById("info-buka");
+        const notification = document.getElementById("notification");
+        const notificationMessage = document.getElementById(
+            "notification-message"
+        );
+        const infoBukaMobile = document.getElementById("info-buka-mobile");
 
-        if (existingItemIndex > -1) {
-          cart[existingItemIndex].quantity += 1;
-        } else {
-          cart.push({
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            quantity: 1,
-            level: level,
-            cartId: cartId,
-          });
-        }
 
-        updateCartDisplay();
-        showNotification(`${itemName} ditambahkan ke keranjang!`);
+        // --- Utility Functions ---
+        const formatRupiah = (number) => {
+            return "Rp " + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        };
 
-        closeSpiceModal();
-      };
+        const getRatingStars = (rating) => {
+            const fullStars = Math.floor(rating);
+            let stars = "";
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            if (rating % 1 !== 0) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            const emptyStars = 5 - Math.ceil(rating);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            return stars;
+        };
 
-      window.updateCartItemQuantity = (cartId, delta) => {
-        const itemIndex = cart.findIndex((item) => item.cartId === cartId);
-        if (itemIndex > -1) {
-          cart[itemIndex].quantity += delta;
-          if (cart[itemIndex].quantity <= 0) {
-            cart.splice(itemIndex, 1);
-            showNotification(`Item dihapus dari keranjang.`);
-          }
-          updateCartDisplay();
-        }
-      };
+        // Notifikasi (Toast Notification)
+        const showNotification = (message) => {
+            clearTimeout(notificationTimeout);
+            notificationMessage.textContent = message;
 
-      window.removeCartItem = (cartId) => {
-        const itemIndex = cart.findIndex((item) => item.cartId === cartId);
-        if (itemIndex > -1) {
-          const removedItemName = cart[itemIndex].name;
-          cart.splice(itemIndex, 1);
-          updateCartDisplay();
-          showNotification(`${removedItemName} dihapus dari keranjang.`);
-        }
-      };
+            notification.style.display = "flex";
+            notification.classList.remove("hide");
+            notification.classList.add("show");
 
-      const updateCartDisplay = () => {
-        cartItemsList.innerHTML = "";
-        let total = 0;
-        let totalItems = 0;
+            notificationTimeout = setTimeout(() => {
+                notification.classList.remove("show");
+                notification.classList.add("hide");
+                setTimeout(() => {
+                    notification.style.display = "none";
+                }, 300); 
+            }, NOTIFICATION_DURATION);
+        };
 
-        if (cart.length === 0) {
-          cartEmptyMessage.style.display = "block";
-          floatingCart.classList.add("cart-hidden");
-          checkoutWaBtn.disabled = true;
-        } else {
-          cartEmptyMessage.style.display = "none";
-          floatingCart.classList.remove("cart-hidden");
-          checkoutWaBtn.disabled = false;
-        }
+        // Fungsi Baru: Garis Judul Muncul Sementara (DIPERBAIKI)
+        let highlightTimeout;
+        const highlightCategoryTitle = (category) => {
+            clearTimeout(highlightTimeout); 
+            
+            // Hapus highlight dari semua judul yang mungkin aktif sebelumnya
+            document.querySelectorAll('.menu-category-title').forEach(title => {
+                title.classList.remove('highlight-active');
+            });
+            
+            // Cari judul kategori yang sesuai di DOM
+            const activeTitle = document.querySelector(`.menu-category-title[data-category-name="${category}"]`);
+            
+            if (activeTitle && category !== "Semua") {
+                // Tambahkan highlight
+                activeTitle.classList.add('highlight-active');
+                
+                // Atur timer untuk menghapus highlight setelah 1.5 detik
+                highlightTimeout = setTimeout(() => {
+                    activeTitle.classList.remove('highlight-active');
+                }, HIGHLIGHT_DURATION);
+            }
+        };
 
-        cart.forEach((item) => {
-          const itemTotal = item.price * item.quantity;
-          total += itemTotal;
-          totalItems += item.quantity;
+        // --- Cart Control Logic ---
 
-          const listItem = document.createElement("li");
-          listItem.className = "cart-item";
+        const openSpiceModal = (product) => {
+            tempProduct = product;
+            tempSpiceLevel = null;
+            pedasModalProductName.textContent = `Untuk ${product.name}`;
 
-          listItem.innerHTML = `
+            spiceLevelOptions
+                .querySelectorAll(".level-pedas-btn")
+                .forEach((btn) => btn.classList.remove("selected"));
+
+            confirmPedasBtn.disabled = true;
+            confirmPedasBtn.textContent = "Pilih Level Pedas Dulu";
+
+            spiceLevelModal.style.display = "block";
+        };
+
+        window.handleAddToCart = (productId) => {
+            const product = menuData.find((item) => item.id === productId);
+
+            if (!product) return;
+
+            if (product.hasSpiceLevel) {
+                openSpiceModal(product);
+            } else {
+                addToCart(product, null);
+            }
+        };
+
+        const addToCart = (product, level) => {
+            let cartId = product.id.toString();
+            let itemName = product.name;
+
+            if (level) {
+                cartId = `${product.id}-${level}`;
+                itemName = `${product.name} (${level})`;
+            }
+
+            const existingItemIndex = cart.findIndex(
+                (item) => item.cartId === cartId
+            );
+
+            if (existingItemIndex > -1) {
+                cart[existingItemIndex].quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    quantity: 1,
+                    level: level,
+                    cartId: cartId,
+                });
+            }
+
+            updateCartDisplay();
+            showNotification(`${itemName} ditambahkan ke keranjang!`);
+
+            closeSpiceModal();
+        };
+
+        window.updateCartItemQuantity = (cartId, delta) => {
+            const itemIndex = cart.findIndex((item) => item.cartId === cartId);
+            if (itemIndex > -1) {
+                cart[itemIndex].quantity += delta;
+                if (cart[itemIndex].quantity <= 0) {
+                    cart.splice(itemIndex, 1);
+                    showNotification(`Item dihapus dari keranjang.`);
+                }
+                updateCartDisplay();
+            }
+        };
+
+        window.removeCartItem = (cartId) => {
+            const itemIndex = cart.findIndex((item) => item.cartId === cartId);
+            if (itemIndex > -1) {
+                const removedItemName = cart[itemIndex].name;
+                cart.splice(itemIndex, 1);
+                updateCartDisplay();
+                showNotification(`${removedItemName} dihapus dari keranjang.`);
+            }
+        };
+
+        const updateCartDisplay = () => {
+            cartItemsList.innerHTML = "";
+            let total = 0;
+            let totalItems = 0;
+
+            if (cart.length === 0) {
+                cartEmptyMessage.style.display = "block";
+                floatingCart.classList.add("cart-hidden");
+                checkoutWaBtn.disabled = true;
+            } else {
+                cartEmptyMessage.style.display = "none";
+                floatingCart.classList.remove("cart-hidden");
+                checkoutWaBtn.disabled = false;
+            }
+
+            cart.forEach((item) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                totalItems += item.quantity;
+
+                const listItem = document.createElement("li");
+                listItem.className = "cart-item";
+                
+                listItem.innerHTML = `
                     <i class="fas fa-trash-alt trash-icon" onclick="removeCartItem('${
-                      item.cartId
+                        item.cartId
                     }')"></i>
                     <div class="item-details">
                         <span class="item-name">${item.name}</span>
                         ${
-                          item.level
-                            ? `<span class="item-level">${
-                                item.level
-                              } (${formatRupiah(item.price)}/pc)</span>`
-                            : `<span class="item-level">(${formatRupiah(
-                                item.price
-                              )}/pc)</span>`
+                            item.level
+                                ? `<span class="item-level">${item.level} (${formatRupiah(item.price)}/pc)</span>` 
+                                : `<span class="item-level">(${formatRupiah(item.price)}/pc)</span>`
                         }
                     </div>
                     <div class="item-controls">
                         <button onclick="updateCartItemQuantity('${
-                          item.cartId
+                            item.cartId
                         }', -1)">-</button>
                         <span class="quantity">${item.quantity}</span>
                         <button onclick="updateCartItemQuantity('${
-                          item.cartId
+                            item.cartId
                         }', 1)">+</button>
                     </div>
-                    <span class="item-subtotal">${formatRupiah(
-                      itemTotal
-                    )}</span>
+                    <span class="item-subtotal">${formatRupiah(itemTotal)}</span>
                 `;
-          cartItemsList.appendChild(listItem);
-        });
+                cartItemsList.appendChild(listItem);
+            });
 
-        cartTotalSpan.textContent = formatRupiah(total);
-        floatingTotal.textContent = formatRupiah(total);
-        floatingItemCount.textContent = `${totalItems} Item`;
-      };
+            cartTotalSpan.textContent = formatRupiah(total);
+            floatingTotal.textContent = formatRupiah(total);
+            floatingItemCount.textContent = `${totalItems} Item`;
+        };
 
-      window.openCartModal = (event) => {
-        if (event) event.preventDefault();
-        updateCartDisplay();
-        cartModal.style.display = "block";
-      };
+        window.openCartModal = (event) => {
+            if (event) event.preventDefault();
+            updateCartDisplay();
+            cartModal.style.display = "block";
+        };
 
-      window.closeCartModal = () => {
-        cartModal.style.display = "none";
-      };
+        window.closeCartModal = () => {
+            cartModal.style.display = "none";
+        };
 
-      window.closeSpiceModal = () => {
-        spiceLevelModal.style.display = "none";
-        tempProduct = null;
-        tempSpiceLevel = null;
-      };
+        window.closeSpiceModal = () => {
+            spiceLevelModal.style.display = "none";
+            tempProduct = null;
+            tempSpiceLevel = null;
+        };
 
-      // --- Checkout Logic (WhatsApp Link Generation) ---
-      window.checkout = () => {
-        let message = `*Orderan Cemilan Mak E (Pedas Nonjok)*\n\n`;
-        let total = 0;
-        let itemNumber = 1;
+        // --- Checkout Logic (WhatsApp Link Generation) ---
+        window.checkout = () => {
+            let message = `*Orderan Cemilan Mak E (Pedas Nonjok)*\n\n`;
+            let total = 0;
+            let itemNumber = 1;
 
-        cart.forEach((item) => {
-          const itemTotal = item.price * item.quantity;
-          total += itemTotal;
-          const levelText = item.level ? ` (${item.level})` : "";
-          const priceText = ` (@${formatRupiah(item.price)})`;
+            cart.forEach((item) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                const levelText = item.level ? ` (${item.level})` : ""; 
+                const priceText = ` (@${formatRupiah(item.price)})`;
 
-          message += `${itemNumber}. ${item.quantity}x ${
-            item.name
-          }${levelText}${priceText} - ${formatRupiah(itemTotal)}\n`;
-          itemNumber++;
-        });
+                message += `${itemNumber}. ${item.quantity}x ${
+                    item.name
+                }${levelText}${priceText} - ${formatRupiah(itemTotal)}\n`;
+                itemNumber++;
+            });
 
-        message += `\n*TOTAL PESANAN: ${formatRupiah(total)}*`;
+            message += `\n*TOTAL PESANAN: ${formatRupiah(total)}*`;
 
-        if (!IS_OPEN) {
-          message += `\n\n⚠️ *Peringatan:* Toko saat ini TUTUP. Pesanan akan diproses saat toko BUKA kembali pada pukul ${OPEN_TIME} WIB.`;
-        } else {
-          message += `\n\nMohon siapkan alamat lengkap (Jl/Gang/RT/RW) dan metode pembayaran yang diinginkan (COD/Transfer). Terima kasih!`;
-        }
+            if (!IS_OPEN) {
+                message += `\n\n⚠️ *Peringatan:* Toko saat ini TUTUP. Pesanan akan diproses saat toko BUKA kembali pada pukul ${OPEN_TIME} WIB.`;
+            } else {
+                message += `\n\nMohon siapkan alamat lengkap (Jl/Gang/RT/RW) dan metode pembayaran yang diinginkan (COD/Transfer). Terima kasih!`;
+            }
 
-        const encodedMessage = encodeURIComponent(message);
-        const waLink = `https://wa.me/${WA_NUMBER}?text=${encodedMessage}`;
+            const encodedMessage = encodeURIComponent(message);
+            const waLink = `https://wa.me/${WA_NUMBER}?text=${encodedMessage}`;
 
-        // Buka WhatsApp
-        window.open(waLink, "_blank");
-      };
+            // Buka WhatsApp
+            window.open(waLink, "_blank");
+        };
 
-      // --- Menu Rendering & Filtering ---
-      const renderMenu = (filterCategory = "Semua", searchTerm = "") => {
-        menuList.innerHTML = "";
-        const filteredMenu = menuData.filter((item) => {
-          const matchesCategory =
-            filterCategory === "Semua" || item.category === filterCategory;
-          const matchesSearch = item.name
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase());
-          return matchesCategory && matchesSearch;
-        });
+        // --- Menu Rendering & Filtering ---
+        const renderMenu = (filterCategory = "Semua", searchTerm = "") => {
+            menuList.innerHTML = "";
+            const filteredMenu = menuData.filter((item) => {
+                const matchesCategory =
+                    filterCategory === "Semua" || item.category === filterCategory;
+                const matchesSearch = item.name
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
 
-        const groupedMenu = filteredMenu.reduce((acc, item) => {
-          if (!acc[item.category]) {
-            acc[item.category] = [];
-          }
-          acc[item.category].push(item);
-          return acc;
-        }, {});
+            const groupedMenu = filteredMenu.reduce((acc, item) => {
+                if (!acc[item.category]) {
+                    acc[item.category] = [];
+                }
+                acc[item.category].push(item);
+                return acc;
+            }, {});
 
-        if (filteredMenu.length === 0) {
-          menuList.innerHTML = `<p style="text-align: center; margin-top: 50px; font-style: italic; color: #888;">Maaf, tidak ada menu yang ditemukan untuk kategori/pencarian ini.</p>`;
-          return;
-        }
+            if (filteredMenu.length === 0) {
+                menuList.innerHTML = `<p style="text-align: center; margin-top: 50px; font-style: italic; color: #888;">Maaf, tidak ada menu yang ditemukan untuk kategori/pencarian ini.</p>`;
+                return;
+            }
+            
+            for (const category in groupedMenu) {
+                const categoryTitle = document.createElement("h2");
+                categoryTitle.className = "menu-category-title";
+                // Tambahkan data-attribute agar bisa dicari oleh JS
+                categoryTitle.setAttribute('data-category-name', category); 
+                categoryTitle.textContent = category;
+                menuList.appendChild(categoryTitle);
 
-        for (const category in groupedMenu) {
-          const categoryTitle = document.createElement("h2");
-          categoryTitle.className = "menu-category-title";
-          // Tambahkan data-attribute agar bisa dicari oleh JS
-          categoryTitle.setAttribute("data-category-name", category);
-          categoryTitle.textContent = category;
-          menuList.appendChild(categoryTitle);
 
-          // Jika kategori aktif dan bukan 'Semua', tambahkan class highlight
-          if (category === filterCategory && category !== "Semua") {
-            categoryTitle.classList.add("highlight-active");
-          }
+                const grid = document.createElement("div");
+                grid.className = "menu-grid";
 
-          const grid = document.createElement("div");
-          grid.className = "menu-grid";
+                groupedMenu[category].forEach((item) => {
+                    const card = document.createElement("div");
+                    card.className = "menu-card";
 
-          groupedMenu[category].forEach((item) => {
-            const card = document.createElement("div");
-            card.className = "menu-card";
+                    const buttonText = item.hasSpiceLevel ? "Pilih Level" : "Tambah";
 
-            const buttonText = item.hasSpiceLevel ? "Pilih Level" : "Tambah";
-
-            card.innerHTML = `
+                    card.innerHTML = `
                         <div>
                             <h3>${item.name}</h3>
                             <p class="description">${item.description}</p>
                             <div class="rating">
                                 ${getRatingStars(item.rating)} (${
-              item.reviews
-            } ulasan)
+                        item.reviews
+                    } ulasan)
                             </div>
                         </div>
                         <div class="price-section">
-                            <span class="price">${formatRupiah(
-                              item.price
-                            )}</span>
+                            <span class="price">${formatRupiah(item.price)}</span>
                             <button class="add-to-cart" data-id="${
-                              item.id
+                                item.id
                             }" onclick="handleAddToCart(${item.id})">
                                 ${buttonText}
                             </button>
                         </div>
                     `;
-            grid.appendChild(card);
-          });
-          menuList.appendChild(grid);
-        }
-
-        // Hapus semua highlight yang mungkin tertinggal dari render sebelumnya (jika bukan karena filter button click)
-        setTimeout(() => {
-          document.querySelectorAll(".menu-category-title").forEach((title) => {
-            if (title.getAttribute("data-category-name") !== filterCategory) {
-              title.classList.remove("highlight-active");
+                    grid.appendChild(card);
+                });
+                menuList.appendChild(grid);
             }
-          });
-        }, 100);
-      };
+            // Logika highlight dihilangkan dari sini, sudah dipindahkan ke filterButton click
+        };
 
-      // --- Initialization ---
+        // --- Initialization ---
 
-      const initialize = () => {
-        // 1. Set Status Toko
-        const iconClass = storeStatus.isOpen ? "fas fa-clock" : "fas fa-ban";
-        const statusText = storeStatus.statusText;
+        const initialize = () => {
+            // 1. Set Status Toko
+            const iconClass = storeStatus.isOpen ? "fas fa-clock" : "fas fa-ban";
+            const statusText = storeStatus.statusText;
 
-        if (infoBukaDesktop)
-          infoBukaDesktop.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
-        if (infoBukaMobile)
-          infoBukaMobile.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
+            if (infoBukaDesktop) infoBukaDesktop.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
+            if (infoBukaMobile) infoBukaMobile.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
 
-        // 2. Set Links
-        mapsLinks.forEach((link) => {
-          link.href = MAPS_URL;
-        });
 
-        if (instagramLinkFooter) {
-          instagramLinkFooter.href = INSTAGRAM_URL;
-        }
+            // 2. Set Links
+            mapsLinks.forEach((link) => {
+                link.href = MAPS_URL;
+            });
+            
+            if (instagramLinkFooter) {
+                instagramLinkFooter.href = INSTAGRAM_URL;
+            }
+            
 
-        if (waLinkFooter) {
-          waLinkFooter.href = `https://wa.me/${WA_NUMBER}?text=Halo%20Cemilan%20Mak%20E..`;
-        }
+            if (waLinkFooter) {
+                waLinkFooter.href = `https://wa.me/${WA_NUMBER}?text=Halo%20Cemilan%20Mak%20E..`;
+            }
 
-        // 3. Setup Event Listeners
+            // 3. Setup Event Listeners
 
-        // Filter Buttons
-        filterButtons.forEach((button) => {
-          button.addEventListener("click", () => {
-            filterButtons.forEach((btn) => btn.classList.remove("active"));
-            button.classList.add("active");
-            const category = button.getAttribute("data-category");
-            const searchTerm = searchInput.value;
+            // Filter Buttons (DIPERBAIKI)
+            filterButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    filterButtons.forEach((btn) => btn.classList.remove("active"));
+                    button.classList.add("active");
+                    const category = button.getAttribute("data-category");
+                    const searchTerm = searchInput.value;
+                    
+                    // 1. Render menu
+                    renderMenu(category, searchTerm); 
+                    
+                    // 2. Panggil fungsi highlight (garis akan muncul 1.5 detik lalu hilang)
+                    highlightCategoryTitle(category); 
+                });
+            });
 
-            // Render menu
-            renderMenu(category, searchTerm);
+            // Search Input
+            searchInput.addEventListener("input", () => {
+                const activeCategory = document
+                    .querySelector(".filter-btn.active")
+                    .getAttribute("data-category");
+                const searchTerm = searchInput.value;
+                
+                // Saat mencari, pastikan highlight hilang
+                clearTimeout(highlightTimeout); 
+                document.querySelectorAll('.menu-category-title').forEach(title => {
+                    title.classList.remove('highlight-active');
+                });
+                
+                renderMenu(activeCategory, searchTerm);
+            });
 
-            // Panggil fungsi highlight
-            highlightCategoryTitle(category);
-          });
-        });
+            // Spice Level Modal Logic
+            spiceLevelOptions.addEventListener("click", (e) => {
+                const btn = e.target.closest(".level-pedas-btn");
+                if (btn) {
+                    spiceLevelOptions
+                        .querySelectorAll(".level-pedas-btn")
+                        .forEach((b) => b.classList.remove("selected"));
+                    btn.classList.add("selected");
+                    tempSpiceLevel = btn.getAttribute("data-level");
+                    confirmPedasBtn.disabled = false;
+                    confirmPedasBtn.textContent = `Pilih ${tempSpiceLevel}`;
+                }
+            });
 
-        // Search Input
-        searchInput.addEventListener("input", () => {
-          const activeCategory = document
-            .querySelector(".filter-btn.active")
-            .getAttribute("data-category");
-          const searchTerm = searchInput.value;
+            confirmPedasBtn.addEventListener("click", () => {
+                if (tempProduct && tempSpiceLevel) {
+                    addToCart(tempProduct, tempSpiceLevel);
+                }
+            });
 
-          // Saat mencari, tidak perlu ada highlight
-          document.querySelectorAll(".menu-category-title").forEach((title) => {
-            title.classList.remove("highlight-active");
-          });
-          renderMenu(activeCategory, searchTerm);
-        });
+            // Close modal when clicking outside
+            window.addEventListener("click", (event) => {
+                if (event.target == cartModal) {
+                    closeCartModal();
+                }
+                if (event.target == spiceLevelModal) {
+                    closeSpiceModal();
+                }
+            });
 
-        // Spice Level Modal Logic
-        spiceLevelOptions.addEventListener("click", (e) => {
-          const btn = e.target.closest(".level-pedas-btn");
-          if (btn) {
-            spiceLevelOptions
-              .querySelectorAll(".level-pedas-btn")
-              .forEach((b) => b.classList.remove("selected"));
-            btn.classList.add("selected");
-            tempSpiceLevel = btn.getAttribute("data-level");
-            confirmPedasBtn.disabled = false;
-            confirmPedasBtn.textContent = `Pilih ${tempSpiceLevel}`;
-          }
-        });
+            // 4. Initial Cart Update & Menu Render
+            updateCartDisplay();
+            renderMenu(); 
+        };
 
-        confirmPedasBtn.addEventListener("click", () => {
-          if (tempProduct && tempSpiceLevel) {
-            addToCart(tempProduct, tempSpiceLevel);
-          }
-        });
-
-        // Close modal when clicking outside
-        window.addEventListener("click", (event) => {
-          if (event.target == cartModal) {
-            closeCartModal();
-          }
-          if (event.target == spiceLevelModal) {
-            closeSpiceModal();
-          }
-        });
-
-        // 4. Initial Cart Update & Menu Render
-        updateCartDisplay();
-        renderMenu();
-      };
-
-      // Jalankan fungsi inisialisasi saat dokumen siap
-      initialize();
+        // Jalankan fungsi inisialisasi saat dokumen siap
+        initialize();
+        
     </script>
-  </body>
+</body>
 </html>
