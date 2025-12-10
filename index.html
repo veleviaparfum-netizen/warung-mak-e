@@ -123,17 +123,23 @@
 
       /* Status Buka Mobile */
       .status-mobile {
-        margin-bottom: 10px;
+        margin-bottom: 15px; /* Tambah jarak ke tombol pesan */
         font-size: 0.9rem;
+        display: flex;
+        flex-direction: column; /* Tata ke bawah di HP */
+        align-items: center;
+        line-height: 1.6;
       }
       .info-buka-mobile {
         font-weight: 600;
-        margin-right: 15px;
+        margin: 5px 0; /* Jarak vertikal */
+        white-space: nowrap; /* Pastikan tidak pecah */
       }
       .location-info-mobile {
         color: white;
         font-weight: 500;
         text-decoration: underline;
+        white-space: nowrap; /* Pastikan tidak pecah */
       }
 
       .btn-pesan-sekarang {
@@ -173,11 +179,23 @@
         align-items: center;
         font-size: 1.1rem;
         font-weight: 600;
-        gap: 10px;
+        gap: 15px; /* Jarak antar Item | Total */
       }
 
       .floating-cart-info i {
         margin-right: 5px;
+        font-size: 1.2rem;
+      }
+
+      /* Penataan item count dan total agar lebih rapi */
+      .floating-cart-info .item-info {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .floating-cart-info .separator {
+        font-size: 1.5rem;
+        opacity: 0.6;
       }
 
       .checkout-button {
@@ -201,16 +219,15 @@
 
       /* --- ABOUT SECTION & FILTER --- */
       .about-section {
-        background-color: #ffffff; /* Putih bersih */
-        padding: 40px; /* Padding lebih luas */
-        border-radius: 12px; /* Sudut sedikit melengkung */
-        /* Box Shadow yang halus */
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        border: 2px solid #f0f0f0; /* Border sangat halus */
+        border: 2px solid #f0f0f0;
         text-align: center;
         margin-bottom: 30px;
         font-size: 1rem;
-        max-width: 800px; /* Batasi lebar untuk fokus konten */
+        max-width: 800px;
         margin-left: auto;
         margin-right: auto;
       }
@@ -224,7 +241,7 @@
         gap: 10px;
       }
       .about-section h2 i {
-        color: #ff9900; /* Warna ikon bintang/api */
+        color: #ff9900;
       }
       .about-section p {
         line-height: 1.6;
@@ -263,7 +280,6 @@
       }
 
       .filter-buttons {
-        /* Default: Wrap untuk Desktop */
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
@@ -676,7 +692,7 @@
 
         /* 4. Notifikasi di HP */
         #notification {
-          bottom: 90px; /* Lebih tinggi dari floating cart */
+          bottom: 90px;
           padding: 8px 15px;
         }
 
@@ -713,6 +729,44 @@
           flex-shrink: 0;
           white-space: nowrap;
         }
+
+        /* 7. FIX FLOATING CART MOBILE */
+        .floating-cart-info {
+          gap: 10px; /* Jarak total antar elemen */
+          /* Memastikan total item dan harga rata tengah */
+          align-items: center;
+        }
+        .floating-cart-info .item-info {
+          /* Container untuk item count */
+          min-width: 70px;
+        }
+        .floating-cart-info .separator {
+          margin: 0 5px;
+        }
+        .floating-cart-info #floating-total {
+          /* Biar harga sedikit menonjol */
+          font-size: 1.2rem;
+          font-weight: 800;
+        }
+
+        /* 8. FIX HEADER MOBILE (Agar Rapi) */
+        .status-mobile {
+          /* Ubah dari column menjadi baris dengan pemisah */
+          flex-direction: row;
+          flex-wrap: wrap; /* Biar aman kalau terlalu panjang */
+          justify-content: center;
+          gap: 5px 10px;
+          margin-bottom: 15px;
+          line-height: 1.2;
+        }
+        .info-buka-mobile {
+          margin: 0;
+          padding-right: 10px;
+          border-right: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .location-info-mobile {
+          margin: 0;
+        }
       }
     </style>
   </head>
@@ -728,7 +782,7 @@
 
           <div class="status-mobile">
             <span id="info-buka-mobile" class="info-buka-mobile"
-              ><i class="fas fa-clock"></i> BUKA (Sampai 18:00)</span
+              ><i class="fas fa-clock"></i> TUTUP (Buka Besok 08:00)</span
             >
             <a
               id="maps-link-mobile"
@@ -738,7 +792,6 @@
               ><i class="fas fa-map-marker-alt"></i> Lihat Lokasi Toko</a
             >
           </div>
-
           <a
             href="#"
             id="btn-pesan-header"
@@ -750,7 +803,7 @@
 
         <div class="header-right">
           <span id="info-buka" class="info-buka"
-            ><i class="fas fa-clock"></i> BUKA (Sampai 18:00)</span
+            ><i class="fas fa-clock"></i> TUTUP (Buka Besok 08:00)</span
           >
           <a
             id="maps-link-desktop"
@@ -943,7 +996,10 @@
     >
       <div class="floating-cart-info">
         <i class="fas fa-shopping-cart"></i>
-        <span id="floating-item-count">0 Item</span> |
+        <span class="item-info">
+          <span id="floating-item-count">0 Item</span>
+        </span>
+        <span class="separator">|</span>
         <span id="floating-total">Rp 0</span>
       </div>
       <div class="checkout-button">
@@ -1077,9 +1133,10 @@
       // --- KONFIGURASI PENTING (GANTI INI SESUAI DATA NYATA) ---
       const WA_NUMBER = "6281234594673";
 
-      // **FIX LOKASI:** Ganti link ini dengan link "Bagikan" (Share) dari Google Maps lokasi toko Anda.
+      // **GANTI INI:** Ganti link ini dengan link "Bagikan" (Share) dari Google Maps lokasi toko Anda.
+      // Saya kembalikan ke placeholder yang lebih aman
       const MAPS_URL =
-        "https://www.google.com/maps/search/Cemilan+Mak+E,+Jember";
+        "https://www.google.com/maps/search/?api=1&query=Jualan+Cemilan+Mak+E,+Jember";
 
       const INSTAGRAM_URL = "https://www.instagram.com/camilanmake_sari";
       const CLOSE_TIME = "18:00";
@@ -1458,17 +1515,26 @@
         const iconClass = storeStatus.isOpen ? "fas fa-clock" : "fas fa-ban";
         const statusText = storeStatus.statusText;
 
+        // Update status text in HTML elements
         if (infoBukaMobile)
-          infoBukaMobile.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
+          infoBukaMobile.innerHTML = `<i class="${iconClass}"></i> ${statusText
+            .replace("(Buka Besok 08:00)", "")
+            .trim()}`;
         if (infoBukaDesktop)
           infoBukaDesktop.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
 
-        // 2. Set Maps Link (Fix Link)
+        // Fix for Mobile Header Text: We use the full text only once in the mobile element
+        const statusMobileElement = document.getElementById("info-buka-mobile");
+        if (statusMobileElement) {
+          statusMobileElement.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
+        }
+
+        // 2. Set Maps Link (Using safe Google Search link)
         mapsLinks.forEach((link) => {
           link.href = MAPS_URL;
         });
 
-        // 3. Set Instagram Link (Fix Link)
+        // 3. Set Instagram Link
         if (instagramLinkFooter) {
           instagramLinkFooter.href = INSTAGRAM_URL;
         }
