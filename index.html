@@ -173,7 +173,6 @@
         align-items: center;
         font-size: 1.1rem;
         font-weight: 600;
-        /* Fix Jarak Antar Item */
         gap: 10px;
       }
 
@@ -184,7 +183,6 @@
       .checkout-button {
         background-color: white;
         color: #25d366;
-        /* Fix Padding */
         padding: 10px 18px;
         border-radius: 6px;
         font-weight: 700;
@@ -193,7 +191,6 @@
         font-size: 1rem;
       }
 
-      /* Fix Jarak Ikon WhatsApp */
       .checkout-button .fab {
         margin-left: 8px;
       }
@@ -207,7 +204,7 @@
         background-color: #ffffff; /* Putih bersih */
         padding: 40px; /* Padding lebih luas */
         border-radius: 12px; /* Sudut sedikit melengkung */
-        /* Box Shadow yang halus (ala Gudeg Lumintu) */
+        /* Box Shadow yang halus */
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         border: 2px solid #f0f0f0; /* Border sangat halus */
         text-align: center;
@@ -227,7 +224,7 @@
         gap: 10px;
       }
       .about-section h2 i {
-        color: #ff9900; /* Warna ikon api */
+        color: #ff9900; /* Warna ikon bintang/api */
       }
       .about-section p {
         line-height: 1.6;
@@ -271,7 +268,6 @@
         flex-wrap: wrap;
         gap: 10px;
         justify-content: center;
-        /* Padding untuk tampilan bagus di desktop */
         padding: 0;
         width: 100%;
       }
@@ -567,6 +563,25 @@
         font-size: 0.85rem;
         color: #999;
       }
+      /* FIX IKON INSTAGRAM */
+      .ig-icon-real {
+        /* Pastikan background gradien terisi */
+        background: linear-gradient(
+          45deg,
+          #f58529,
+            /* orange */ #feda77,
+            /* yellow */ #dd2a7b,
+            /* pink */ #8134af,
+            /* purple */ #515bd4     /* blue */
+        );
+        /* Clipping dan Fill untuk membuat teks menggunakan gradien */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+        /* Tambahkan font size agar ikon terlihat jelas */
+        font-size: 1.1rem;
+      }
 
       /* --- TOAST NOTIFICATION --- */
       #notification {
@@ -593,7 +608,6 @@
         opacity: 1;
         transform: translateX(-50%) translateY(0);
         pointer-events: auto;
-
       }
       #notification.hide {
         opacity: 0;
@@ -720,6 +734,7 @@
               id="maps-link-mobile"
               class="location-info-mobile"
               target="_blank"
+              href="#"
               ><i class="fas fa-map-marker-alt"></i> Lihat Lokasi Toko</a
             >
           </div>
@@ -738,9 +753,9 @@
             ><i class="fas fa-clock"></i> BUKA (Sampai 18:00)</span
           >
           <a
-            id="maps-link-mobile"
-            class="location-info-mobile"
-            href="https://maps.app.goo.gl/Pm8EhmK1ijCskTZi8?g_st=ac"
+            id="maps-link-desktop"
+            class="location-info-mobile location-info"
+            href="#"
             target="_blank"
           >
             <i class="fas fa-map-marker-alt"></i> Lihat Lokasi Toko
@@ -770,15 +785,14 @@
 
       <section class="filter-section">
         <div class="search-wrapper">
-  <i class="fas fa-search" style="color: #464d46;"></i>
-  <input
-    type="text"
-    id="search-input"
-    class="search-input"
-    placeholder="Cari menu, misal: Usus Cikruh..."
-  />
-</div>
-
+          <i class="fas fa-search" style="color: #464d46"></i>
+          <input
+            type="text"
+            id="search-input"
+            class="search-input"
+            placeholder="Cari menu, misal: Usus Cikruh..."
+          />
+        </div>
 
         <div class="filter-buttons">
           <button class="filter-btn active" data-category="Semua">
@@ -810,68 +824,52 @@
             Senin - Sabtu (08.00 - 18.00) | Minggu Tutup
           </span>
 
-          
+          <a
+            id="maps-link-footer"
+            href="#"
+            target="_blank"
+            style="display: flex; align-items: center; gap: 6px; color: white"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/2991/2991231.png"
+              alt="Google Maps"
+              style="width: 18px"
+            />
+            Google Maps
+          </a>
 
           <a
-  href="https://maps.app.goo.gl/Pm8EhmK1ijCskTZi8?g_st=ac"
-  target="_blank"
-  style="display: flex; align-items: center; gap: 6px; color: white"
->
-  <img
-    src="https://cdn-icons-png.flaticon.com/512/2991/2991231.png"
-    alt="Google Maps"
-    style="width: 18px;"
-  />
-  Google Maps
-</a>
-
-
-          <a
-            href="https://wa.me/6281234594673?text=Halo%20Cemilan%20Mak%20E.."
+            href="#"
+            id="wa-link-footer"
             target="_blank"
             style="
               color: rgb(242, 248, 242);
               text-decoration: none;
               font-size: 1rem;
+              display: flex;
+              align-items: center;
+              gap: 6px;
             "
           >
-            <i
-              class="fab fa-whatsapp"
-              style="color: rgb(5, 235, 63); margin-right: 6px"
-            ></i>
+            <i class="fab fa-whatsapp" style="color: rgb(5, 235, 63)"></i>
             WhatsApp: 0812-3459-4673
           </a>
-        <div class="footer-instagram" style="color: white;"> 
-  <i class="fab fa-instagram ig-icon-real" style="margin-right: 6px;"></i>
-  Instagram:
-  <a
-    href="https://www.instagram.com/camilanmake_sari/"
-    target="_blank"
-    style="color: white;"
-  >
-    @camilanmake_sari
-  </a>
-</div>
 
-<style>
-  .ig-icon-real {
-    background: linear-gradient(
-      45deg,
-      #f58529,   /* orange */
-      #feda77,   /* yellow */
-      #dd2a7b,   /* pink */
-      #8134af,   /* purple */
-      #515bd4    /* blue */
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-</style>
-
-
-      </div>
-      <div class="copyright">
-        © 2025 Jualan Cemilan Mak E. Spesialis Pedas Nonjok Jember.
+          <div class="footer-instagram">
+            <a
+              href="#"
+              id="instagram-link-footer"
+              target="_blank"
+              style="color: white; display: flex; align-items: center; gap: 6px"
+            >
+              <i class="fab fa-instagram ig-icon-real"></i>
+              Instagram: @camilanmake_sari
+            </a>
+          </div>
+        </div>
+        <div class="copyright">
+          © 2025 Jualan Cemilan Mak E. Spesialis Pedas Nonjok Jember.
+        </div>
       </div>
     </footer>
 
@@ -1076,14 +1074,17 @@
       let tempProduct = null;
       let tempSpiceLevel = null;
 
-      // --- CONFIGURATION PERBAIKAN V5.0 (PASTIKAN LINK BENAR DI SINI) ---
+      // --- KONFIGURASI PENTING (GANTI INI SESUAI DATA NYATA) ---
       const WA_NUMBER = "6281234594673";
-      // Ganti URL ini dengan URL Google Maps lokasi toko Anda yang AKTIF
-      const MAPS_URL = "https://maps.app.goo.gl/YourActualGoogleMapsLink";
-      // Ganti URL ini dengan URL profil Instagram Mak E yang AKTIF
-      const INSTAGRAM_URL = "https://www.instagram.com/cemilanmake_sari";
+
+      // **FIX LOKASI:** Ganti link ini dengan link "Bagikan" (Share) dari Google Maps lokasi toko Anda.
+      const MAPS_URL =
+        "https://www.google.com/maps/search/Cemilan+Mak+E,+Jember";
+
+      const INSTAGRAM_URL = "https://www.instagram.com/camilanmake_sari";
       const CLOSE_TIME = "18:00";
-      // --- END CONFIGURATION V5.0 ---
+      const OPEN_TIME = "08:00";
+      // --- END KONFIGURASI ---
 
       let notificationTimeout;
 
@@ -1095,11 +1096,17 @@
         const minute = today.getMinutes();
         const currentTimeInMinutes = hour * 60 + minute;
 
-        const openTimeInMinutes = 8 * 60; // 08:00
-        const closeTimeInMinutes = 18 * 60; // 18:00
+        const openTimeHour = parseInt(OPEN_TIME.split(":")[0]);
+        const closeTimeHour = parseInt(CLOSE_TIME.split(":")[0]);
+
+        const openTimeInMinutes = openTimeHour * 60;
+        const closeTimeInMinutes = closeTimeHour * 60;
 
         if (day === 0)
-          return { isOpen: false, statusText: "TUTUP (Buka Senin 08:00)" };
+          return {
+            isOpen: false,
+            statusText: `TUTUP (Buka Senin ${OPEN_TIME})`,
+          };
 
         if (
           currentTimeInMinutes >= openTimeInMinutes &&
@@ -1107,7 +1114,10 @@
         ) {
           return { isOpen: true, statusText: `BUKA (Sampai ${CLOSE_TIME})` };
         } else {
-          return { isOpen: false, statusText: "TUTUP (Buka Besok 08:00)" };
+          return {
+            isOpen: false,
+            statusText: `TUTUP (Buka Besok ${OPEN_TIME})`,
+          };
         }
       };
 
@@ -1139,6 +1149,7 @@
       const instagramLinkFooter = document.getElementById(
         "instagram-link-footer"
       );
+      const waLinkFooter = document.getElementById("wa-link-footer");
       const infoBukaMobile = document.getElementById("info-buka-mobile");
       const infoBukaDesktop = document.getElementById("info-buka");
       const notification = document.getElementById("notification");
@@ -1291,30 +1302,32 @@
           const listItem = document.createElement("li");
           listItem.className = "cart-item";
           listItem.innerHTML = `
-            <i class="fas fa-trash-alt trash-icon" onclick="removeCartItem('${
-              item.cartId
-            }')"></i>
-            <div class="item-details">
-              <span class="item-name">${item.name} (@${formatRupiah(
+                    <i class="fas fa-trash-alt trash-icon" onclick="removeCartItem('${
+                      item.cartId
+                    }')"></i>
+                    <div class="item-details">
+                        <span class="item-name">${item.name} (@${formatRupiah(
             item.price
           )})</span>
-              ${
-                item.level
-                  ? `<span class="item-level">${item.level}</span>`
-                  : ""
-              }
-            </div>
-            <div class="item-controls">
-              <button onclick="updateCartItemQuantity('${
-                item.cartId
-              }', -1)">-</button>
-              <span class="quantity">${item.quantity}</span>
-              <button onclick="updateCartItemQuantity('${
-                item.cartId
-              }', 1)">+</button>
-            </div>
-            <span class="item-subtotal">${formatRupiah(itemTotal)}</span>
-          `;
+                        ${
+                          item.level
+                            ? `<span class="item-level">${item.level}</span>`
+                            : ""
+                        }
+                    </div>
+                    <div class="item-controls">
+                        <button onclick="updateCartItemQuantity('${
+                          item.cartId
+                        }', -1)">-</button>
+                        <span class="quantity">${item.quantity}</span>
+                        <button onclick="updateCartItemQuantity('${
+                          item.cartId
+                        }', 1)">+</button>
+                    </div>
+                    <span class="item-subtotal">${formatRupiah(
+                      itemTotal
+                    )}</span>
+                `;
           cartItemsList.appendChild(listItem);
         });
 
@@ -1359,7 +1372,7 @@
         message += `\n*TOTAL PESANAN: ${formatRupiah(total)}*`;
 
         if (!IS_OPEN) {
-          message += `\n\n⚠️ *Peringatan:* Toko saat ini TUTUP. Pesanan akan diproses saat toko BUKA kembali pada pukul 08:00 WIB.`;
+          message += `\n\n⚠️ *Peringatan:* Toko saat ini TUTUP. Pesanan akan diproses saat toko BUKA kembali pada pukul ${OPEN_TIME} WIB.`;
         } else {
           message += `\n\nMohon siapkan alamat lengkap (Jl/Gang/RT/RW) dan metode pembayaran yang diinginkan (COD/Transfer). Terima kasih!`;
         }
@@ -1412,24 +1425,26 @@
             const buttonText = item.hasSpiceLevel ? "Pilih Level" : "Tambah";
 
             card.innerHTML = `
-                    <div>
-                        <h3>${item.name}</h3>
-                        <p class="description">${item.description}</p>
-                        <div class="rating">
-                            ${getRatingStars(item.rating)} (${
+                        <div>
+                            <h3>${item.name}</h3>
+                            <p class="description">${item.description}</p>
+                            <div class="rating">
+                                ${getRatingStars(item.rating)} (${
               item.reviews
             } ulasan)
+                            </div>
                         </div>
-                    </div>
-                    <div class="price-section">
-                        <span class="price">${formatRupiah(item.price)}</span>
-                        <button class="add-to-cart" data-id="${
-                          item.id
-                        }" onclick="handleAddToCart(${item.id})">
-                            ${buttonText}
-                        </button>
-                    </div>
-                `;
+                        <div class="price-section">
+                            <span class="price">${formatRupiah(
+                              item.price
+                            )}</span>
+                            <button class="add-to-cart" data-id="${
+                              item.id
+                            }" onclick="handleAddToCart(${item.id})">
+                                ${buttonText}
+                            </button>
+                        </div>
+                    `;
             grid.appendChild(card);
           });
           menuList.appendChild(grid);
@@ -1443,23 +1458,30 @@
         const iconClass = storeStatus.isOpen ? "fas fa-clock" : "fas fa-ban";
         const statusText = storeStatus.statusText;
 
-        infoBukaMobile.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
-        infoBukaDesktop.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
+        if (infoBukaMobile)
+          infoBukaMobile.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
+        if (infoBukaDesktop)
+          infoBukaDesktop.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
 
-        // 2. Set Maps Link (Fix Link V5.0)
+        // 2. Set Maps Link (Fix Link)
         mapsLinks.forEach((link) => {
           link.href = MAPS_URL;
         });
 
-        // 3. Set Instagram Link (Fix Link V5.0)
+        // 3. Set Instagram Link (Fix Link)
         if (instagramLinkFooter) {
           instagramLinkFooter.href = INSTAGRAM_URL;
         }
 
-        // 4. Render Menu Awal
+        // 4. Set WA Link Footer
+        if (waLinkFooter) {
+          waLinkFooter.href = `https://wa.me/${WA_NUMBER}?text=Halo%20Cemilan%20Mak%20E..`;
+        }
+
+        // 5. Render Menu Awal
         renderMenu();
 
-        // 5. Setup Event Listeners
+        // 6. Setup Event Listeners
 
         // Filter Buttons
         filterButtons.forEach((button) => {
@@ -1511,7 +1533,7 @@
           }
         });
 
-        // 6. Initial Cart Update
+        // 7. Initial Cart Update
         updateCartDisplay();
       };
 
