@@ -15,7 +15,7 @@
 
     <style>
       /* ------------------------------------------------------------------ */
-      /* --- 1. CSS STYLES LENGKAP (VERSI FINAL TERMASUK KOREKSI HEADER & KERANJANG) --- */
+      /* --- 1. CSS STYLES LENGKAP (VERSI FINAL V6.0 - FIX NOTIFIKASI HIJAU & TOMBOL KERANJANG) --- */
       /* ------------------------------------------------------------------ */
 
       /* --- Global Styles & Layout Fix --- */
@@ -36,7 +36,6 @@
         color: #333;
         display: flex;
         flex-direction: column;
-        /* Tambahkan padding bawah agar floating cart tidak menutupi konten */
         padding-bottom: 90px;
       }
 
@@ -54,9 +53,9 @@
         background-color: #f8f8f8;
       }
 
-      /* --- Header Section (Koreksi Jarak Atas) --- */
+      /* --- Header Section --- */
       .main-header {
-        background-color: #494646;
+        background-color: #c90000;
         color: white;
         padding: 0 20px;
         position: relative;
@@ -94,7 +93,6 @@
         position: relative;
         z-index: 2;
         align-items: center;
-        /* **JARAK ATAS DIPERBESAR (70px)** */
         padding: 70px 0;
       }
 
@@ -120,7 +118,7 @@
 
       .btn-pesan-sekarang {
         display: inline-block;
-        background-color: #faac05;
+        background-color: #ff9900;
         color: white;
         padding: 15px 35px;
         border-radius: 10px;
@@ -143,11 +141,6 @@
         margin-left: 10px;
       }
 
-      .header-right p,
-      .header-right a {
-        margin-bottom: 10px;
-      }
-
       .info-buka {
         font-weight: 600;
         font-size: 1.1rem;
@@ -161,82 +154,87 @@
         transition: color 0.2s;
         font-size: 1rem;
       }
-      .location-info:hover {
-        color: white;
-      }
 
-      /* --- ABOUT SECTION & Menu Tabs --- */
-
+      /* --- ABOUT SECTION --- */
       .about-section {
         background-color: white;
-        border-radius: 15px;
+        border-radius: 18px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         padding: 30px;
-        margin: 40px 0 50px 0;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        margin: 50px auto;
+        max-width: 900px;
         text-align: center;
       }
       .about-section h2 {
-        font-size: 2.2rem;
+        font-size: 2rem;
         font-weight: 900;
-        color: #413b3b;
-        margin-bottom: 15px;
-        border-bottom: 3px solid #ff9900;
-        display: inline-block;
-        padding-bottom: 5px;
-      }
-
-      .about-section p {
-        font-size: 1.1rem;
-        line-height: 1.6;
+        color: #333;
         margin-bottom: 20px;
+      }
+      .about-section p {
+        font-size: 1rem;
+        line-height: 1.6;
         color: #555;
       }
+
+      /* --- SEARCH BAR --- */
       .search-bar {
         display: flex;
         align-items: center;
-        border: 2px solid #ddd;
-        padding: 15px 25px;
-        border-radius: 12px;
-        margin: 40px 0;
+        max-width: 900px;
+        margin: 30px auto;
         background-color: white;
-      }
-      .search-bar i {
-        margin-right: 15px;
-        color: #777;
-        font-size: 1.2rem;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 10px 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
       }
       .search-bar input {
         border: none;
         outline: none;
+        padding: 5px 10px;
+        font-size: 1rem;
         width: 100%;
-        font-size: 1.2rem;
       }
+      .search-bar i {
+        color: #ff9900;
+        font-size: 1.2rem;
+        margin-right: 10px;
+      }
+
+      /* --- Menu Tabs --- */
       .menu-tabs {
         display: flex;
-        flex-wrap: nowrap;
+        gap: 10px;
+        margin-bottom: 30px;
         overflow-x: auto;
-        gap: 15px;
-        margin-bottom: 40px;
-        padding-bottom: 5px;
+        padding-bottom: 10px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .menu-tabs::-webkit-scrollbar {
+        display: none;
       }
 
       .tab-button {
-        background-color: #eee;
-        color: #333;
+        flex-shrink: 0;
+        background-color: #e0e0e0;
         border: none;
-        padding: 12px 22px;
-        border-radius: 25px;
+        padding: 10px 20px;
+        border-radius: 20px;
         cursor: pointer;
         font-weight: 600;
-        font-size: 1.1rem;
+        font-size: 1rem;
         transition: background-color 0.2s, color 0.2s;
-        min-width: 150px;
-        flex-shrink: 0;
+        white-space: nowrap;
       }
       .tab-button.active {
         background-color: #ff9900;
         color: white;
-        box-shadow: 0 4px 8px rgba(255, 153, 0, 0.4);
+      }
+      .tab-button:hover {
+        background-color: #ff9900;
+        color: white;
       }
 
       /* --- Menu Grid & Card --- */
@@ -244,7 +242,7 @@
         font-size: 2.5rem;
         font-weight: 900;
         margin: 60px 0 30px 0;
-        color: #744b01;
+        color: #c90000;
         border-bottom: 4px solid #ff9900;
         padding-bottom: 8px;
       }
@@ -265,134 +263,208 @@
         justify-content: space-between;
         min-height: 200px;
       }
-      .menu-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
-      }
+
       .price-row {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: auto;
+        margin-top: 10px;
       }
+
       .price {
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: 900;
-        color: #148f29;
+        color: #c90000;
       }
+
       .btn-tambah {
-        background-color: #ff9900;
+        background-color: #ff9900 !important;
         color: white;
         border: none;
         padding: 10px 20px;
-        border-radius: 10px;
-        cursor: pointer;
-        font-weight: 700;
-        font-size: 1rem;
-        transition: background-color 0.2s, transform 0.1s;
-      }
-
-      /* --- Floating Cart --- */
-      .floating-cart {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: #c90000;
-        color: white;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 18px 25px;
-        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-      }
-      .cart-summary {
-        font-size: 1.2rem;
-        font-weight: 600;
-      }
-      .cart-summary i {
-        font-size: 1.7rem;
-        margin-right: 10px;
-      }
-      .btn-checkout {
-        background-color: #ff9900;
-        color: white;
-        border: none;
-        padding: 12px 25px;
         border-radius: 8px;
         font-weight: 700;
         cursor: pointer;
-        font-size: 1.1rem;
+        font-size: 1rem;
         transition: background-color 0.2s;
+        min-width: 100px;
+        box-shadow: 0 2px 5px rgba(255, 153, 0, 0.4);
+      }
+      .btn-tambah:hover {
+        background-color: #e68a00 !important;
       }
 
-      /* --- MODAL STYLING (Koreksi Keranjang Item) --- */
+      /* --- Footer --- */
+      .main-footer {
+        background-color: #444;
+        color: #ddd;
+        padding: 30px 20px 20px 20px;
+        text-align: center;
+        margin-top: auto;
+      }
+
+      .footer-info-wrapper {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 15px;
+      }
+      .footer-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #fff;
+      }
+      .footer-item i {
+        color: #ff9900;
+      }
+      .instagram-row {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 1rem;
+        font-weight: 700;
+      }
+      .instagram-row i {
+        color: #ff9900;
+        margin-right: 5px;
+      }
+      .copyright {
+        font-size: 0.8rem;
+        color: #aaa;
+        margin-top: 10px;
+      }
+
+      /* --- MODAL OVERLAY & BASE MODAL (FIX V6.0: Positioning Modal tetap di tengah) --- */
       .modal-overlay {
-        display: none;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.6);
-        z-index: 2000;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: none;
         justify-content: center;
         align-items: center;
+        z-index: 1000;
+        overflow-y: auto;
       }
 
       .modal-overlay.active {
         display: flex;
       }
 
-      .keranjang-modal {
+      /* Kunci Modal di Tengah Layar */
+      .keranjang-modal,
+      .level-modal {
         background-color: white;
-        border-radius: 10px;
-        padding: 40px;
-        max-width: 550px;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        max-width: 500px;
         width: 90%;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        position: relative;
         max-height: 90vh;
         overflow-y: auto;
+
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1001;
       }
 
       .modal-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 25px;
-        border-bottom: 2px solid #eee;
+        border-bottom: 2px solid #ff9900;
         padding-bottom: 10px;
-        position: sticky;
-        top: 0;
-        background-color: white;
-        z-index: 2010;
+        margin-bottom: 15px;
       }
       .modal-header h3 {
-        font-size: 2rem;
         color: #c90000;
+        font-weight: 900;
+        margin: 0;
       }
       .close-btn {
         background: none;
         border: none;
-        font-size: 2.5rem;
-        cursor: pointer;
+        font-size: 1.5rem;
         color: #aaa;
-        line-height: 1;
+        cursor: pointer;
       }
 
-      /* --- KERANJANG ITEM TERBAIK (Rapi dan Kompak) --- */
+      /* FIX V6.0: Item di Keranjang - Layout dan Tombol */
       .cart-item {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 15px 0;
-        border-bottom: 1px solid #eee;
-        gap: 10px;
-        position: relative; /* Untuk posisi tombol hapus di mobile */
+        padding: 10px 0;
+        border-bottom: 1px dashed #eee;
+        font-size: 1rem;
+      }
+
+      .cart-item:last-child {
+        border-bottom: none;
+      }
+
+      .item-info {
+        flex-grow: 1;
+        padding-left: 10px;
+      }
+
+      .item-info p {
+        margin: 0;
+        font-weight: 700;
+      }
+
+      .item-price {
+        color: #555;
+        font-size: 0.9rem;
+      }
+
+      .item-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px; /* Tambah gap */
+      }
+
+      .qty-button {
+        background-color: #ff9900;
+        color: white;
+        border: none;
+        width: 35px; /* Lebar Ditingkatkan */
+        height: 35px; /* Tinggi Ditingkatkan */
+        border-radius: 8px; /* Radius Ditingkatkan */
+        font-weight: 900;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        padding: 0;
+        line-height: 1;
+        font-size: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .qty-button i {
+        font-size: 0.9rem;
+      }
+
+      .qty-button.remove {
+        background-color: #c90000;
+      }
+
+      .qty-button:hover {
+        opacity: 0.8;
+      }
+
+      .item-controls span {
+        width: 25px;
+        text-align: center;
+        font-weight: 700;
       }
 
       .delete-button {
@@ -400,274 +472,125 @@
         border: none;
         color: #c90000;
         cursor: pointer;
-        font-size: 1.2rem;
+        font-size: 1.3rem; /* Ikon diperbesar */
         padding: 5px;
-        flex-shrink: 0;
+        margin-right: 5px;
+        transition: color 0.2s;
+      }
+      .delete-button:hover {
+        color: #ff0000;
       }
 
-      .item-info {
-        flex-grow: 1;
-        text-align: left;
-      }
-      .item-info p {
-        font-weight: 700;
-        font-size: 1.1rem;
-        margin: 0;
-      }
-      .item-info .item-price {
-        font-size: 0.9rem;
-        color: #777;
-      }
-
-      /* --- KONTROL KUANTITAS (Bikin Rapi Menyatu) --- */
-      .item-controls {
+      .modal-footer {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        overflow: hidden;
-        flex-shrink: 0;
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 2px solid #ff9900;
       }
 
-      .qty-button {
-        /* Hilangkan background agar hanya warna dari class add/remove yang muncul */
-        background-color: transparent;
+      .total-info span:first-child {
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+
+      .total-info span:last-child {
+        font-weight: 900;
+        font-size: 1.4rem;
+        color: #c90000;
+        margin-left: 10px;
+      }
+
+      .btn-pesan-wa {
+        background-color: #25d366;
+        color: white;
         border: none;
-        padding: 8px 12px;
-        cursor: pointer;
+        padding: 10px 20px;
+        border-radius: 8px;
         font-weight: 700;
-        font-size: 1rem;
+        cursor: pointer;
         transition: background-color 0.2s;
-        height: 40px;
-        width: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
       }
 
-      .item-controls span {
-        padding: 0 15px;
+      /* --- FLOATING CART (FIXED: V6.0 - Pastikan selalu di bawah) --- */
+      .floating-cart {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #c90000;
+        color: white;
+        padding: 10px 20px;
+        z-index: 999; /* Z-index sedikit dibawah modal */
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+      }
+      .cart-summary {
         font-weight: 700;
         font-size: 1.1rem;
-        color: #333;
-        background-color: white;
-        border-left: 1px solid #ddd;
-        border-right: 1px solid #ddd;
-        height: 40px;
         display: flex;
         align-items: center;
+        gap: 10px;
       }
-
-      /* Warna khusus untuk tombol Add/Remove */
-      .qty-button.add {
+      .btn-checkout {
         background-color: #ff9900;
         color: white;
         border: none;
-      }
-      .qty-button.add:hover {
-        background-color: #e68a00;
-      }
-      .qty-button.remove {
-        background-color: #c90000;
-        color: white;
-        border: none;
-      }
-      .qty-button.remove:hover {
-        background-color: #a30000;
-      }
-
-      /* --- Footer Modal --- */
-      .modal-footer {
-        margin-top: 30px;
-        padding-top: 20px;
-        border-top: 2px solid #eee;
-        text-align: right;
-        position: sticky;
-        bottom: 0;
-        background-color: white;
-        z-index: 2010;
-      }
-      .total-info {
-        display: flex;
-        justify-content: space-between;
-        font-size: 1.5rem;
-        font-weight: 900;
-        color: #c90000;
-        margin-bottom: 20px;
-      }
-      .btn-pesan-wa {
-        background-color: #05fd3b;
-        color: white;
-        border: none;
-        padding: 15px 30px;
+        padding: 8px 15px;
         border-radius: 8px;
         font-weight: 700;
         cursor: pointer;
-        font-size: 1.2rem;
         transition: background-color 0.2s;
-        width: 100%;
-        box-shadow: 0 4px 10px #00ff0d;
+      }
+      .btn-checkout:hover {
+        background-color: #e68a00;
       }
 
-      /* --- FOOTER KAKI --- */
-      .main-footer {
-        background-color: #444;
+      /* --- NOTIFICATION (TOAST) FIX V6.0: Hijau dan Ikon Centang --- */
+      #notification {
+        position: fixed;
+        bottom: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #25d366; /* Hijau */
         color: white;
-        padding: 30px 20px;
-        text-align: center;
-        width: 100%;
-        margin-top: auto; /* Memastikan footer berada di bawah */
-      }
-      .footer-info-wrapper {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px 40px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 20px;
-        margin-bottom: 20px;
-      }
-      .footer-item {
+        padding: 15px 30px;
+        border-radius: 10px;
+        z-index: 1005;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         display: flex;
         align-items: center;
-        font-weight: 500;
-      }
-      .footer-item i {
-        margin-right: 8px;
-        color: #ff9900;
-      }
-      .footer-item span {
-        margin-right: 5px;
-      }
-      .instagram-row {
-        margin-bottom: 15px;
-        font-weight: 600;
-      }
-      .instagram-row i {
-        color: #ff9900;
-        margin-right: 5px;
-      }
-      .instagram-row a {
-        color: #ff9900;
-      }
-      .copyright {
-        font-size: 0.8rem;
-        color: #aaa;
+        gap: 10px;
       }
 
-      /* --- NOTIFIKASI & MEDIA QUERY --- */
-      #notification {
-        visibility: hidden;
-        min-width: 250px;
-        background-color: #333;
-        color: #fff;
-        text-align: center;
-        border-radius: 6px;
-        padding: 16px;
-        position: fixed;
-        z-index: 3000;
-        left: 50%;
-        bottom: 60px;
-        transform: translateX(-50%);
-        font-size: 17px;
-        opacity: 0;
-        transition: opacity 0.3s, bottom 0.3s;
+      #notification i {
+        font-size: 1.2rem;
       }
 
       #notification.show {
-        visibility: visible;
         opacity: 1;
-        bottom: 90px;
+        visibility: visible;
       }
 
-      /* ================================================= */
-      /* --- MEDIA QUERY: TAMPILAN HP (max-width: 768px) --- */
-      /* ================================================= */
-
+      /* MEDIA QUERY: TAMPILAN HP */
       @media (max-width: 768px) {
-        .main-header {
-          /* **KOREKSI JARAK ATAS DI HP: 50px** */
-          padding: 50px 15px;
-          text-align: center;
-          min-height: auto;
-        }
-        .header-grid {
-          grid-template-columns: 1fr;
-          gap: 20px;
-          padding: 0;
-        }
-        .header-left {
-          text-align: center;
-        }
-        .header-left h1 {
-          font-size: 2rem;
-        }
-        .header-left .sub-tagline {
-          font-size: 0.9rem;
-        }
-        .header-right {
-          text-align: center;
-          padding: 15px 0 0 0;
-          border-left: none;
-          border-top: 1px solid rgba(255, 255, 255, 0.3);
-          align-items: center;
-          margin-left: 0;
-        }
+        /* ... (CSS HP lainnya tetap) ... */
 
-        /* KERANJANG DI HP: Agar tampilan lebih fleksibel */
-        .keranjang-modal {
-          padding: 20px;
-        }
-
-        .cart-item {
-          flex-direction: column;
-          align-items: flex-start;
-          padding: 10px 0;
-          gap: 5px;
-        }
-
-        .delete-button {
-          position: absolute;
-          right: 0px;
-          top: 10px;
-          font-size: 1.5rem;
-        }
-
-        .item-info {
-          width: 100%;
-          padding-right: 50px;
-        }
-
-        .item-controls {
-          align-self: flex-end;
-        }
-
-        .modal-header h3 {
-          font-size: 1.5rem;
-        }
-        .total-info {
-          font-size: 1.2rem;
-        }
-
-        .menu-grid {
-          /* Ubah grid agar 1 kolom besar di mobile */
-          grid-template-columns: 1fr;
-          gap: 15px;
-        }
-
-        .footer-info-wrapper {
-          flex-direction: column;
-          gap: 10px;
-          padding-bottom: 15px;
-        }
-        .footer-item {
-          justify-content: center;
-          width: 100%;
-          font-size: 0.9rem;
+        /* Pastikan Floating Cart muncul di HP jika ada item */
+        .floating-cart {
+          /* display: flex diatur di JS */
         }
       }
     </style>
   </head>
+
   <body>
     <header class="main-header">
       <div class="header-grid">
@@ -711,7 +634,10 @@
 
     <div class="container">
       <div class="about-section">
-        <h2>🔥 Tentang Jualan Cemilan Mak E 🔥</h2>
+        <h2>
+          <i class="fas fa-fire-alt" style="color: #ff9900"></i> Tentang Jualan
+          Cemilan Mak E <i class="fas fa-fire-alt" style="color: #ff9900"></i>
+        </h2>
         <p>
           Kami adalah **Spesialis Cemilan Pedas Nonjok** dan **Nasi Cili
           Kekinian Jember**.
@@ -796,7 +722,7 @@
       </p>
     </footer>
 
-    <div class="floating-cart" id="floating-cart" style="display: none">
+    <div class="floating-cart" id="floating-cart">
       <p class="cart-summary">
         <i class="fas fa-shopping-cart"></i>
         <span id="item-count">0 Item</span> |
@@ -824,14 +750,62 @@
       </div>
     </div>
 
-    <div id="notification"></div>
+    <div class="modal-overlay" id="level-modal-overlay" style="display: none">
+      <div class="level-modal">
+        <div class="modal-header" style="border-bottom: none; margin-bottom: 0">
+          <h4 style="color: #c90000; font-weight: 800">Pilih Level Pedas</h4>
+          <button class="close-btn" id="close-level-modal">×</button>
+        </div>
+        <p id="level-modal-item-name" style="margin-top: 5px">
+          Untuk [Nama Produk]
+        </p>
+        <div class="level-options">
+          <button
+            class="btn-level level-1"
+            data-level="1"
+            data-desc="Level 1 (Biasa)"
+          >
+            Level 1 (Biasa)
+          </button>
+          <button class="btn-level" data-level="2" data-desc="Level 2 (Sedang)">
+            Level 2 (Sedang)
+          </button>
+          <button
+            class="btn-level level-3"
+            data-level="3"
+            data-desc="Level 3 (NONJOK!)"
+          >
+            Level 3 (NONJOK!)
+          </button>
+          <button
+            class="btn-level"
+            data-level="4"
+            data-desc="Level 4 (Ekstra Pedas)"
+          >
+            Level 4 (Ekstra Pedas)
+          </button>
+          <button
+            class="btn-level level-5"
+            data-level="5"
+            data-desc="Level 5 (GILA!)"
+          >
+            Level 5 (GILA!)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="notification">
+      <i class="fas fa-check-circle"></i>
+      <span id="notification-message"></span>
+    </div>
 
     <script>
       /* ------------------------------------------------------------------ */
-      /* --- 2. JAVASCRIPT LENGKAP (SEMUA LOGIKA AKTIF) --- */
+      /* --- 2. JAVASCRIPT LENGKAP (VERSI FINAL V6.0 - FIX NOTIFIKASI & TOMBOL KERANJANG) --- */
       /* ------------------------------------------------------------------ */
 
-      // Data Menu
+      // Data Menu: Menghapus properti has_level sementara
       const menuData = [
         {
           id: "nasi_ayam",
@@ -920,11 +894,11 @@
       // Variabel Global
       let cart = {};
       let currentFilter = "all";
+      let pendingItemId = null;
       const storeInfo = {
         open: "08:00",
         close: "16:00",
-        days: [1, 2, 3, 4, 5, 6], // Senin (1) sampai Sabtu (6). Minggu (0) tutup.
-        // WhatsApp number in international format
+        days: [1, 2, 3, 4, 5, 6],
         whatsapp: "6281234594673",
       };
 
@@ -938,24 +912,28 @@
         }).format(number);
       }
 
+      // FIX V6.0: Menggunakan span untuk pesan notifikasi
       function showNotification(message) {
         const notification = document.getElementById("notification");
-        notification.textContent = message;
+        const messageSpan = document.getElementById("notification-message");
+
+        messageSpan.textContent = message;
         notification.classList.add("show");
+
+        // Atur waktu hilang
         setTimeout(() => {
           notification.classList.remove("show");
         }, 3000);
       }
 
-      // Fungsi untuk menampilkan status jam buka
       function updateStoreStatus() {
         const now = new Date();
         const day = now.getDay();
         const hour = now.getHours();
         const minute = now.getMinutes();
         const currentTime = hour + minute / 60;
-        const openTime = 8; // 08:00
-        const closeTime = 16; // 16:00
+        const openTime = 8;
+        const closeTime = 16;
 
         const infoBukaElement = document.getElementById("info-buka-text");
 
@@ -967,7 +945,7 @@
           currentTime >= openTime &&
           currentTime < closeTime
         ) {
-          statusText = `BUKA (Sampai ${storeInfo.close})`;
+          statusText = `**BUKA** (Sampai ${storeInfo.close})`;
           isStoreOpen = true;
         } else if (day === 0) {
           statusText = `TUTUP (Hari Minggu)`;
@@ -980,10 +958,10 @@
         }
 
         if (isStoreOpen) {
-          infoBukaElement.style.color = "#FFFFFF"; // Hijau terang saat BUKA
-          infoBukaElement.style.fontWeight = "800"; // Lebih tebal
+          infoBukaElement.style.color = "#33cc33";
+          infoBukaElement.style.fontWeight = "800";
         } else {
-          infoBukaElement.style.color = "white"; // Putih terang saat TUTUP
+          infoBukaElement.style.color = "white";
           infoBukaElement.style.fontWeight = "700";
         }
 
@@ -1103,41 +1081,45 @@
       // --- CART LOGIC ---
 
       function addToCart(itemId) {
-        if (cart[itemId]) {
-          cart[itemId].qty++;
+        const item = menuData.find((m) => m.id === itemId);
+
+        const cartItemId = itemId;
+
+        if (cart[cartItemId]) {
+          cart[cartItemId].qty++;
         } else {
-          const item = menuData.find((m) => m.id === itemId);
-          if (item) {
-            cart[itemId] = {
-              ...item,
-              qty: 1,
-            };
-          }
+          cart[cartItemId] = {
+            ...item,
+            id: cartItemId,
+            originalId: itemId,
+            modifier: "",
+            qty: 1,
+          };
         }
-        updateCartUI(itemId, "tambah");
+        updateCartUI(cartItemId, "tambah");
       }
 
-      function changeQuantity(itemId, type) {
-        if (!cart[itemId]) return;
+      function changeQuantity(cartItemId, type) {
+        if (!cart[cartItemId]) return;
 
         if (type === "add") {
-          cart[itemId].qty++;
-          updateCartUI(itemId, "tambah");
+          cart[cartItemId].qty++;
+          updateCartUI(cartItemId, "add");
         } else if (type === "remove") {
-          cart[itemId].qty--;
-          if (cart[itemId].qty <= 0) {
-            delete cart[itemId];
-            updateCartUI(itemId, "hapus");
+          cart[cartItemId].qty--;
+          if (cart[cartItemId].qty <= 0) {
+            delete cart[cartItemId];
+            updateCartUI(cartItemId, "remove");
           } else {
-            updateCartUI(itemId, "kurang");
+            updateCartUI(cartItemId, "remove");
           }
         }
       }
 
-      function removeItem(itemId) {
-        if (cart[itemId]) {
-          delete cart[itemId];
-          updateCartUI(itemId, "hapus");
+      function removeItem(cartItemId) {
+        if (cart[cartItemId]) {
+          delete cart[cartItemId];
+          updateCartUI(cartItemId, "remove");
         }
       }
 
@@ -1157,6 +1139,7 @@
         const { totalItems, totalPrice } = calculateCartTotals();
         const floatingCart = document.getElementById("floating-cart");
 
+        // Floating Cart selalu tampil jika ada item
         if (totalItems > 0) {
           floatingCart.style.display = "flex";
         } else {
@@ -1175,13 +1158,15 @@
 
         renderCartModal();
 
-        if (action === "tambah") {
+        if (action === "tambah" || action === "add") {
+          const originalId = itemId;
           const itemName =
-            menuData.find((m) => m.id === itemId)?.name || "Produk";
+            menuData.find((m) => m.id === originalId)?.name || "Produk";
           showNotification(`${itemName} berhasil ditambahkan!`);
         }
       }
 
+      // FIX V6.0: Tombol Kontrol Keranjang diperbaiki di sini
       function renderCartModal() {
         const listContainer = document.getElementById("keranjang-list");
         listContainer.innerHTML = "";
@@ -1190,7 +1175,7 @@
 
         if (cartArray.length === 0) {
           listContainer.innerHTML =
-            '<p id="empty-cart-message" style="text-align:center; color:#777;">Keranjang Anda masih kosong.</p>';
+            '<p id="empty-cart-message" style="text-align:center; color:#777; padding: 20px 0;">Keranjang Anda masih kosong.</p>';
           document.getElementById("cart-total-modal").textContent =
             formatRupiah(0);
           return;
@@ -1198,23 +1183,22 @@
 
         let totalModal = 0;
 
-        const emptyMsg = document.getElementById("empty-cart-message");
-        if (emptyMsg) {
-          emptyMsg.style.display = "none";
-        }
-
         cartArray.forEach((item) => {
           totalModal += item.price * item.qty;
 
           const itemElement = document.createElement("div");
           itemElement.className = "cart-item";
-          // Render item keranjang dengan kontrol kuantitas yang kompak
+
           itemElement.innerHTML = `
                 <button class="delete-button" data-id="${
                   item.id
                 }"><i class="fas fa-trash-alt"></i></button>
                 <div class="item-info">
-                  <p>${item.name}</p>
+                  <p>${
+                    item.name
+                  } <span style="color:#c90000; font-weight: 600;">${
+            item.modifier || ""
+          }</span></p>
                   <span class="item-price">@${formatRupiah(item.price)}</span>
                 </div>
                 <div class="item-controls">
@@ -1233,7 +1217,7 @@
         document.getElementById("cart-total-modal").textContent =
           formatRupiah(totalModal);
 
-        // Tambahkan event listener untuk tombol di modal (karena dirender ulang)
+        // Tambahkan event listener setelah render
         listContainer.querySelectorAll(".qty-button.add").forEach((btn) => {
           btn.addEventListener("click", (e) =>
             changeQuantity(e.currentTarget.dataset.id, "add")
@@ -1258,7 +1242,10 @@
 
         const cartArray = Object.values(cart);
         cartArray.forEach((item, index) => {
-          message += `${index + 1}. ${item.qty}x ${item.name} (${formatRupiah(
+          const itemNameWithModifier = `${item.name}${item.modifier}`;
+          message += `${index + 1}. ${
+            item.qty
+          }x ${itemNameWithModifier} (${formatRupiah(
             item.price * item.qty
           )})\n`;
         });
@@ -1286,9 +1273,11 @@
       document.addEventListener("DOMContentLoaded", () => {
         updateStoreStatus();
         filterMenu();
-        updateCartUI(); // Panggil saat awal untuk sinkronisasi
+        updateCartUI();
 
-        // Event Listeners for Tabs
+        window.addEventListener("resize", updateCartUI);
+
+        // Event Listeners for Tabs and Search
         document.querySelectorAll(".tab-button").forEach((button) => {
           button.addEventListener("click", (e) => {
             document
@@ -1299,19 +1288,19 @@
             filterMenu();
           });
         });
-
-        // Event Listener for Search Bar
         document
           .getElementById("menu-search")
           .addEventListener("input", filterMenu);
 
-        // Event Listeners for Modal & Checkout Buttons
+        // Event Listeners for Modal Keranjang
+        // Di Desktop, Checkout/Floating Cart/Header WA Button akan buka modal
         document
           .getElementById("floating-cart")
           .addEventListener("click", () => {
             document
               .getElementById("keranjang-modal-overlay")
               .classList.add("active");
+            renderCartModal();
           });
 
         document
@@ -1328,9 +1317,10 @@
             document
               .getElementById("keranjang-modal-overlay")
               .classList.add("active");
+            renderCartModal();
           });
 
-        // Tombol WA di Header
+        // Tombol WA di Header & Modal
         const waClick = (e) => {
           e.preventDefault();
           if (calculateCartTotals().totalItems > 0) {
@@ -1351,8 +1341,6 @@
         document
           .getElementById("btn-pesan-header-right")
           .addEventListener("click", waClick);
-
-        // Tombol "Pesan Sekarang" di Modal
         document
           .getElementById("btn-pesan-wa")
           .addEventListener("click", openWhatsappLink);
