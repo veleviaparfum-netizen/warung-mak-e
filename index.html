@@ -16,6 +16,7 @@
     />
 
     <style>
+      /* --- GLOBAL RESET & FONT --- */
       * {
         box-sizing: border-box;
         margin: 0;
@@ -24,18 +25,17 @@
 
       html,
       body {
-        /* Hapus min-height dari html, fokus di body */
         height: 100%;
       }
 
       body {
         font-family: "Poppins", sans-serif;
         font-size: 16px;
-        background-color: #f8f8f8; /* Warna background utama */
+        background-color: #f8f8f8;
         color: #333;
         display: flex;
-        flex-direction: column; /* Kunci Flexbox untuk Full Height */
-        min-height: 100vh; /* Kunci agar body setinggi viewport */
+        flex-direction: column;
+        min-height: 100vh;
         padding-bottom: 70px; /* Jaga agar konten tidak tertutup floating cart */
       }
 
@@ -49,11 +49,11 @@
         max-width: 1300px;
         margin: 0 auto;
         padding: 20px 0;
-        flex-grow: 1; /* **KUNCI:** Membuat container mengambil sisa ruang vertikal */
+        flex-grow: 1;
         background-color: #f8f8f8;
       }
 
-      /* --- Header Section --- */
+      /* --- HEADER SECTION --- */
       .main-header {
         background-color: #c90000;
         color: white;
@@ -63,7 +63,7 @@
         min-height: 180px;
         display: flex;
         align-items: center;
-        flex-shrink: 0; /* Pastikan header tidak menyusut */
+        flex-shrink: 0;
       }
 
       .main-header::after {
@@ -147,15 +147,11 @@
         font-size: 1rem;
         transition: background-color 0.2s;
       }
-      .btn-pesan-sekarang:hover {
-        background-color: #e68a00;
-      }
-
       .header-right {
         display: none;
       }
 
-      /* --- Floating Cart Bar --- */
+      /* --- FLOATING CART BAR --- */
       .floating-cart {
         position: fixed;
         bottom: 0;
@@ -178,37 +174,21 @@
         font-size: 1.1rem;
         font-weight: 600;
       }
-      .floating-cart-info i {
-        margin-right: 10px;
-        font-size: 1.3rem;
-      }
-      .floating-cart-info span:last-child {
-        margin-left: 5px;
-        font-weight: 900;
-      }
       .checkout-button {
         background-color: white;
         color: #25d366;
         padding: 8px 15px;
         border-radius: 6px;
         font-weight: 700;
-        transition: background-color 0.2s;
         display: flex;
         align-items: center;
         font-size: 1rem;
-      }
-      .checkout-button i {
-        margin-left: 5px;
-        font-size: 1.1rem;
-      }
-      .checkout-button:hover {
-        background-color: #f0f0f0;
       }
       .cart-hidden {
         display: none !important;
       }
 
-      /* --- About Section --- */
+      /* --- ABOUT SECTION & FILTER --- */
       .about-section {
         background-color: #fffafa;
         padding: 30px;
@@ -224,10 +204,6 @@
         margin-bottom: 15px;
         color: #c90000;
       }
-      .about-section p {
-        line-height: 1.6;
-        margin-bottom: 10px;
-      }
 
       .filter-section {
         display: flex;
@@ -240,24 +216,25 @@
         align-items: center;
         width: 100%;
         max-width: 600px;
-        padding: 10px;
+        padding: 10px 15px;
         margin-bottom: 15px;
         background-color: white;
         border-radius: 10px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
       }
       .search-wrapper i {
         color: #c90000;
         margin-right: 10px;
-        font-size: 1.2rem;
       }
       .search-input {
         border: none;
-        outline: none;
         flex-grow: 1;
-        font-family: "Poppins", sans-serif;
-        font-size: 1.1rem;
+        font-size: 1rem;
+        padding: 5px 0;
+        outline: none;
       }
+
       .filter-buttons {
         display: flex;
         flex-wrap: wrap;
@@ -271,15 +248,16 @@
         border-radius: 20px;
         cursor: pointer;
         font-weight: 600;
-        transition: all 0.2s;
         font-size: 1rem;
+        transition: background-color 0.2s, color 0.2s;
       }
       .filter-btn.active {
         background-color: #ff9900;
         color: white;
-        box-shadow: 0 2px 5px rgba(255, 153, 0, 0.5);
+        box-shadow: 0 3px 8px rgba(255, 153, 0, 0.4);
       }
 
+      /* --- MENU LIST --- */
       .menu-category-title {
         color: #c90000;
         font-weight: 800;
@@ -303,12 +281,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        transition: transform 0.2s;
         border-top: 5px solid #c90000;
-      }
-      .menu-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
       }
       .menu-card h3 {
         font-size: 1.2rem;
@@ -320,12 +293,17 @@
         font-size: 1rem;
         color: #666;
         margin-bottom: 15px;
-        line-height: 1.4;
       }
-      .menu-card .rating i {
-        color: gold;
-        font-size: 1rem;
+      .menu-card .rating {
+        color: #ff9900;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
       }
+      .menu-card .rating .fa-star,
+      .menu-card .rating .fa-star-half-alt {
+        margin-right: 2px;
+      }
+
       .menu-card .price-section {
         display: flex;
         justify-content: space-between;
@@ -338,6 +316,7 @@
         color: #c90000;
       }
       .menu-card .add-to-cart {
+        /* FIX: Menghilangkan border aneh */
         background-color: #ff9900;
         color: white;
         border: none;
@@ -345,14 +324,14 @@
         border-radius: 5px;
         font-weight: 700;
         cursor: pointer;
-        transition: background-color 0.2s;
         font-size: 1rem;
+        transition: background-color 0.2s;
       }
       .menu-card .add-to-cart:hover {
         background-color: #e68a00;
       }
 
-      /* --- Modal Styles (Keranjang) --- */
+      /* --- MODAL (KERANJANG & LEVEL PEDAS) --- */
       .modal {
         display: none;
         position: fixed;
@@ -370,13 +349,11 @@
         margin: 10% auto;
         padding: 20px;
         border-radius: 15px;
-        max-width: 90%;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        position: relative;
         max-width: 450px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       }
+
       .small-modal .modal-content {
-        margin: 15% auto;
         max-width: 350px;
       }
 
@@ -396,14 +373,8 @@
         font-size: 28px;
         font-weight: bold;
         cursor: pointer;
-        transition: color 0.2s;
-      }
-      .close-button:hover,
-      .close-button:focus {
-        color: #333;
       }
 
-      /* Keranjang Belanja Content */
       #cart-items {
         list-style: none;
         padding: 0;
@@ -419,86 +390,103 @@
         border-bottom: 1px dashed #eee;
         gap: 10px;
       }
-
-      .trash-icon {
-        color: #ff6347;
-        cursor: pointer;
-        font-size: 1.2rem;
-        flex-shrink: 0;
-      }
-
       .item-details {
-        display: flex;
-        align-items: flex-start;
-        line-height: 1.2;
-        flex-direction: column;
         flex-grow: 1;
-        margin-right: 10px;
       }
       .item-details .item-name {
-        font-weight: 700;
-        font-size: 1.05rem;
-        margin-bottom: 3px;
+        font-weight: 600;
+        display: block;
+        line-height: 1.4;
       }
       .item-details .item-level {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         color: #c90000;
-        font-style: italic;
+      }
+      .item-subtotal {
+        font-weight: 700;
+        color: #c90000;
+        min-width: 70px;
+        text-align: right;
       }
 
+      /* FIX: Kontrol Kuantitas Keranjang */
       .item-controls {
         display: flex;
         align-items: center;
-        flex-shrink: 0;
+        gap: 5px;
+        min-width: 100px;
+        justify-content: flex-end;
       }
       .item-controls button {
-        background: none;
+        background-color: #ff9900;
+        color: white;
         border: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 5px;
         cursor: pointer;
-        padding: 5px;
-        font-size: 1.4rem;
-        color: #c90000;
-        transition: color 0.2s;
-        line-height: 1;
-      }
-      .item-controls button:hover {
-        color: #ff9900;
+        font-weight: 700;
       }
       .item-controls .quantity {
-        font-weight: 700;
+        font-weight: 600;
+        min-width: 20px;
+        text-align: center;
+      }
+      .trash-icon {
+        color: #c90000;
+        cursor: pointer;
         font-size: 1.1rem;
-        padding: 0 8px;
-        color: #333;
+        margin-right: 5px;
       }
 
-      .item-controls-wrapper {
-        display: contents;
+      .cart-summary {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-top: 15px;
+        padding-top: 10px;
+        border-top: 1px solid #eee;
       }
 
-      .item-quantity-display {
-        display: none !important;
+      .checkout-wa-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #25d366;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-top: 20px;
+        cursor: pointer;
+      }
+      .checkout-wa-btn:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
       }
 
-      /* Level Pedas Modal Fix */
-      #spice-level-options {
+      /* Level Pedas Modal */
+      .level-pedas-container {
+        text-align: center;
+      }
+      #pedas-modal-product-name {
+        color: #666;
+        margin-bottom: 15px;
+        font-size: 1rem;
+      }
+      .level-pedas-grid {
         display: grid;
         grid-template-columns: 1fr;
         gap: 10px;
-        margin-top: 15px;
       }
       .level-pedas-btn {
-        width: 100%;
-        padding: 12px;
-        border: 2px solid #ccc;
-        border-radius: 8px;
+        padding: 10px;
+        border: 2px solid #ddd;
         background-color: #fff;
-        font-weight: 600;
+        border-radius: 8px;
         cursor: pointer;
-        transition: all 0.2s;
-        font-size: 1rem;
-      }
-      .level-pedas-btn:hover {
-        background-color: #f9f9f9;
+        font-weight: 600;
       }
       .level-pedas-btn.selected {
         background-color: #c90000;
@@ -506,57 +494,11 @@
         border-color: #ff9900;
         box-shadow: 0 4px 8px rgba(201, 0, 0, 0.4);
       }
-      .level-pedas-container h4 {
-        text-align: center;
-        font-size: 1.1rem;
-        color: #666;
+      .confirm-pedas-btn {
+        margin-top: 25px;
       }
 
-      .cart-summary {
-        margin-top: 20px;
-        padding-top: 15px;
-        border-top: 2px solid #ddd;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .cart-summary .total-text {
-        font-weight: 700;
-        font-size: 1.2rem;
-      }
-      .cart-summary .total-price {
-        font-size: 1.8rem;
-        font-weight: 900;
-        color: #c90000;
-      }
-
-      .checkout-wa-btn {
-        display: block;
-        width: 100%;
-        background-color: #25d366;
-        color: white;
-        padding: 15px;
-        border: none;
-        border-radius: 8px;
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin-top: 15px;
-        cursor: pointer;
-        transition: background-color 0.2s;
-        text-align: center;
-      }
-      .checkout-wa-btn i {
-        margin-right: 8px;
-      }
-      .checkout-wa-btn:hover:not(:disabled) {
-        background-color: #1eac5b;
-      }
-      .checkout-wa-btn:disabled {
-        background-color: #888;
-        cursor: not-allowed;
-      }
-
-      /* --- Footer (FINAL FIX: Tetap di Bawah dan Tutup Sisa Layar) --- */
+      /* --- FOOTER --- */
       footer {
         background-color: #444;
         color: #ccc;
@@ -566,7 +508,7 @@
         position: relative;
         bottom: 0;
         z-index: 10;
-        flex-shrink: 0; /* Penting untuk Flexbox */
+        flex-shrink: 0;
       }
       .footer-info {
         max-width: 1300px;
@@ -580,27 +522,9 @@
         font-size: 1rem;
         margin-bottom: 10px;
       }
-      .footer-row span,
-      .footer-row a {
-        display: flex;
-        align-items: center;
-      }
       .footer-row i {
         margin-right: 8px;
         color: #ff9900;
-      }
-      .footer-instagram {
-        font-size: 1rem;
-        margin-top: 5px;
-      }
-      .footer-instagram i {
-        color: #ff9900;
-        margin-right: 8px;
-      }
-      .footer-instagram a {
-        font-weight: 600;
-        color: white;
-        text-decoration: underline;
       }
       .copyright {
         text-align: center;
@@ -610,40 +534,40 @@
         font-size: 0.85rem;
         color: #999;
       }
-
-      /* --- Notifikasi (Toast Notification) --- */
+      
+      /* --- TOAST NOTIFICATION --- */
       #notification {
-        position: fixed;
-        bottom: 90px;
-        right: 20px;
-        background-color: #25d366;
-        color: white;
-        padding: 15px 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        z-index: 2000;
-        display: none;
-        align-items: center;
-        font-weight: 600;
-        opacity: 0;
-        transition: opacity 0.3s, transform 0.3s;
+          position: fixed;
+          bottom: 90px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #25d366;
+          color: white;
+          padding: 10px 20px;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          z-index: 5000;
+          display: none;
+          align-items: center;
+          gap: 10px;
+          font-weight: 600;
+          opacity: 0;
+          transition: opacity 0.3s ease, transform 0.3s ease;
       }
 
       #notification.show {
-        opacity: 1;
-        transform: translateY(0);
+          display: flex;
+          opacity: 1;
+          transform: translateX(-50%) translateY(0);
       }
       #notification.hide {
-        opacity: 0;
-        transform: translateY(20px);
+          opacity: 0;
+          transform: translateX(-50%) translateY(20px);
       }
 
-      #notification i {
-        margin-right: 10px;
-        font-size: 1.2rem;
-      }
+      /* --- MEDIA QUERIES --- */
 
-      /* MEDIA QUERY: TAMPILAN DESKTOP */
+      /* Desktop */
       @media (min-width: 769px) {
         .header-grid {
           grid-template-columns: 1fr 1fr;
@@ -657,7 +581,6 @@
           display: flex;
           flex-direction: column;
           align-items: flex-end;
-          text-align: right;
           justify-content: center;
         }
         .status-mobile {
@@ -682,8 +605,34 @@
           display: none;
         }
       }
+
+      /* Mobile Optimization (Layar Kecil) */
+      @media (max-width: 600px) {
+        /* 1. Responsif Modal Keranjang */
+        .modal-content {
+          margin: 5% auto;
+          max-height: 90vh;
+          overflow-y: auto;
+        }
+
+        /* 2. Tinggi Daftar Item Keranjang */
+        #cart-items {
+          max-height: 60vh;
+        }
+
+        /* 3. Modal Pilih Level Pedas */
+        .small-modal .modal-content {
+          margin: 20vh auto;
+        }
+        
+        /* 4. Notifikasi di HP */
+        #notification {
+          bottom: 90px; /* Lebih tinggi dari floating cart */
+          padding: 8px 15px;
+        }
+      }
     </style>
-  </head>
+    </head>
   <body>
     <header class="main-header">
       <div class="header-grid">
@@ -737,16 +686,15 @@
           <i class="fa-solid fa-fire"></i>
         </h2>
         <p>
-          Kami adalah <strong>Spesialis Cemilan Pedas Nonjok</strong> dan
-          <strong>Nasi Cili Kekinian Jember</strong>. Jualan Cemilan Mak E
+          Kami adalah <strong>**Spesialis Cemilan Pedas Nonjok**</strong> dan
+          <strong>**Nasi Cili Kekinian Jember**</strong>. Jualan Cemilan Mak E
           adalah destinasi utama Anda untuk mencari cemilan dan makanan instan
-          dengan sensasi pedas yang 'nonjok' di Jember. Kami adalah pusat
-          cemilan kekinian dan makanan instan super pedas. Dibuat dengan bumbu
+          dengan sensasi pedas yang 'nonjok' di Jember. Dibuat dengan bumbu
           dan racikan cabai khusus, dijamin bikin ketagihan!
         </p>
         <p>
-          Kami berkomitmen menyajikan hidangan pedas lezat dengan harga
-          terjangkau.
+          **Kami berkomitmen menyajikan hidangan pedas lezat dengan harga
+          terjangkau.**
         </p>
       </section>
 
@@ -866,8 +814,8 @@
               Level 2 (Sedang)
             </button>
             <button class="level-pedas-btn" data-level="Level 3 (NONJOK)">
-              Level 3 (NONJOK)
-            </button>
+              Level 3 (NONJOK)</button
+            >
             <button class="level-pedas-btn" data-level="Level 4 (Ekstra Pedas)">
               Level 4 (Ekstra Pedas)
             </button>
@@ -1025,7 +973,7 @@
       const CLOSE_TIME = "18:00";
       let notificationTimeout;
 
-      // --- START: LOGIKA WAKTU BUKA/TUTUP OTOMATIS ---
+      // --- LOGIKA WAKTU BUKA/TUTUP OTOMATIS ---
       const checkOpenStatus = () => {
         const today = new Date();
         const day = today.getDay(); // 0=Minggu, 1=Senin, ..., 6=Sabtu
@@ -1161,6 +1109,7 @@
 
         if (level) {
           cartId = `${product.id}-${level}`;
+          itemName = `${product.name} (${level})`;
         }
 
         const existingItemIndex = cart.findIndex(
@@ -1181,9 +1130,7 @@
         }
 
         updateCartDisplay();
-        showNotification(
-          `${itemName}${level ? ` (${level})` : ""} ditambahkan ke keranjang!`
-        );
+        showNotification(`${itemName} ditambahkan ke keranjang!`);
 
         closeSpiceModal();
       };
@@ -1194,9 +1141,7 @@
           cart[itemIndex].quantity += delta;
           if (cart[itemIndex].quantity <= 0) {
             cart.splice(itemIndex, 1);
-            showNotification(
-              `${cart[itemIndex]?.name || "Item"} dihapus dari keranjang.`
-            );
+            showNotification(`Item dihapus dari keranjang.`);
           }
           updateCartDisplay();
         }
@@ -1235,27 +1180,15 @@
           const listItem = document.createElement("li");
           listItem.className = "cart-item";
           listItem.innerHTML = `
-            <i class="fas fa-trash trash-icon" onclick="removeCartItem('${
-              item.cartId
-            }')"></i>
+            <i class="fas fa-trash-alt trash-icon" onclick="removeCartItem('${item.cartId}')"></i>
             <div class="item-details">
-              <span class="item-name">${item.name} (@${formatRupiah(
-            item.price
-          )})</span>
-              ${
-                item.level
-                  ? `<span class="item-level">${item.level}</span>`
-                  : ""
-              }
+              <span class="item-name">${item.name} (@${formatRupiah(item.price)})</span>
+              ${item.level ? `<span class="item-level">${item.level}</span>` : ""}
             </div>
             <div class="item-controls">
-              <button onclick="updateCartItemQuantity('${
-                item.cartId
-              }', -1)">-</button>
+              <button onclick="updateCartItemQuantity('${item.cartId}', -1)">-</button>
               <span class="quantity">${item.quantity}</span>
-              <button onclick="updateCartItemQuantity('${
-                item.cartId
-              }', 1)">+</button>
+              <button onclick="updateCartItemQuantity('${item.cartId}', 1)">+</button>
             </div>
             <span class="item-subtotal">${formatRupiah(itemTotal)}</span>
           `;
@@ -1276,12 +1209,13 @@
       window.closeCartModal = () => {
         cartModal.style.display = "none";
       };
-
+      
       window.closeSpiceModal = () => {
         spiceLevelModal.style.display = "none";
         tempProduct = null;
         tempSpiceLevel = null;
       };
+
 
       // --- Checkout Logic (WhatsApp Link Generation) ---
       window.checkout = () => {
@@ -1293,92 +1227,79 @@
           const itemTotal = item.price * item.quantity;
           total += itemTotal;
           const levelText = item.level ? ` (${item.level})` : "";
-
-          message += `${itemNumber}. ${item.quantity}x ${
-            item.name
-          }${levelText} - ${formatRupiah(itemTotal)}\n`;
+          
+          message += `${itemNumber}. ${item.quantity}x ${item.name}${levelText} - ${formatRupiah(itemTotal)}\n`;
           itemNumber++;
         });
 
         message += `\n*TOTAL PESANAN: ${formatRupiah(total)}*`;
-
+        
         if (!IS_OPEN) {
-          message += `\n\n⚠️ *Peringatan:* Toko saat ini TUTUP. Pesanan akan diproses saat toko BUKA kembali pada pukul 08:00 WIB.`;
+            message += `\n\n⚠️ *Peringatan:* Toko saat ini TUTUP. Pesanan akan diproses saat toko BUKA kembali pada pukul 08:00 WIB.`;
         } else {
-          message += `\n\nMohon siapkan alamat lengkap (Jl/Gang/RT/RW) dan metode pembayaran yang diinginkan (COD/Transfer). Terima kasih!`;
+             message += `\n\nMohon siapkan alamat lengkap (Jl/Gang/RT/RW) dan metode pembayaran yang diinginkan (COD/Transfer). Terima kasih!`;
         }
 
         const encodedMessage = encodeURIComponent(message);
         const waLink = `https://wa.me/${WA_NUMBER}?text=${encodedMessage}`;
-
+        
         // Buka WhatsApp
         window.open(waLink, "_blank");
-
-        // Kosongkan Keranjang setelah Checkout (Opsional, tergantung kebijakan toko)
-        // cart = [];
-        // updateCartDisplay();
-        // closeCartModal();
       };
+
 
       // --- Menu Rendering & Filtering ---
       const renderMenu = (filterCategory = "Semua", searchTerm = "") => {
         menuList.innerHTML = "";
-        const filteredMenu = menuData.filter((item) => {
-          const matchesCategory =
-            filterCategory === "Semua" || item.category === filterCategory;
-          const matchesSearch = item.name
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase());
-          return matchesCategory && matchesSearch;
+        const filteredMenu = menuData.filter(item => {
+            const matchesCategory = filterCategory === "Semua" || item.category === filterCategory;
+            const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase());
+            return matchesCategory && matchesSearch;
         });
 
         const groupedMenu = filteredMenu.reduce((acc, item) => {
-          if (!acc[item.category]) {
-            acc[item.category] = [];
-          }
-          acc[item.category].push(item);
-          return acc;
+            if (!acc[item.category]) {
+                acc[item.category] = [];
+            }
+            acc[item.category].push(item);
+            return acc;
         }, {});
 
         if (filteredMenu.length === 0) {
-          menuList.innerHTML = `<p style="text-align: center; margin-top: 50px; font-style: italic; color: #888;">Maaf, tidak ada menu yang ditemukan untuk kategori/pencarian ini.</p>`;
-          return;
+            menuList.innerHTML = `<p style="text-align: center; margin-top: 50px; font-style: italic; color: #888;">Maaf, tidak ada menu yang ditemukan untuk kategori/pencarian ini.</p>`;
+            return;
         }
 
         for (const category in groupedMenu) {
-          const categoryTitle = document.createElement("h2");
-          categoryTitle.className = "menu-category-title";
-          categoryTitle.textContent = category;
-          menuList.appendChild(categoryTitle);
+            const categoryTitle = document.createElement('h2');
+            categoryTitle.className = 'menu-category-title';
+            categoryTitle.textContent = category;
+            menuList.appendChild(categoryTitle);
 
-          const grid = document.createElement("div");
-          grid.className = "menu-grid";
-
-          groupedMenu[category].forEach((item) => {
-            const card = document.createElement("div");
-            card.className = "menu-card";
-            card.innerHTML = `
+            const grid = document.createElement('div');
+            grid.className = 'menu-grid';
+            
+            groupedMenu[category].forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'menu-card';
+                card.innerHTML = `
                     <div>
                         <h3>${item.name}</h3>
                         <p class="description">${item.description}</p>
                         <div class="rating">
-                            ${getRatingStars(item.rating)} (${
-              item.reviews
-            } ulasan)
+                            ${getRatingStars(item.rating)} (${item.reviews} ulasan)
                         </div>
                     </div>
                     <div class="price-section">
                         <span class="price">${formatRupiah(item.price)}</span>
-                        <button class="add-to-cart" data-id="${
-                          item.id
-                        }" onclick="handleAddToCart(${item.id})">
-                            ${item.hasSpiceLevel ? "Pilih Level" : "Tambah"}
+                        <button class="add-to-cart" data-id="${item.id}" onclick="handleAddToCart(${item.id})">
+                            ${item.hasSpiceLevel ? 'Pilih Level' : '+ Tambah'}
                         </button>
                     </div>
                 `;
-            grid.appendChild(card);
-          });
-          menuList.appendChild(grid);
+                grid.appendChild(card);
+            });
+            menuList.appendChild(grid);
         }
       };
 
@@ -1393,8 +1314,8 @@
         infoBukaDesktop.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
 
         // 2. Set Maps Link
-        mapsLinks.forEach((link) => {
-          link.href = MAPS_URL;
+        mapsLinks.forEach(link => {
+            link.href = MAPS_URL;
         });
 
         // 3. Render Menu Awal
@@ -1415,11 +1336,9 @@
 
         // Search Input
         searchInput.addEventListener("input", () => {
-          const activeCategory = document
-            .querySelector(".filter-btn.active")
-            .getAttribute("data-category");
-          const searchTerm = searchInput.value;
-          renderMenu(activeCategory, searchTerm);
+            const activeCategory = document.querySelector(".filter-btn.active").getAttribute("data-category");
+            const searchTerm = searchInput.value;
+            renderMenu(activeCategory, searchTerm);
         });
 
         // Spice Level Modal Logic
@@ -1444,12 +1363,12 @@
 
         // Close modal when clicking outside
         window.addEventListener("click", (event) => {
-          if (event.target == cartModal) {
-            closeCartModal();
-          }
-          if (event.target == spiceLevelModal) {
-            closeSpiceModal();
-          }
+            if (event.target == cartModal) {
+                closeCartModal();
+            }
+            if (event.target == spiceLevelModal) {
+                closeSpiceModal();
+            }
         });
 
         // 5. Initial Cart Update
@@ -1459,5 +1378,5 @@
       // Jalankan fungsi inisialisasi saat dokumen siap
       initialize();
     </script>
-  </body>
+    </body>
 </html>
