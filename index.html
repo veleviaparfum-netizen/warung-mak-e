@@ -55,7 +55,7 @@
 
       /* --- HEADER SECTION --- */
       .main-header {
-        background-color: #c90000;
+        background-color: #c50202;
         color: white;
         padding: 0 20px;
         position: relative;
@@ -173,7 +173,7 @@
         align-items: center;
         font-size: 1.1rem;
         font-weight: 600;
-        /* PERUBAHAN V4.3: Menambah gap dan padding untuk jarak */
+        /* Fix Jarak Antar Item */
         gap: 10px;
       }
 
@@ -184,7 +184,7 @@
       .checkout-button {
         background-color: white;
         color: #25d366;
-        /* PERUBAHAN V4.3: Menambah padding yang lebih proporsional */
+        /* Fix Padding */
         padding: 10px 18px;
         border-radius: 6px;
         font-weight: 700;
@@ -193,7 +193,7 @@
         font-size: 1rem;
       }
 
-      /* PERUBAHAN V4.3: Memberi jarak antara teks Checkout dan ikon WhatsApp */
+      /* Fix Jarak Ikon WhatsApp */
       .checkout-button .fab {
         margin-left: 8px;
       }
@@ -284,7 +284,6 @@
         font-weight: 600;
         font-size: 1rem;
         transition: background-color 0.2s, color 0.2s;
-        /* Set white-space: nowrap; untuk mobile, tapi kita pindah ke media query */
       }
       .filter-btn.active {
         background-color: #ff9900;
@@ -586,13 +585,15 @@
         gap: 10px;
         font-weight: 600;
         opacity: 0;
-        transition: opacity 0.3s ease, transform 0.3s ease;
+        transition: opacity 0.5s ease, transform 0.5s ease;
       }
 
       #notification.show {
         display: flex;
         opacity: 1;
         transform: translateX(-50%) translateY(0);
+        pointer-events: auto;
+
       }
       #notification.hide {
         opacity: 0;
@@ -737,12 +738,13 @@
             ><i class="fas fa-clock"></i> BUKA (Sampai 18:00)</span
           >
           <a
-            id="maps-link-desktop"
-            class="location-info"
+            id="maps-link-mobile"
+            class="location-info-mobile"
+            href="https://maps.app.goo.gl/Pm8EhmK1ijCskTZi8?g_st=ac"
             target="_blank"
-            href="https://maps.app.goo.gl/ContohMapsLinkAnda"
-            ><i class="fas fa-map-marker-alt"></i> Lihat Lokasi Toko</a
           >
+            <i class="fas fa-map-marker-alt"></i> Lihat Lokasi Toko
+          </a>
         </div>
       </div>
     </header>
@@ -754,28 +756,29 @@
           <i class="fa-solid fa-star"></i>
         </h2>
         <p>
-          Kami adalah <strong>**Spesialis Cemilan Pedas Nonjok**</strong> dan
-          <strong>**Nasi Cili Kekinian Jember**</strong>. Jualan Cemilan Mak E
+          Kami adalah <strong>Spesialis Cemilan Pedas Nonjok</strong> dan
+          <strong>Nasi Cili Kekinian Jember</strong>. Jualan Cemilan Mak E
           adalah destinasi utama Anda untuk mencari cemilan dan makanan instan
           dengan sensasi pedas yang 'nonjok' di Jember. Dibuat dengan bumbu dan
           racikan cabai khusus, dijamin bikin ketagihan!
         </p>
         <p>
-          **Kami berkomitmen menyajikan hidangan pedas lezat dengan harga
-          terjangkau.**
+          Kami berkomitmen menyajikan hidangan pedas lezat dengan harga
+          terjangkau.
         </p>
       </section>
 
       <section class="filter-section">
         <div class="search-wrapper">
-          <i class="fas fa-search"></i>
-          <input
-            type="text"
-            id="search-input"
-            class="search-input"
-            placeholder="Cari menu, misal: Usus Cikruh..."
-          />
-        </div>
+  <i class="fas fa-search" style="color: #464d46;"></i>
+  <input
+    type="text"
+    id="search-input"
+    class="search-input"
+    placeholder="Cari menu, misal: Usus Cikruh..."
+  />
+</div>
+
 
         <div class="filter-buttons">
           <button class="filter-btn active" data-category="Semua">
@@ -802,37 +805,70 @@
     <footer>
       <div class="footer-info">
         <div class="footer-row">
-          <span
-            ><i class="fas fa-clock"></i> Senin - Sabtu (08.00 - 18.00) | Minggu
-            Tutup</span
-          >
+          <span style="color: rgb(250, 250, 244)">
+            <i class="fas fa-clock" style="color: rgb(250, 193, 5)"></i>
+            Senin - Sabtu (08.00 - 18.00) | Minggu Tutup
+          </span>
+
+          
 
           <a
-            id="maps-link-footer"
-            target="_blank"
-            href="https://maps.app.goo.gl/ContohMapsLinkAnda"
-          >
-            <span
-              ><i class="fas fa-map-marker-alt"></i> Jl. Tidar Gg. Delta,
-              Jember</span
-            >
-          </a>
+  href="https://maps.app.goo.gl/Pm8EhmK1ijCskTZi8?g_st=ac"
+  target="_blank"
+  style="display: flex; align-items: center; gap: 6px; color: white"
+>
+  <img
+    src="https://cdn-icons-png.flaticon.com/512/2991/2991231.png"
+    alt="Google Maps"
+    style="width: 18px;"
+  />
+  Google Maps
+</a>
+
 
           <a
             href="https://wa.me/6281234594673?text=Halo%20Cemilan%20Mak%20E.."
             target="_blank"
+            style="
+              color: rgb(242, 248, 242);
+              text-decoration: none;
+              font-size: 1rem;
+            "
           >
-            <span
-              ><i class="fab fa-whatsapp"></i> WhatsApp: 0812-3459-4673</span
-            >
+            <i
+              class="fab fa-whatsapp"
+              style="color: rgb(5, 235, 63); margin-right: 6px"
+            ></i>
+            WhatsApp: 0812-3459-4673
           </a>
-        </div>
-        <div class="footer-instagram">
-          <i class="fab fa-instagram"></i> Instagram:
-          <a href="https://instagram.com/cemilanmake_sari" target="_blank"
-            >@cemilanmake_sari</a
-          >
-        </div>
+        <div class="footer-instagram" style="color: white;"> 
+  <i class="fab fa-instagram ig-icon-real" style="margin-right: 6px;"></i>
+  Instagram:
+  <a
+    href="https://www.instagram.com/camilanmake_sari/"
+    target="_blank"
+    style="color: white;"
+  >
+    @camilanmake_sari
+  </a>
+</div>
+
+<style>
+  .ig-icon-real {
+    background: linear-gradient(
+      45deg,
+      #f58529,   /* orange */
+      #feda77,   /* yellow */
+      #dd2a7b,   /* pink */
+      #8134af,   /* purple */
+      #515bd4    /* blue */
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>
+
+
       </div>
       <div class="copyright">
         © 2025 Jualan Cemilan Mak E. Spesialis Pedas Nonjok Jember.
@@ -1040,9 +1076,15 @@
       let tempProduct = null;
       let tempSpiceLevel = null;
 
+      // --- CONFIGURATION PERBAIKAN V5.0 (PASTIKAN LINK BENAR DI SINI) ---
       const WA_NUMBER = "6281234594673";
-      const MAPS_URL = "https://maps.app.goo.gl/ContohMapsLinkAnda";
+      // Ganti URL ini dengan URL Google Maps lokasi toko Anda yang AKTIF
+      const MAPS_URL = "https://maps.app.goo.gl/YourActualGoogleMapsLink";
+      // Ganti URL ini dengan URL profil Instagram Mak E yang AKTIF
+      const INSTAGRAM_URL = "https://www.instagram.com/cemilanmake_sari";
       const CLOSE_TIME = "18:00";
+      // --- END CONFIGURATION V5.0 ---
+
       let notificationTimeout;
 
       // --- LOGIKA WAKTU BUKA/TUTUP OTOMATIS ---
@@ -1093,6 +1135,9 @@
       const checkoutWaBtn = document.getElementById("checkout-wa-btn");
       const mapsLinks = document.querySelectorAll(
         "#maps-link-mobile, #maps-link-desktop, #maps-link-footer"
+      );
+      const instagramLinkFooter = document.getElementById(
+        "instagram-link-footer"
       );
       const infoBukaMobile = document.getElementById("info-buka-mobile");
       const infoBukaDesktop = document.getElementById("info-buka");
@@ -1364,11 +1409,7 @@
             const card = document.createElement("div");
             card.className = "menu-card";
 
-            // Tentukan tombol: 'Pilih Level' jika perlu level pedas, atau '+ Tambah'
             const buttonText = item.hasSpiceLevel ? "Pilih Level" : "Tambah";
-            const buttonClass = item.hasSpiceLevel
-              ? "add-to-cart"
-              : "add-to-cart"; // Kelas tetap sama
 
             card.innerHTML = `
                     <div>
@@ -1405,15 +1446,20 @@
         infoBukaMobile.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
         infoBukaDesktop.innerHTML = `<i class="${iconClass}"></i> ${statusText}`;
 
-        // 2. Set Maps Link
+        // 2. Set Maps Link (Fix Link V5.0)
         mapsLinks.forEach((link) => {
           link.href = MAPS_URL;
         });
 
-        // 3. Render Menu Awal
+        // 3. Set Instagram Link (Fix Link V5.0)
+        if (instagramLinkFooter) {
+          instagramLinkFooter.href = INSTAGRAM_URL;
+        }
+
+        // 4. Render Menu Awal
         renderMenu();
 
-        // 4. Setup Event Listeners
+        // 5. Setup Event Listeners
 
         // Filter Buttons
         filterButtons.forEach((button) => {
@@ -1465,7 +1511,7 @@
           }
         });
 
-        // 5. Initial Cart Update
+        // 6. Initial Cart Update
         updateCartDisplay();
       };
 
